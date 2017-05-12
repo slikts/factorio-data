@@ -1,0 +1,13 @@
+{
+  "extends": ["slikts", "prettier"],
+  "plugins": ["prettier"],
+  "rules": {
+    "no-console": 0,
+    "prettier/prettier": ["error", {
+      "trailingComma": "es5",
+      "semi": false,
+      "singleQuote": true,
+      "printWidth": 100
+    }]
+  }
+}
