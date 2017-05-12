@@ -1,6 +1,6 @@
 {
   "name": "factorio-recipes",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Extract Factorio recipes to JSON",
   "main": "recipes.js",
   "scripts": {
