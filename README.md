@@ -1,3 +1,9 @@
+[![NPM version](http://badge.fury.io/js/factorio-data.svg)](http://badge.fury.io/js/factorio-data)
+[![GitHub version](https://badge.fury.io/gh/slikts%2Ffactorio-data.svg)](https://badge.fury.io/gh/slikts%2Ffactorio-data)
+[![Dependency Status](https://david-dm.org/slikts/factorio-data.svg)](https://david-dm.org/slikts/factorio-data)
+[![Open Source Love](https://badges.frapsoft.com/os/mit/mit.svg?v=102)](https://github.com/ellerbrock/open-source-badge/)
+[![Build Status](https://travis-ci.org/slikts/factorio-data.svg?branch=master)](https://travis-ci.org/slikts/factorio-data)
+
 # factorio-data
 
 Factorio prototype data in JSON format.
