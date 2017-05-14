@@ -37,6 +37,10 @@
   },
   {
     "type": "ammo-category",
+    "name": "grenade"
+  },
+  {
+    "type": "ammo-category",
     "name": "melee"
   },
   {
@@ -50,6 +54,22 @@
   {
     "type": "ammo-category",
     "name": "combat-robot-beam"
+  },
+  {
+    "type": "equipment-category",
+    "name": "armor"
+  },
+  {
+    "type": "module-category",
+    "name": "productivity"
+  },
+  {
+    "type": "module-category",
+    "name": "speed"
+  },
+  {
+    "type": "module-category",
+    "name": "effectivity"
   },
   {
     "type": "rail-category",

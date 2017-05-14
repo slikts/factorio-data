@@ -476,7 +476,8 @@
     "selectable_in_game": false,
     "autoplace": {
       "sharpness": 0.9,
-      "order": "a[doodad]-b[pita]"
+      "order": "a[doodad]-b[pita]",
+      "max_probability": 0.25
     },
     "pictures": [
       {
@@ -556,7 +557,8 @@
     "selectable_in_game": false,
     "autoplace": {
       "sharpness": 0.9,
-      "order": "a[doodad]-b[pita]"
+      "order": "a[doodad]-b[pita]",
+      "max_probability": 0.25
     },
     "pictures": [
       {
@@ -1006,7 +1008,8 @@
     "autoplace": {
       "order": "a[doodad]-d[fluff]",
       "sharpness": 1,
-      "placement_density": 3
+      "placement_density": 3,
+      "max_probability": 0.25
     },
     "pictures": [
       {
@@ -1094,6 +1097,7 @@
     ],
     "selectable_in_game": false,
     "autoplace": {
+      "max_probability": 0.25,
       "order": "a[doodad]-d[fluff]",
       "sharpness": 1,
       "placement_density": 3
@@ -1171,8 +1175,7 @@
     "selectable_in_game": false,
     "autoplace": {
       "order": "a[doodad]-e[garballo]",
-      "sharpness": 1,
-      "max_probability": 0.8
+      "sharpness": 1
     },
     "pictures": [
       {
@@ -1279,8 +1282,7 @@
     "selectable_in_game": false,
     "autoplace": {
       "order": "a[doodad]-e[garballo]",
-      "sharpness": 1,
-      "max_probability": 0.8
+      "sharpness": 1
     },
     "pictures": [
       {
@@ -1374,8 +1376,7 @@
     "selectable_in_game": false,
     "autoplace": {
       "order": "a[doodad]-e[garballo]",
-      "sharpness": 1,
-      "max_probability": 0.8
+      "sharpness": 1
     },
     "pictures": [
       {
@@ -1794,6 +1795,7 @@
     "selectable_in_game": false,
     "autoplace": {
       "order": "a[doodad]-z[other]",
+      "max_probability": 0.25,
       "influence": 0.01
     },
     "pictures": [
@@ -1923,6 +1925,7 @@
     "selectable_in_game": false,
     "autoplace": {
       "order": "a[doodad]-z[other]",
+      "max_probability": 0.25,
       "influence": 0.01
     },
     "pictures": [
@@ -2049,6 +2052,23 @@
         1.3
       ]
     ],
+    "minable": {
+      "mining_particle": "stone-particle",
+      "mining_time": 8,
+      "result": "stone",
+      "count": 20
+    },
+    "loot": [
+      {
+        "item": "stone",
+        "probability": 1,
+        "count_min": 5,
+        "count_max": 10
+      }
+    ],
+    "mined_sound": {
+      "filename": "__base__/sound/deconstruct-bricks.ogg"
+    },
     "render_layer": "object",
     "max_health": 200,
     "resistances": [
@@ -2059,6 +2079,7 @@
     ],
     "autoplace": {
       "order": "a[doodad]-a[rock]",
+      "max_probability": 0.25,
       "peaks": [
         {
           "influence": 0.0002
@@ -2286,6 +2307,7 @@
     "render_layer": "decorative",
     "autoplace": {
       "order": "a[doodad]-a[rock]",
+      "max_probability": 0.25,
       "peaks": [
         {
           "influence": 0.0002
@@ -2730,41 +2752,7 @@
     "spawning_spacing": 3,
     "max_spawn_shift": 0,
     "max_richness_for_spawn_shift": 100,
-    "autoplace": {
-      "sharpness": 0.4,
-      "control": "enemy-base",
-      "order": "b[enemy]-b[biter-spawner]",
-      "richness_multiplier": 1,
-      "richness_base": 0,
-      "force": "enemy",
-      "peaks": [
-        {
-          "influence": 0,
-          "richness_influence": 100,
-          "tier_from_start_optimal": 20,
-          "tier_from_start_top_property_limit": 20,
-          "tier_from_start_max_range": 40
-        },
-        {
-          "starting_area_weight_optimal": 1,
-          "starting_area_weight_range": 0,
-          "starting_area_weight_max_range": 2
-        },
-        {
-          "influence": 0.425,
-          "noise_layer": "enemy-base",
-          "noise_persistence": 0.5
-        },
-        {
-          "influence": 0.5,
-          "noise_layer": "enemy-base",
-          "noise_persistence": 0.5,
-          "tier_from_start_optimal": 20,
-          "tier_from_start_top_property_limit": 20,
-          "tier_from_start_max_range": 40
-        }
-      ]
-    }
+    "call_for_help_radius": 50
   },
   {
     "type": "corpse",
@@ -2851,6 +2839,8 @@
     "build_distance": 6,
     "drop_item_distance": 6,
     "reach_distance": 6,
+    "item_pickup_distance": 1,
+    "loot_pickup_distance": 2,
     "reach_resource_distance": 2.7,
     "ticks_to_keep_gun": 600,
     "ticks_to_keep_aiming_direction": 100,
@@ -3157,8 +3147,8 @@
       "height": 64,
       "frame_count": 1,
       "shift": [
-        0.5,
-        0.05
+        0.515625,
+        0.0625
       ]
     },
     "working_visualisations": [
@@ -3182,12 +3172,15 @@
         "animation": {
           "filename": "__base__/graphics/entity/stone-furnace/stone-furnace-fire.png",
           "priority": "extra-high",
-          "width": 23,
-          "height": 27,
-          "frame_count": 12,
+          "line_length": 8,
+          "width": 22,
+          "height": 87,
+          "frame_count": 48,
+          "axially_symmetrical": false,
+          "direction_count": 1,
           "shift": [
-            0.078125,
-            0.5234375
+            0.0625,
+            null
           ]
         },
         "light": {
@@ -3200,8 +3193,8 @@
   },
   {
     "type": "transport-belt",
-    "name": "basic-transport-belt",
-    "icon": "__base__/graphics/icons/basic-transport-belt.png",
+    "name": "transport-belt",
+    "icon": "__base__/graphics/icons/transport-belt.png",
     "flags": [
       "placeable-neutral",
       "player-creation"
@@ -3209,7 +3202,7 @@
     "minable": {
       "hardness": 0.2,
       "mining_time": 0.3,
-      "result": "basic-transport-belt"
+      "result": "transport-belt"
     },
     "max_health": 50,
     "corpse": "small-remnants",
@@ -3241,14 +3234,14 @@
     ],
     "working_sound": {
       "sound": {
-        "filename": "__base__/sound/basic-transport-belt.ogg",
+        "filename": "__base__/sound/transport-belt.ogg",
         "volume": 0.4
       },
       "max_sounds_per_type": 3
     },
     "animation_speed_coefficient": 32,
     "animations": {
-      "filename": "__base__/graphics/entity/basic-transport-belt/basic-transport-belt.png",
+      "filename": "__base__/graphics/entity/transport-belt/transport-belt.png",
       "priority": "extra-high",
       "width": 40,
       "height": 40,
@@ -3519,10 +3512,33 @@
       "width": 46,
       "height": 33,
       "shift": [
-        0.3,
-        0
+        0.25,
+        0.015625
       ]
-    }
+    },
+    "circuit_wire_connection_point": {
+      "shadow": {
+        "red": [
+          0.734375,
+          0.453125
+        ],
+        "green": [
+          0.609375,
+          0.515625
+        ]
+      },
+      "wire": {
+        "red": [
+          0.40625,
+          0.21875
+        ],
+        "green": [
+          0.40625,
+          0.375
+        ]
+      }
+    },
+    "circuit_wire_max_distance": 7.5
   },
   {
     "type": "electric-pole",
@@ -3612,7 +3628,7 @@
             null
           ],
           "green": [
-            0.4,
+            0.40625,
             null
           ]
         }
@@ -3642,7 +3658,7 @@
             null
           ],
           "green": [
-            0.2,
+            0.1875,
             null
           ]
         }
@@ -3672,7 +3688,7 @@
             null
           ],
           "green": [
-            0,
+            null,
             null
           ]
         }
@@ -3694,11 +3710,11 @@
         },
         "wire": {
           "copper": [
-            0,
+            null,
             null
           ],
           "red": [
-            0.3,
+            0.3125,
             null
           ],
           "green": [
@@ -3791,7 +3807,55 @@
         "priority": "extra-high",
         "width": 34,
         "height": 38,
-        "frame_count": 13,
+        "frame_count": 2,
+        "animation_speed": 1.5,
+        "shift": [
+          0,
+          0
+        ]
+      },
+      {
+        "filename": "__base__/graphics/entity/explosion-gunshot/explosion-gunshot.png",
+        "priority": "extra-high",
+        "width": 34,
+        "height": 38,
+        "frame_count": 2,
+        "animation_speed": 1.5,
+        "shift": [
+          0,
+          0
+        ]
+      },
+      {
+        "filename": "__base__/graphics/entity/explosion-gunshot/explosion-gunshot.png",
+        "priority": "extra-high",
+        "width": 34,
+        "height": 38,
+        "frame_count": 3,
+        "animation_speed": 1.5,
+        "shift": [
+          0,
+          0
+        ]
+      },
+      {
+        "filename": "__base__/graphics/entity/explosion-gunshot/explosion-gunshot.png",
+        "priority": "extra-high",
+        "width": 34,
+        "height": 38,
+        "frame_count": 3,
+        "animation_speed": 1.5,
+        "shift": [
+          0,
+          0
+        ]
+      },
+      {
+        "filename": "__base__/graphics/entity/explosion-gunshot/explosion-gunshot.png",
+        "priority": "extra-high",
+        "width": 34,
+        "height": 38,
+        "frame_count": 3,
         "animation_speed": 1.5,
         "shift": [
           0,
@@ -3875,6 +3939,9 @@
       {
         "filename": "__base__/graphics/entity/big-explosion/big-explosion.png",
         "priority": "extra-high",
+        "flags": [
+          "compressed"
+        ],
         "width": 197,
         "height": 245,
         "frame_count": 47,
@@ -4302,7 +4369,7 @@
       "frame_count": 32,
       "line_length": 8,
       "shift": [
-        1.34,
+        1.34375,
         null
       ]
     },
@@ -4313,7 +4380,7 @@
       "frame_count": 32,
       "line_length": 8,
       "shift": [
-        0.812,
+        0.796875,
         0.03125
       ]
     },
@@ -4411,8 +4478,8 @@
         "filename": "__base__/graphics/entity/offshore-pump/offshore-pump.png",
         "priority": "high",
         "shift": [
-          0.9,
-          0.05
+          0.90625,
+          0.0625
         ],
         "width": 160,
         "height": 102
@@ -4421,8 +4488,8 @@
         "filename": "__base__/graphics/entity/offshore-pump/offshore-pump.png",
         "priority": "high",
         "shift": [
-          0.9,
-          0.05
+          0.90625,
+          0.0625
         ],
         "x": 160,
         "width": 160,
@@ -4432,8 +4499,8 @@
         "filename": "__base__/graphics/entity/offshore-pump/offshore-pump.png",
         "priority": "high",
         "shift": [
-          0.9,
-          0.65
+          0.90625,
+          0.65625
         ],
         "x": 320,
         "width": 160,
@@ -4444,7 +4511,7 @@
         "priority": "high",
         "shift": [
           1,
-          0.05
+          0.0625
         ],
         "x": 480,
         "width": 160,
@@ -4455,21 +4522,21 @@
       {
         "shadow": {
           "red": [
-            2.7125,
-            0.20625
+            2.71875,
+            0.375
           ],
           "green": [
-            2.7125,
-            0.20625
+            2.5,
+            0.375
           ]
         },
         "wire": {
           "red": [
-            0.4,
+            0.84375,
             null
           ],
           "green": [
-            0.4,
+            0.6875,
             null
           ]
         }
@@ -4477,21 +4544,21 @@
       {
         "shadow": {
           "red": [
-            2.025,
-            0.83125
+            0.765625,
+            0.546875
           ],
           "green": [
-            2.025,
-            0.83125
+            0.765625,
+            0.421875
           ]
         },
         "wire": {
           "red": [
-            0.36875,
+            null,
             null
           ],
           "green": [
-            0.36875,
+            null,
             null
           ]
         }
@@ -4499,47 +4566,53 @@
       {
         "shadow": {
           "red": [
-            1.09,
-            1.025
+            null,
+            0.5625
           ],
           "green": [
-            1.09,
-            1.025
+            0.0625,
+            0.5625
           ]
         },
         "wire": {
           "red": [
             null,
-            0.2125
+            null
           ],
           "green": [
             null,
-            0.2125
+            null
           ]
         }
       },
       {
         "shadow": {
           "red": [
-            1.6875,
+            1.78125,
             null
           ],
           "green": [
-            1.6875,
+            1.78125,
             null
           ]
         },
         "wire": {
           "red": [
-            null,
+            0.34375,
             null
           ],
           "green": [
-            null,
+            0.34375,
             null
           ]
         }
       }
+    ],
+    "circuit_connector_sprites": [
+      null,
+      null,
+      null,
+      null
     ],
     "circuit_wire_max_distance": 7.5
   },
@@ -4635,8 +4708,8 @@
   },
   {
     "type": "inserter",
-    "name": "basic-inserter",
-    "icon": "__base__/graphics/icons/basic-inserter.png",
+    "name": "inserter",
+    "icon": "__base__/graphics/icons/inserter.png",
     "flags": [
       "placeable-neutral",
       "placeable-player",
@@ -4645,7 +4718,7 @@
     "minable": {
       "hardness": 0.2,
       "mining_time": 0.5,
-      "result": "basic-inserter"
+      "result": "inserter"
     },
     "max_health": 40,
     "corpse": "small-remnants",
@@ -4715,19 +4788,19 @@
       ]
     },
     "hand_base_picture": {
-      "filename": "__base__/graphics/entity/basic-inserter/basic-inserter-hand-base.png",
+      "filename": "__base__/graphics/entity/inserter/inserter-hand-base.png",
       "priority": "extra-high",
       "width": 8,
       "height": 33
     },
     "hand_closed_picture": {
-      "filename": "__base__/graphics/entity/basic-inserter/basic-inserter-hand-closed.png",
+      "filename": "__base__/graphics/entity/inserter/inserter-hand-closed.png",
       "priority": "extra-high",
       "width": 18,
       "height": 41
     },
     "hand_open_picture": {
-      "filename": "__base__/graphics/entity/basic-inserter/basic-inserter-hand-open.png",
+      "filename": "__base__/graphics/entity/inserter/inserter-hand-open.png",
       "priority": "extra-high",
       "width": 18,
       "height": 41
@@ -4760,10 +4833,14 @@
     ],
     "platform_picture": {
       "sheet": {
-        "filename": "__base__/graphics/entity/basic-inserter/basic-inserter-platform.png",
+        "filename": "__base__/graphics/entity/inserter/inserter-platform.png",
         "priority": "extra-high",
         "width": 46,
-        "height": 46
+        "height": 46,
+        "shift": [
+          0.09375,
+          0
+        ]
       }
     }
   },
@@ -4906,7 +4983,11 @@
         "filename": "__base__/graphics/entity/burner-inserter/burner-inserter-platform.png",
         "priority": "extra-high",
         "width": 46,
-        "height": 46
+        "height": 46,
+        "shift": [
+          0.09375,
+          0
+        ]
       }
     },
     "rotation_speed": 0.01
@@ -5165,6 +5246,12 @@
       "intensity": 0.9,
       "size": 40
     },
+    "light_when_colored": {
+      "intensity": 1,
+      "size": 6
+    },
+    "glow_size": 6,
+    "glow_color_intensity": 0.135,
     "picture_off": {
       "filename": "__base__/graphics/entity/small-lamp/light-off.png",
       "priority": "high",
@@ -5175,7 +5262,7 @@
       "direction_count": 1,
       "shift": [
         null,
-        0.16875
+        0.15625
       ]
     },
     "picture_on": {
@@ -5191,25 +5278,75 @@
         null
       ]
     },
+    "signal_to_color_mapping": [
+      {
+        "signal": "signal-red",
+        "color": {
+          "r": 1,
+          "g": 0,
+          "b": 0
+        }
+      },
+      {
+        "signal": "signal-green",
+        "color": {
+          "r": 0,
+          "g": 1,
+          "b": 0
+        }
+      },
+      {
+        "signal": "signal-blue",
+        "color": {
+          "r": 0,
+          "g": 0,
+          "b": 1
+        }
+      },
+      {
+        "signal": "signal-yellow",
+        "color": {
+          "r": 1,
+          "g": 1,
+          "b": 0
+        }
+      },
+      {
+        "signal": "signal-pink",
+        "color": {
+          "r": 1,
+          "g": 0,
+          "b": 1
+        }
+      },
+      {
+        "signal": "signal-cyan",
+        "color": {
+          "r": 0,
+          "g": 1,
+          "b": 1
+        }
+      }
+    ],
     "circuit_wire_connection_point": {
       "shadow": {
         "red": [
-          0.759375,
-          null
+          0.734375,
+          0.578125
         ],
         "green": [
-          0.759375,
-          null
+          0.609375,
+          0.640625
         ]
       },
       "wire": {
         "red": [
-          0.30625,
-          null
+          0.40625,
+          0.34375
         ],
         "green": [
-          0.30625,
-          null
+          0.40625,
+          0.5
         ]
       }
     },
@@ -5297,9 +5434,10 @@
     },
     "underground_sprite": {
       "filename": "__core__/graphics/arrows/underground-lines.png",
-      "priority": "high",
-      "width": 32,
-      "height": 32
+      "priority": "extra-high-no-scale",
+      "width": 64,
+      "height": 64,
+      "scale": 0.5
     },
     "vehicle_impact_sound": {
       "filename": "__base__/sound/car-metal-impact.ogg",
@@ -5552,6 +5690,49 @@
     ]
   },
   {
+    "type": "item-request-proxy",
+    "name": "item-request-proxy",
+    "picture": {
+      "filename": "__core__/graphics/logistic-delivery.png",
+      "priority": "extra-high",
+      "width": 100,
+      "height": 89,
+      "shift": [
+        0,
+        0
+      ],
+      "scale": 0.5
+    },
+    "flags": [
+      "not-on-map",
+      "placeable-off-grid"
+    ],
+    "minable": {
+      "mining_time": 0,
+      "results": {}
+    },
+    "collision_box": [
+      [
+        0,
+        0
+      ],
+      [
+        0,
+        0
+      ]
+    ],
+    "selection_box": [
+      [
+        null,
+        null
+      ],
+      [
+        0.5,
+        0.6
+      ]
+    ]
+  },
+  {
     "type": "explosion",
     "name": "water-splash",
     "flags": [
@@ -5602,7 +5783,7 @@
       ]
     ],
     "minable": {
-      "mining_time": 1,
+      "mining_time": 0.5,
       "result": "stone-wall"
     },
     "fast_replaceable_group": "wall",
@@ -5618,6 +5799,13 @@
     "vehicle_impact_sound": {
       "filename": "__base__/sound/car-stone-impact.ogg",
       "volume": 1
+    },
+    "connected_gate_visualization": {
+      "filename": "__core__/graphics/arrows/underground-lines.png",
+      "priority": "high",
+      "width": 64,
+      "height": 64,
+      "scale": 0.5
     },
     "resistances": [
       {
@@ -5949,7 +6137,30 @@
           }
         ]
       }
-    }
+    },
+    "circuit_wire_connection_point": {
+      "shadow": {
+        "red": [
+          0.890625,
+          0.828125
+        ],
+        "green": [
+          0.890625,
+          0.703125
+        ]
+      },
+      "wire": {
+        "red": [
+          null,
+          null
+        ],
+        "green": [
+          null,
+          null
+        ]
+      }
+    },
+    "circuit_wire_max_distance": 7.5
   },
   {
     "type": "corpse",
@@ -6044,15 +6255,15 @@
   },
   {
     "type": "mining-drill",
-    "name": "basic-mining-drill",
-    "icon": "__base__/graphics/icons/basic-mining-drill.png",
+    "name": "electric-mining-drill",
+    "icon": "__base__/graphics/icons/electric-mining-drill.png",
     "flags": [
       "placeable-neutral",
       "player-creation"
     ],
     "minable": {
       "mining_time": 1,
-      "result": "basic-mining-drill"
+      "result": "electric-mining-drill"
     },
     "max_health": 300,
     "resource_categories": [
@@ -6100,7 +6311,7 @@
           0.2,
           null
         ],
-        "filename": "__base__/graphics/entity/basic-mining-drill/north.png",
+        "filename": "__base__/graphics/entity/electric-mining-drill/north.png",
         "frame_count": 64,
         "animation_speed": 0.5,
         "run_mode": "forward-then-backward"
@@ -6114,7 +6325,7 @@
           0.45,
           0
         ],
-        "filename": "__base__/graphics/entity/basic-mining-drill/east.png",
+        "filename": "__base__/graphics/entity/electric-mining-drill/east.png",
         "frame_count": 64,
         "animation_speed": 0.5,
         "run_mode": "forward-then-backward"
@@ -6128,7 +6339,7 @@
           0.15,
           0
         ],
-        "filename": "__base__/graphics/entity/basic-mining-drill/south.png",
+        "filename": "__base__/graphics/entity/electric-mining-drill/south.png",
         "frame_count": 64,
         "animation_speed": 0.5,
         "run_mode": "forward-then-backward"
@@ -6142,7 +6353,7 @@
           0.25,
           0
         ],
-        "filename": "__base__/graphics/entity/basic-mining-drill/west.png",
+        "filename": "__base__/graphics/entity/electric-mining-drill/west.png",
         "frame_count": 64,
         "animation_speed": 0.5,
         "run_mode": "forward-then-backward"
@@ -6164,7 +6375,7 @@
       "module_slots": 3
     },
     "radius_visualisation_picture": {
-      "filename": "__base__/graphics/entity/basic-mining-drill/mining-drill-radius-visualization.png",
+      "filename": "__base__/graphics/entity/electric-mining-drill/electric-mining-drill-radius-visualization.png",
       "width": 12,
       "height": 12
     },
@@ -8159,454 +8370,10 @@
       }
     }
   },
-  {
-    "type": "resource",
-    "name": "copper-ore",
-    "icon": "__base__/graphics/icons/copper-ore.png",
-    "flags": [
-      "placeable-neutral"
-    ],
-    "order": "a-b-a",
-    "minable": {
-      "hardness": 0.9,
-      "mining_particle": "copper-ore-particle",
-      "mining_time": 2,
-      "result": "copper-ore"
-    },
-    "collision_box": [
-      [
-        null,
-        null
-      ],
-      [
-        0.1,
-        0.1
-      ]
-    ],
-    "selection_box": [
-      [
-        null,
-        null
-      ],
-      [
-        0.5,
-        0.5
-      ]
-    ],
-    "autoplace": {
-      "control": "copper-ore",
-      "sharpness": 1,
-      "richness_multiplier": 13000,
-      "richness_base": 350,
-      "size_control_multiplier": 0.06,
-      "peaks": [
-        {
-          "influence": 0.2,
-          "starting_area_weight_optimal": 0,
-          "starting_area_weight_range": 0,
-          "starting_area_weight_max_range": 2
-        },
-        {
-          "influence": 0.65,
-          "noise_layer": "copper-ore",
-          "noise_persistence": 0.3,
-          "starting_area_weight_optimal": 0,
-          "starting_area_weight_range": 0,
-          "starting_area_weight_max_range": 2
-        },
-        {
-          "influence": 0.3,
-          "starting_area_weight_optimal": 1,
-          "starting_area_weight_range": 0,
-          "starting_area_weight_max_range": 2
-        },
-        {
-          "influence": 0.55,
-          "noise_layer": "copper-ore",
-          "noise_persistence": 0.4,
-          "starting_area_weight_optimal": 1,
-          "starting_area_weight_range": 0,
-          "starting_area_weight_max_range": 2
-        },
-        {
-          "max_influence": 0,
-          "noise_layer": "iron-ore",
-          "noise_persistence": 0.45
-        },
-        {
-          "max_influence": 0,
-          "noise_layer": "coal",
-          "noise_persistence": 0.45
-        },
-        {
-          "max_influence": 0,
-          "noise_layer": "stone",
-          "noise_persistence": 0.45
-        }
-      ]
-    },
-    "stage_counts": [
-      1000,
-      600,
-      400,
-      200,
-      100,
-      50,
-      20,
-      1
-    ],
-    "stages": {
-      "sheet": {
-        "filename": "__base__/graphics/entity/copper-ore/copper-ore.png",
-        "priority": "extra-high",
-        "width": 38,
-        "height": 38,
-        "frame_count": 4,
-        "variation_count": 8
-      }
-    },
-    "map_color": {
-      "r": 0.803,
-      "g": 0.388,
-      "b": 0.215
-    }
-  },
-  {
-    "type": "resource",
-    "name": "iron-ore",
-    "icon": "__base__/graphics/icons/iron-ore.png",
-    "flags": [
-      "placeable-neutral"
-    ],
-    "order": "a-b-b",
-    "minable": {
-      "hardness": 0.9,
-      "mining_particle": "iron-ore-particle",
-      "mining_time": 2,
-      "result": "iron-ore"
-    },
-    "collision_box": [
-      [
-        null,
-        null
-      ],
-      [
-        0.1,
-        0.1
-      ]
-    ],
-    "selection_box": [
-      [
-        null,
-        null
-      ],
-      [
-        0.5,
-        0.5
-      ]
-    ],
-    "autoplace": {
-      "control": "iron-ore",
-      "sharpness": 1,
-      "richness_multiplier": 15000,
-      "richness_base": 350,
-      "size_control_multiplier": 0.06,
-      "peaks": [
-        {
-          "influence": 0.2,
-          "starting_area_weight_optimal": 0,
-          "starting_area_weight_range": 0,
-          "starting_area_weight_max_range": 2
-        },
-        {
-          "influence": 0.3,
-          "starting_area_weight_optimal": 1,
-          "starting_area_weight_range": 0,
-          "starting_area_weight_max_range": 2
-        },
-        {
-          "influence": 0.65,
-          "noise_layer": "iron-ore",
-          "noise_persistence": 0.3,
-          "starting_area_weight_optimal": 0,
-          "starting_area_weight_range": 0,
-          "starting_area_weight_max_range": 2
-        },
-        {
-          "influence": 0.57,
-          "noise_layer": "iron-ore",
-          "noise_persistence": 0.4,
-          "starting_area_weight_optimal": 1,
-          "starting_area_weight_range": 0,
-          "starting_area_weight_max_range": 2
-        },
-        {
-          "max_influence": 0,
-          "noise_layer": "copper-ore",
-          "noise_persistence": 0.45
-        },
-        {
-          "max_influence": 0,
-          "noise_layer": "coal",
-          "noise_persistence": 0.45
-        },
-        {
-          "max_influence": 0,
-          "noise_layer": "stone",
-          "noise_persistence": 0.45
-        }
-      ]
-    },
-    "stage_counts": [
-      1000,
-      600,
-      400,
-      200,
-      100,
-      50,
-      20,
-      1
-    ],
-    "stages": {
-      "sheet": {
-        "filename": "__base__/graphics/entity/iron-ore/iron-ore.png",
-        "priority": "extra-high",
-        "width": 38,
-        "height": 38,
-        "frame_count": 4,
-        "variation_count": 8
-      }
-    },
-    "map_color": {
-      "r": 0.337,
-      "g": 0.419,
-      "b": 0.427
-    }
-  },
-  {
-    "type": "resource",
-    "name": "coal",
-    "icon": "__base__/graphics/icons/coal.png",
-    "flags": [
-      "placeable-neutral"
-    ],
-    "order": "a-b-c",
-    "minable": {
-      "hardness": 0.9,
-      "mining_particle": "coal-particle",
-      "mining_time": 2,
-      "result": "coal"
-    },
-    "collision_box": [
-      [
-        null,
-        null
-      ],
-      [
-        0.1,
-        0.1
-      ]
-    ],
-    "selection_box": [
-      [
-        null,
-        null
-      ],
-      [
-        0.5,
-        0.5
-      ]
-    ],
-    "autoplace": {
-      "control": "coal",
-      "sharpness": 1,
-      "richness_multiplier": 13000,
-      "richness_base": 350,
-      "size_control_multiplier": 0.06,
-      "peaks": [
-        {
-          "influence": 0.21,
-          "starting_area_weight_optimal": 0,
-          "starting_area_weight_range": 0,
-          "starting_area_weight_max_range": 2
-        },
-        {
-          "influence": 0.65,
-          "noise_layer": "coal",
-          "noise_persistence": 0.35,
-          "starting_area_weight_optimal": 0,
-          "starting_area_weight_range": 0,
-          "starting_area_weight_max_range": 2
-        },
-        {
-          "influence": 0.32,
-          "starting_area_weight_optimal": 1,
-          "starting_area_weight_range": 0,
-          "starting_area_weight_max_range": 2
-        },
-        {
-          "influence": 0.5,
-          "noise_layer": "coal",
-          "noise_persistence": 0.4,
-          "starting_area_weight_optimal": 1,
-          "starting_area_weight_range": 0,
-          "starting_area_weight_max_range": 2
-        },
-        {
-          "max_influence": 0,
-          "noise_layer": "copper-ore",
-          "noise_persistence": 0.45
-        },
-        {
-          "max_influence": 0,
-          "noise_layer": "iron-ore",
-          "noise_persistence": 0.45
-        },
-        {
-          "max_influence": 0,
-          "noise_layer": "stone",
-          "noise_persistence": 0.45
-        }
-      ]
-    },
-    "stage_counts": [
-      1000,
-      600,
-      400,
-      200,
-      100,
-      50,
-      20,
-      1
-    ],
-    "stages": {
-      "sheet": {
-        "filename": "__base__/graphics/entity/coal/coal.png",
-        "priority": "extra-high",
-        "width": 38,
-        "height": 38,
-        "frame_count": 4,
-        "variation_count": 8
-      }
-    },
-    "map_color": {
-      "r": 0,
-      "g": 0,
-      "b": 0
-    }
-  },
-  {
-    "type": "resource",
-    "name": "stone",
-    "icon": "__base__/graphics/icons/stone.png",
-    "flags": [
-      "placeable-neutral"
-    ],
-    "order": "a-b-d",
-    "minable": {
-      "hardness": 0.4,
-      "mining_particle": "stone-particle",
-      "mining_time": 2,
-      "result": "stone"
-    },
-    "collision_box": [
-      [
-        null,
-        null
-      ],
-      [
-        0.1,
-        0.1
-      ]
-    ],
-    "selection_box": [
-      [
-        null,
-        null
-      ],
-      [
-        0.5,
-        0.5
-      ]
-    ],
-    "autoplace": {
-      "control": "stone",
-      "sharpness": 1,
-      "richness_multiplier": 11000,
-      "richness_base": 250,
-      "size_control_multiplier": 0.06,
-      "peaks": [
-        {
-          "influence": 0.2,
-          "starting_area_weight_optimal": 0,
-          "starting_area_weight_range": 0,
-          "starting_area_weight_max_range": 2
-        },
-        {
-          "influence": 0.6,
-          "noise_layer": "stone",
-          "noise_persistence": 0.45,
-          "starting_area_weight_optimal": 0,
-          "starting_area_weight_range": 0,
-          "starting_area_weight_max_range": 2
-        },
-        {
-          "influence": 0.25,
-          "starting_area_weight_optimal": 1,
-          "starting_area_weight_range": 0,
-          "starting_area_weight_max_range": 2
-        },
-        {
-          "influence": 0.6,
-          "noise_layer": "stone",
-          "noise_persistence": 0.45,
-          "starting_area_weight_optimal": 1,
-          "starting_area_weight_range": 0,
-          "starting_area_weight_max_range": 2
-        },
-        {
-          "max_influence": 0,
-          "noise_layer": "copper-ore",
-          "noise_persistence": 0.45
-        },
-        {
-          "max_influence": 0,
-          "noise_layer": "iron-ore",
-          "noise_persistence": 0.45
-        },
-        {
-          "max_influence": 0,
-          "noise_layer": "coal",
-          "noise_persistence": 0.45
-        }
-      ]
-    },
-    "stage_counts": [
-      1000,
-      600,
-      400,
-      200,
-      100,
-      50,
-      20,
-      1
-    ],
-    "stages": {
-      "sheet": {
-        "filename": "__base__/graphics/entity/stone/stone.png",
-        "priority": "extra-high",
-        "width": 38,
-        "height": 38,
-        "frame_count": 4,
-        "variation_count": 8
-      }
-    },
-    "map_color": {
-      "r": 0.478,
-      "g": 0.45,
-      "b": 0.317
-    }
-  },
+  null,
+  null,
+  null,
+  null,
   {
     "type": "noise-layer",
     "name": "trees"
@@ -8656,11 +8423,17 @@
     "pictures": [
       {
         "filename": "__base__/graphics/entity/tree/dead-tree/dead-tree-01.png",
+        "flags": [
+          "mipmap"
+        ],
         "width": 108,
         "height": 114
       },
       {
         "filename": "__base__/graphics/entity/tree/dead-tree/dead-tree-02.png",
+        "flags": [
+          "mipmap"
+        ],
         "width": 155,
         "height": 97,
         "shift": [
@@ -8670,6 +8443,9 @@
       },
       {
         "filename": "__base__/graphics/entity/tree/dead-tree/dead-tree-03.png",
+        "flags": [
+          "mipmap"
+        ],
         "width": 138,
         "height": 124,
         "shift": [
@@ -8679,6 +8455,9 @@
       },
       {
         "filename": "__base__/graphics/entity/tree/dead-tree/dead-tree-04.png",
+        "flags": [
+          "mipmap"
+        ],
         "width": 112,
         "height": 123,
         "shift": [
@@ -8688,16 +8467,25 @@
       },
       {
         "filename": "__base__/graphics/entity/tree/dead-tree/dead-tree-05.png",
+        "flags": [
+          "mipmap"
+        ],
         "width": 111,
         "height": 113
       },
       {
         "filename": "__base__/graphics/entity/tree/dead-tree/dead-tree-06.png",
+        "flags": [
+          "mipmap"
+        ],
         "width": 78,
         "height": 83
       },
       {
         "filename": "__base__/graphics/entity/tree/dead-tree/dead-tree-07.png",
+        "flags": [
+          "mipmap"
+        ],
         "width": 90,
         "height": 105
       }
@@ -8758,6 +8546,9 @@
     "pictures": [
       {
         "filename": "__base__/graphics/entity/tree/dry-tree/dry-tree-01-a.png",
+        "flags": [
+          "mipmap"
+        ],
         "width": 194,
         "height": 116,
         "shift": [
@@ -8767,6 +8558,9 @@
       },
       {
         "filename": "__base__/graphics/entity/tree/dry-tree/dry-tree-01-b.png",
+        "flags": [
+          "mipmap"
+        ],
         "width": 155,
         "height": 129,
         "shift": [
@@ -8776,6 +8570,9 @@
       },
       {
         "filename": "__base__/graphics/entity/tree/dry-tree/dry-tree-01-c.png",
+        "flags": [
+          "mipmap"
+        ],
         "width": 113,
         "height": 81,
         "shift": [
@@ -8785,6 +8582,9 @@
       },
       {
         "filename": "__base__/graphics/entity/tree/dry-tree/dry-tree-01-d.png",
+        "flags": [
+          "mipmap"
+        ],
         "width": 156,
         "height": 120,
         "shift": [
@@ -8794,6 +8594,9 @@
       },
       {
         "filename": "__base__/graphics/entity/tree/dry-tree/dry-tree-01-e.png",
+        "flags": [
+          "mipmap"
+        ],
         "width": 150,
         "height": 124,
         "shift": [
@@ -8803,6 +8606,9 @@
       },
       {
         "filename": "__base__/graphics/entity/tree/dry-tree/dry-tree-01-f.png",
+        "flags": [
+          "mipmap"
+        ],
         "width": 178,
         "height": 116,
         "shift": [
@@ -8812,6 +8618,9 @@
       },
       {
         "filename": "__base__/graphics/entity/tree/dry-tree/dry-tree-02-a.png",
+        "flags": [
+          "mipmap"
+        ],
         "width": 147,
         "height": 123,
         "shift": [
@@ -8821,6 +8630,9 @@
       },
       {
         "filename": "__base__/graphics/entity/tree/dry-tree/dry-tree-02-b.png",
+        "flags": [
+          "mipmap"
+        ],
         "width": 168,
         "height": 133,
         "shift": [
@@ -8830,6 +8642,9 @@
       },
       {
         "filename": "__base__/graphics/entity/tree/dry-tree/dry-tree-02-c.png",
+        "flags": [
+          "mipmap"
+        ],
         "width": 174,
         "height": 134,
         "shift": [
@@ -8839,6 +8654,9 @@
       },
       {
         "filename": "__base__/graphics/entity/tree//dry-tree/dry-tree-02-d.png",
+        "flags": [
+          "mipmap"
+        ],
         "width": 215,
         "height": 136,
         "shift": [
@@ -8848,6 +8666,9 @@
       },
       {
         "filename": "__base__/graphics/entity/tree//dry-tree/dry-tree-02-e.png",
+        "flags": [
+          "mipmap"
+        ],
         "width": 158,
         "height": 115,
         "shift": [
@@ -8857,6 +8678,9 @@
       },
       {
         "filename": "__base__/graphics/entity/tree//dry-tree/dry-tree-02-f.png",
+        "flags": [
+          "mipmap"
+        ],
         "width": 180,
         "height": 105,
         "shift": [
@@ -8866,6 +8690,9 @@
       },
       {
         "filename": "__base__/graphics/entity/tree//dry-tree/dry-tree-03-a.png",
+        "flags": [
+          "mipmap"
+        ],
         "width": 168,
         "height": 111,
         "shift": [
@@ -8875,6 +8702,9 @@
       },
       {
         "filename": "__base__/graphics/entity/tree//dry-tree/dry-tree-03-b.png",
+        "flags": [
+          "mipmap"
+        ],
         "width": 145,
         "height": 118,
         "shift": [
@@ -8884,6 +8714,9 @@
       },
       {
         "filename": "__base__/graphics/entity/tree//dry-tree/dry-tree-03-c.png",
+        "flags": [
+          "mipmap"
+        ],
         "width": 161,
         "height": 115,
         "shift": [
@@ -8893,6 +8726,9 @@
       },
       {
         "filename": "__base__/graphics/entity/tree//dry-tree/dry-tree-03-d.png",
+        "flags": [
+          "mipmap"
+        ],
         "width": 183,
         "height": 122,
         "shift": [
@@ -8902,6 +8738,9 @@
       },
       {
         "filename": "__base__/graphics/entity/tree//dry-tree/dry-tree-03-e.png",
+        "flags": [
+          "mipmap"
+        ],
         "width": 166,
         "height": 122,
         "shift": [
@@ -8911,6 +8750,9 @@
       },
       {
         "filename": "__base__/graphics/entity/tree//dry-tree/dry-tree-03-f.png",
+        "flags": [
+          "mipmap"
+        ],
         "width": 160,
         "height": 104,
         "shift": [
@@ -8920,6 +8762,9 @@
       },
       {
         "filename": "__base__/graphics/entity/tree//dry-tree/dry-tree-04-a.png",
+        "flags": [
+          "mipmap"
+        ],
         "width": 195,
         "height": 139,
         "shift": [
@@ -8929,6 +8774,9 @@
       },
       {
         "filename": "__base__/graphics/entity/tree//dry-tree/dry-tree-04-b.png",
+        "flags": [
+          "mipmap"
+        ],
         "width": 173,
         "height": 138,
         "shift": [
@@ -8938,6 +8786,9 @@
       },
       {
         "filename": "__base__/graphics/entity/tree//dry-tree/dry-tree-04-c.png",
+        "flags": [
+          "mipmap"
+        ],
         "width": 210,
         "height": 135,
         "shift": [
@@ -8947,6 +8798,9 @@
       },
       {
         "filename": "__base__/graphics/entity/tree//dry-tree/dry-tree-04-d.png",
+        "flags": [
+          "mipmap"
+        ],
         "width": 149,
         "height": 119,
         "shift": [
@@ -8956,6 +8810,9 @@
       },
       {
         "filename": "__base__/graphics/entity/tree//dry-tree/dry-tree-04-e.png",
+        "flags": [
+          "mipmap"
+        ],
         "width": 173,
         "height": 143,
         "shift": [
@@ -9021,6 +8878,9 @@
     "pictures": [
       {
         "filename": "__base__/graphics/entity/tree/green-coral/green-coral-01.png",
+        "flags": [
+          "mipmap"
+        ],
         "width": 58,
         "height": 69,
         "shift": [
@@ -9030,6 +8890,9 @@
       },
       {
         "filename": "__base__/graphics/entity/tree/green-coral/green-coral-02.png",
+        "flags": [
+          "mipmap"
+        ],
         "width": 77,
         "height": 97,
         "shift": [
@@ -9039,6 +8902,9 @@
       },
       {
         "filename": "__base__/graphics/entity/tree/green-coral/green-coral-03.png",
+        "flags": [
+          "mipmap"
+        ],
         "width": 41,
         "height": 54,
         "shift": [
@@ -9048,6 +8914,9 @@
       },
       {
         "filename": "__base__/graphics/entity/tree/green-coral/green-coral-04.png",
+        "flags": [
+          "mipmap"
+        ],
         "width": 63,
         "height": 61,
         "shift": [
@@ -9057,6 +8926,9 @@
       },
       {
         "filename": "__base__/graphics/entity/tree/green-coral/green-coral-05.png",
+        "flags": [
+          "mipmap"
+        ],
         "width": 63,
         "height": 85,
         "shift": [
@@ -9066,11 +8938,17 @@
       },
       {
         "filename": "__base__/graphics/entity/tree/green-coral/green-coral-06.png",
+        "flags": [
+          "mipmap"
+        ],
         "width": 67,
         "height": 71
       },
       {
         "filename": "__base__/graphics/entity/tree/green-coral/green-coral-07.png",
+        "flags": [
+          "mipmap"
+        ],
         "width": 89,
         "height": 77,
         "shift": [
@@ -9125,6 +9003,9 @@
     "pictures": [
       {
         "filename": "__base__/graphics/entity/tree/dead-grey-trunk/dead-grey-trunk-01.png",
+        "flags": [
+          "mipmap"
+        ],
         "width": 105,
         "height": 96,
         "shift": [
@@ -9134,6 +9015,9 @@
       },
       {
         "filename": "__base__/graphics/entity/tree/dead-grey-trunk/dead-grey-trunk-02.png",
+        "flags": [
+          "mipmap"
+        ],
         "width": 67,
         "height": 87,
         "shift": [
@@ -9143,6 +9027,9 @@
       },
       {
         "filename": "__base__/graphics/entity/tree/dead-grey-trunk/dead-grey-trunk-03.png",
+        "flags": [
+          "mipmap"
+        ],
         "width": 114,
         "height": 67,
         "shift": [
@@ -9152,6 +9039,9 @@
       },
       {
         "filename": "__base__/graphics/entity/tree/dead-grey-trunk/dead-grey-trunk-04.png",
+        "flags": [
+          "mipmap"
+        ],
         "width": 95,
         "height": 85,
         "shift": [
@@ -9161,6 +9051,9 @@
       },
       {
         "filename": "__base__/graphics/entity/tree/dead-grey-trunk/dead-grey-trunk-05.png",
+        "flags": [
+          "mipmap"
+        ],
         "width": 100,
         "height": 112,
         "shift": [
@@ -9170,6 +9063,9 @@
       },
       {
         "filename": "__base__/graphics/entity/tree/dead-grey-trunk/dead-grey-trunk-06.png",
+        "flags": [
+          "mipmap"
+        ],
         "width": 96,
         "height": 82,
         "shift": [
@@ -9179,6 +9075,9 @@
       },
       {
         "filename": "__base__/graphics/entity/tree/dead-grey-trunk/dead-grey-trunk-07.png",
+        "flags": [
+          "mipmap"
+        ],
         "width": 143,
         "height": 55,
         "shift": [
@@ -9233,6 +9132,9 @@
     "pictures": [
       {
         "filename": "__base__/graphics/entity/tree/dry-hairy-tree/dry-hairy-tree-01.png",
+        "flags": [
+          "mipmap"
+        ],
         "width": 201,
         "height": 242,
         "shift": [
@@ -9242,6 +9144,9 @@
       },
       {
         "filename": "__base__/graphics/entity/tree/dry-hairy-tree/dry-hairy-tree-02.png",
+        "flags": [
+          "mipmap"
+        ],
         "width": 307,
         "height": 256,
         "shift": [
@@ -9251,6 +9156,9 @@
       },
       {
         "filename": "__base__/graphics/entity/tree/dry-hairy-tree/dry-hairy-tree-03.png",
+        "flags": [
+          "mipmap"
+        ],
         "width": 286,
         "height": 240,
         "shift": [
@@ -9260,6 +9168,9 @@
       },
       {
         "filename": "__base__/graphics/entity/tree/dry-hairy-tree/dry-hairy-tree-04.png",
+        "flags": [
+          "mipmap"
+        ],
         "width": 291,
         "height": 229,
         "shift": [
@@ -9269,6 +9180,9 @@
       },
       {
         "filename": "__base__/graphics/entity/tree/dry-hairy-tree/dry-hairy-tree-05.png",
+        "flags": [
+          "mipmap"
+        ],
         "width": 265,
         "height": 264,
         "shift": [
@@ -9278,6 +9192,9 @@
       },
       {
         "filename": "__base__/graphics/entity/tree/dry-hairy-tree/dry-hairy-tree-06.png",
+        "flags": [
+          "mipmap"
+        ],
         "width": 312,
         "height": 267,
         "shift": [
@@ -9287,6 +9204,9 @@
       },
       {
         "filename": "__base__/graphics/entity/tree/dry-hairy-tree/dry-hairy-tree-07.png",
+        "flags": [
+          "mipmap"
+        ],
         "width": 294,
         "height": 213,
         "shift": [
@@ -9296,6 +9216,9 @@
       },
       {
         "filename": "__base__/graphics/entity/tree/dry-hairy-tree/dry-hairy-tree-08.png",
+        "flags": [
+          "mipmap"
+        ],
         "width": 284,
         "height": 217,
         "shift": [
@@ -9350,6 +9273,9 @@
     "pictures": [
       {
         "filename": "__base__/graphics/entity/tree/dead-dry-hairy-tree/dead-tree-02-a.png",
+        "flags": [
+          "mipmap"
+        ],
         "width": 194,
         "height": 94,
         "shift": [
@@ -9359,6 +9285,9 @@
       },
       {
         "filename": "__base__/graphics/entity/tree/dead-dry-hairy-tree/dead-tree-02-b.png",
+        "flags": [
+          "mipmap"
+        ],
         "width": 186,
         "height": 151,
         "shift": [
@@ -9368,6 +9297,9 @@
       },
       {
         "filename": "__base__/graphics/entity/tree/dead-dry-hairy-tree/dead-tree-02-c.png",
+        "flags": [
+          "mipmap"
+        ],
         "width": 163,
         "height": 118,
         "shift": [
@@ -9377,6 +9309,9 @@
       },
       {
         "filename": "__base__/graphics/entity/tree/dead-dry-hairy-tree/dead-tree-02-d.png",
+        "flags": [
+          "mipmap"
+        ],
         "width": 178,
         "height": 153,
         "shift": [
@@ -9386,6 +9321,9 @@
       },
       {
         "filename": "__base__/graphics/entity/tree/dead-dry-hairy-tree/dead-tree-02-e.png",
+        "flags": [
+          "mipmap"
+        ],
         "width": 195,
         "height": 158,
         "shift": [
@@ -9395,6 +9333,9 @@
       },
       {
         "filename": "__base__/graphics/entity/tree/dead-dry-hairy-tree/dead-tree-02-f.png",
+        "flags": [
+          "mipmap"
+        ],
         "width": 206,
         "height": 141,
         "shift": [
@@ -9404,6 +9345,9 @@
       },
       {
         "filename": "__base__/graphics/entity/tree/dead-dry-hairy-tree/dead-tree-02-g.png",
+        "flags": [
+          "mipmap"
+        ],
         "width": 209,
         "height": 147,
         "shift": [
@@ -9413,6 +9357,9 @@
       },
       {
         "filename": "__base__/graphics/entity/tree/dead-dry-hairy-tree/dead-tree-02-h.png",
+        "flags": [
+          "mipmap"
+        ],
         "width": 175,
         "height": 106,
         "shift": [
@@ -9422,6 +9369,9 @@
       },
       {
         "filename": "__base__/graphics/entity/tree/dead-dry-hairy-tree/dead-tree-02-i.png",
+        "flags": [
+          "mipmap"
+        ],
         "width": 155,
         "height": 86,
         "shift": [
@@ -9431,6 +9381,9 @@
       },
       {
         "filename": "__base__/graphics/entity/tree/dead-dry-hairy-tree/dead-tree-02-j.png",
+        "flags": [
+          "mipmap"
+        ],
         "width": 150,
         "height": 135,
         "shift": [
@@ -9440,6 +9393,9 @@
       },
       {
         "filename": "__base__/graphics/entity/tree/dead-dry-hairy-tree/dead-tree-02-k.png",
+        "flags": [
+          "mipmap"
+        ],
         "width": 159,
         "height": 122,
         "shift": [
@@ -9449,6 +9405,9 @@
       },
       {
         "filename": "__base__/graphics/entity/tree/dead-dry-hairy-tree/dead-tree-02-l.png",
+        "flags": [
+          "mipmap"
+        ],
         "width": 169,
         "height": 121,
         "shift": [
@@ -9519,32 +9478,7 @@
         }
       }
     },
-    "autoplace": {
-      "sharpness": 0.3,
-      "control": "enemy-base",
-      "order": "b[enemy]-a[base]",
-      "force": "enemy",
-      "peaks": [
-        {
-          "starting_area_weight_optimal": 1,
-          "starting_area_weight_range": 0,
-          "starting_area_weight_max_range": 2
-        },
-        {
-          "influence": 0.31,
-          "noise_layer": "enemy-base",
-          "noise_persistence": 0.5
-        },
-        {
-          "influence": 0.1,
-          "noise_layer": "enemy-base",
-          "noise_persistence": 0.5,
-          "tier_from_start_optimal": 10,
-          "tier_from_start_top_property_limit": 10,
-          "tier_from_start_max_range": 20
-        }
-      ]
-    }
+    "call_for_help_radius": 40
   },
   {
     "type": "ammo-turret",
@@ -9617,6 +9551,7 @@
           "height": 75,
           "axially_symmetrical": false,
           "direction_count": 1,
+          "frame_count": 1,
           "shift": [
             0.0625,
             null
@@ -9624,6 +9559,9 @@
         },
         {
           "filename": "__base__/graphics/entity/gun-turret/gun-turret-base-mask.png",
+          "flags": [
+            "mask"
+          ],
           "line_length": 1,
           "width": 52,
           "height": 47,
@@ -9665,7 +9603,8 @@
         "starting_frame_speed_deviation": 0.1
       },
       "range": 17
-    }
+    },
+    "call_for_help_radius": 40
   },
   {
     "type": "corpse",
@@ -9716,6 +9655,9 @@
       {
         "type": "explosion",
         "percent": 10
+      },
+      {
+        "type": "fire"
       }
     ],
     "healing_per_tick": 0.01,
@@ -9787,7 +9729,7 @@
         "percent": 10
       }
     ],
-    "spawning_time_modifier": 2,
+    "spawning_time_modifier": 3,
     "healing_per_tick": 0.02,
     "collision_box": [
       [
@@ -9859,7 +9801,7 @@
         "percent": 20
       }
     ],
-    "spawning_time_modifier": 8,
+    "spawning_time_modifier": 12,
     "healing_per_tick": 0.1,
     "collision_box": [
       [
@@ -9908,7 +9850,7 @@
   {
     "type": "unit",
     "name": "small-spitter",
-    "icon": "__base__/graphics/icons/creeper.png",
+    "icon": "__base__/graphics/icons/small-spitter.png",
     "flags": [
       "placeable-player",
       "placeable-enemy",
@@ -9961,7 +9903,7 @@
   {
     "type": "unit",
     "name": "medium-spitter",
-    "icon": "__base__/graphics/icons/creeper.png",
+    "icon": "__base__/graphics/icons/medium-spitter.png",
     "flags": [
       "placeable-player",
       "placeable-enemy",
@@ -10020,7 +9962,7 @@
   {
     "type": "unit",
     "name": "big-spitter",
-    "icon": "__base__/graphics/icons/creeper.png",
+    "icon": "__base__/graphics/icons/big-spitter.png",
     "flags": [
       "placeable-player",
       "placeable-enemy",
@@ -10037,7 +9979,7 @@
         "percent": 30
       }
     ],
-    "spawning_time_modifier": 2,
+    "spawning_time_modifier": 3,
     "healing_per_tick": 0.01,
     "collision_box": [
       [
@@ -10080,7 +10022,7 @@
   {
     "type": "unit",
     "name": "behemoth-spitter",
-    "icon": "__base__/graphics/icons/creeper.png",
+    "icon": "__base__/graphics/icons/behemoth-spitter.png",
     "flags": [
       "placeable-player",
       "placeable-enemy",
@@ -10097,7 +10039,7 @@
         "percent": 35
       }
     ],
-    "spawning_time_modifier": 8,
+    "spawning_time_modifier": 12,
     "healing_per_tick": 0.1,
     "collision_box": [
       [
@@ -10430,41 +10372,7 @@
     "spawning_spacing": 3,
     "max_spawn_shift": 0,
     "max_richness_for_spawn_shift": 100,
-    "autoplace": {
-      "sharpness": 0.4,
-      "control": "enemy-base",
-      "order": "b[enemy]-a[spitter-spawner]",
-      "richness_multiplier": 1,
-      "richness_base": 0,
-      "force": "enemy",
-      "peaks": [
-        {
-          "influence": 0,
-          "richness_influence": 100,
-          "tier_from_start_optimal": 20,
-          "tier_from_start_top_property_limit": 20,
-          "tier_from_start_max_range": 40
-        },
-        {
-          "starting_area_weight_optimal": 1,
-          "starting_area_weight_range": 0,
-          "starting_area_weight_max_range": 2
-        },
-        {
-          "influence": 0.42,
-          "noise_layer": "enemy-base",
-          "noise_persistence": 0.5
-        },
-        {
-          "influence": 0.55,
-          "noise_layer": "enemy-base",
-          "noise_persistence": 0.5,
-          "tier_from_start_optimal": 20,
-          "tier_from_start_top_property_limit": 20,
-          "tier_from_start_max_range": 40
-        }
-      ]
-    }
+    "call_for_help_radius": 50
   },
   {
     "type": "corpse",
@@ -10472,7 +10380,6 @@
     "flags": [
       "placeable-neutral",
       "placeable-off-grid",
-      "not-on-map",
       "not-on-map"
     ],
     "icon": "__base__/graphics/icons/biter-spawner-corpse.png",
@@ -10509,250 +10416,9 @@
     ]
   },
   {
-    "type": "transport-belt-to-ground",
-    "name": "basic-transport-belt-to-ground",
-    "icon": "__base__/graphics/icons/basic-transport-belt-to-ground.png",
-    "flags": [
-      "placeable-neutral",
-      "player-creation",
-      "fast-replaceable-no-build-while-moving"
-    ],
-    "minable": {
-      "hardness": 0.2,
-      "mining_time": 0.5,
-      "result": "basic-transport-belt-to-ground"
-    },
-    "max_health": 70,
-    "corpse": "small-remnants",
-    "max_distance": 5,
-    "underground_sprite": {
-      "filename": "__core__/graphics/arrows/underground-lines.png",
-      "priority": "high",
-      "width": 32,
-      "height": 32,
-      "x": 32
-    },
-    "resistances": [
-      {
-        "type": "fire",
-        "percent": 60
-      }
-    ],
-    "collision_box": [
-      [
-        null,
-        null
-      ],
-      [
-        0.4,
-        0.4
-      ]
-    ],
-    "selection_box": [
-      [
-        null,
-        null
-      ],
-      [
-        0.5,
-        0.5
-      ]
-    ],
-    "animation_speed_coefficient": 32,
-    "fast_replaceable_group": "transport-belt-to-ground",
-    "speed": 0.03125,
-    "structure": {
-      "direction_in": {
-        "sheet": {
-          "filename": "__base__/graphics/entity/basic-transport-belt-to-ground/basic-transport-belt-to-ground-structure.png",
-          "priority": "extra-high",
-          "shift": [
-            0.26,
-            0
-          ],
-          "width": 57,
-          "height": 43,
-          "y": 43
-        }
-      },
-      "direction_out": {
-        "sheet": {
-          "filename": "__base__/graphics/entity/basic-transport-belt-to-ground/basic-transport-belt-to-ground-structure.png",
-          "priority": "extra-high",
-          "shift": [
-            0.26,
-            0
-          ],
-          "width": 57,
-          "height": 43
-        }
-      }
-    }
-  },
-  {
-    "type": "transport-belt-to-ground",
-    "name": "fast-transport-belt-to-ground",
-    "icon": "__base__/graphics/icons/fast-transport-belt-to-ground.png",
-    "flags": [
-      "placeable-neutral",
-      "player-creation",
-      "fast-replaceable-no-build-while-moving"
-    ],
-    "minable": {
-      "hardness": 0.2,
-      "mining_time": 0.5,
-      "result": "fast-transport-belt-to-ground"
-    },
-    "max_health": 60,
-    "corpse": "small-remnants",
-    "underground_sprite": {
-      "filename": "__core__/graphics/arrows/underground-lines.png",
-      "priority": "high",
-      "width": 32,
-      "height": 32,
-      "x": 32
-    },
-    "resistances": [
-      {
-        "type": "fire",
-        "percent": 60
-      }
-    ],
-    "collision_box": [
-      [
-        null,
-        null
-      ],
-      [
-        0.4,
-        0.4
-      ]
-    ],
-    "selection_box": [
-      [
-        null,
-        null
-      ],
-      [
-        0.5,
-        0.5
-      ]
-    ],
-    "animation_speed_coefficient": 32,
-    "fast_replaceable_group": "transport-belt-to-ground",
-    "speed": 0.0625,
-    "structure": {
-      "direction_in": {
-        "sheet": {
-          "filename": "__base__/graphics/entity/fast-transport-belt-to-ground/fast-transport-belt-to-ground-structure.png",
-          "priority": "extra-high",
-          "shift": [
-            0.26,
-            0
-          ],
-          "width": 57,
-          "height": 43,
-          "y": 43
-        }
-      },
-      "direction_out": {
-        "sheet": {
-          "filename": "__base__/graphics/entity/fast-transport-belt-to-ground/fast-transport-belt-to-ground-structure.png",
-          "priority": "extra-high",
-          "shift": [
-            0.26,
-            0
-          ],
-          "width": 57,
-          "height": 43
-        }
-      }
-    }
-  },
-  {
-    "type": "transport-belt-to-ground",
-    "name": "express-transport-belt-to-ground",
-    "icon": "__base__/graphics/icons/express-transport-belt-to-ground.png",
-    "flags": [
-      "placeable-neutral",
-      "player-creation",
-      "fast-replaceable-no-build-while-moving"
-    ],
-    "minable": {
-      "hardness": 0.2,
-      "mining_time": 0.5,
-      "result": "express-transport-belt-to-ground"
-    },
-    "max_health": 60,
-    "corpse": "small-remnants",
-    "underground_sprite": {
-      "filename": "__core__/graphics/arrows/underground-lines.png",
-      "priority": "high",
-      "width": 32,
-      "height": 32,
-      "x": 32
-    },
-    "resistances": [
-      {
-        "type": "fire",
-        "percent": 60
-      }
-    ],
-    "collision_box": [
-      [
-        null,
-        null
-      ],
-      [
-        0.4,
-        0.4
-      ]
-    ],
-    "selection_box": [
-      [
-        null,
-        null
-      ],
-      [
-        0.5,
-        0.5
-      ]
-    ],
-    "animation_speed_coefficient": 32,
-    "fast_replaceable_group": "transport-belt-to-ground",
-    "speed": 0.09375,
-    "structure": {
-      "direction_in": {
-        "sheet": {
-          "filename": "__base__/graphics/entity/express-transport-belt-to-ground/express-transport-belt-to-ground-structure.png",
-          "priority": "extra-high",
-          "shift": [
-            0.26,
-            0
-          ],
-          "width": 57,
-          "height": 43,
-          "y": 43
-        }
-      },
-      "direction_out": {
-        "sheet": {
-          "filename": "__base__/graphics/entity/express-transport-belt-to-ground/express-transport-belt-to-ground-structure.png",
-          "priority": "extra-high",
-          "shift": [
-            0.26,
-            0
-          ],
-          "width": 57,
-          "height": 43
-        }
-      }
-    }
-  },
-  {
-    "type": "splitter",
-    "name": "basic-splitter",
-    "icon": "__base__/graphics/icons/basic-splitter.png",
+    "type": "underground-belt",
+    "name": "underground-belt",
+    "icon": "__base__/graphics/icons/underground-belt.png",
     "flags": [
       "placeable-neutral",
       "player-creation"
@@ -10760,7 +10426,446 @@
     "minable": {
       "hardness": 0.2,
       "mining_time": 0.5,
-      "result": "basic-splitter"
+      "result": "underground-belt"
+    },
+    "max_health": 60,
+    "corpse": "small-remnants",
+    "max_distance": 5,
+    "underground_sprite": {
+      "filename": "__core__/graphics/arrows/underground-lines.png",
+      "priority": "high",
+      "width": 64,
+      "height": 64,
+      "x": 64,
+      "scale": 0.5
+    },
+    "resistances": [
+      {
+        "type": "fire",
+        "percent": 60
+      }
+    ],
+    "collision_box": [
+      [
+        null,
+        null
+      ],
+      [
+        0.4,
+        0.4
+      ]
+    ],
+    "selection_box": [
+      [
+        null,
+        null
+      ],
+      [
+        0.5,
+        0.5
+      ]
+    ],
+    "animation_speed_coefficient": 32,
+    "fast_replaceable_group": "underground-belt",
+    "speed": 0.03125,
+    "structure": {
+      "direction_in": {
+        "sheet": {
+          "filename": "__base__/graphics/entity/underground-belt/underground-belt-structure.png",
+          "priority": "extra-high",
+          "shift": [
+            0.26,
+            0
+          ],
+          "width": 57,
+          "height": 43,
+          "y": 43
+        }
+      },
+      "direction_out": {
+        "sheet": {
+          "filename": "__base__/graphics/entity/underground-belt/underground-belt-structure.png",
+          "priority": "extra-high",
+          "shift": [
+            0.26,
+            0
+          ],
+          "width": 57,
+          "height": 43
+        }
+      }
+    }
+  },
+  {
+    "type": "underground-belt",
+    "name": "fast-underground-belt",
+    "icon": "__base__/graphics/icons/fast-underground-belt.png",
+    "flags": [
+      "placeable-neutral",
+      "player-creation"
+    ],
+    "minable": {
+      "hardness": 0.2,
+      "mining_time": 0.5,
+      "result": "fast-underground-belt"
+    },
+    "max_health": 60,
+    "corpse": "small-remnants",
+    "underground_sprite": {
+      "filename": "__core__/graphics/arrows/underground-lines.png",
+      "priority": "high",
+      "width": 64,
+      "height": 64,
+      "x": 64,
+      "scale": 0.5
+    },
+    "resistances": [
+      {
+        "type": "fire",
+        "percent": 60
+      }
+    ],
+    "collision_box": [
+      [
+        null,
+        null
+      ],
+      [
+        0.4,
+        0.4
+      ]
+    ],
+    "selection_box": [
+      [
+        null,
+        null
+      ],
+      [
+        0.5,
+        0.5
+      ]
+    ],
+    "animation_speed_coefficient": 32,
+    "fast_replaceable_group": "underground-belt",
+    "speed": 0.0625,
+    "structure": {
+      "direction_in": {
+        "sheet": {
+          "filename": "__base__/graphics/entity/fast-underground-belt/fast-underground-belt-structure.png",
+          "priority": "extra-high",
+          "shift": [
+            0.26,
+            0
+          ],
+          "width": 57,
+          "height": 43,
+          "y": 43
+        }
+      },
+      "direction_out": {
+        "sheet": {
+          "filename": "__base__/graphics/entity/fast-underground-belt/fast-underground-belt-structure.png",
+          "priority": "extra-high",
+          "shift": [
+            0.26,
+            0
+          ],
+          "width": 57,
+          "height": 43
+        }
+      }
+    }
+  },
+  {
+    "type": "underground-belt",
+    "name": "express-underground-belt",
+    "icon": "__base__/graphics/icons/express-underground-belt.png",
+    "flags": [
+      "placeable-neutral",
+      "player-creation"
+    ],
+    "minable": {
+      "hardness": 0.2,
+      "mining_time": 0.5,
+      "result": "express-underground-belt"
+    },
+    "max_health": 60,
+    "corpse": "small-remnants",
+    "underground_sprite": {
+      "filename": "__core__/graphics/arrows/underground-lines.png",
+      "priority": "high",
+      "width": 64,
+      "height": 64,
+      "x": 64,
+      "scale": 0.5
+    },
+    "resistances": [
+      {
+        "type": "fire",
+        "percent": 60
+      }
+    ],
+    "collision_box": [
+      [
+        null,
+        null
+      ],
+      [
+        0.4,
+        0.4
+      ]
+    ],
+    "selection_box": [
+      [
+        null,
+        null
+      ],
+      [
+        0.5,
+        0.5
+      ]
+    ],
+    "animation_speed_coefficient": 32,
+    "fast_replaceable_group": "underground-belt",
+    "speed": 0.09375,
+    "structure": {
+      "direction_in": {
+        "sheet": {
+          "filename": "__base__/graphics/entity/express-underground-belt/express-underground-belt-structure.png",
+          "priority": "extra-high",
+          "shift": [
+            0.26,
+            0
+          ],
+          "width": 57,
+          "height": 43,
+          "y": 43
+        }
+      },
+      "direction_out": {
+        "sheet": {
+          "filename": "__base__/graphics/entity/express-underground-belt/express-underground-belt-structure.png",
+          "priority": "extra-high",
+          "shift": [
+            0.26,
+            0
+          ],
+          "width": 57,
+          "height": 43
+        }
+      }
+    }
+  },
+  {
+    "type": "loader",
+    "name": "loader",
+    "icon": "__base__/graphics/icons/loader.png",
+    "flags": [
+      "placeable-neutral",
+      "player-creation",
+      "fast-replaceable-no-build-while-moving"
+    ],
+    "minable": {
+      "hardness": 0.2,
+      "mining_time": 0.5,
+      "result": "loader"
+    },
+    "max_health": 70,
+    "filter_count": 5,
+    "corpse": "small-remnants",
+    "resistances": [
+      {
+        "type": "fire",
+        "percent": 60
+      }
+    ],
+    "collision_box": [
+      [
+        null,
+        null
+      ],
+      [
+        0.4,
+        0.9
+      ]
+    ],
+    "selection_box": [
+      [
+        null,
+        null
+      ],
+      [
+        0.5,
+        1
+      ]
+    ],
+    "animation_speed_coefficient": 32,
+    "fast_replaceable_group": "loader",
+    "speed": 0.03125,
+    "structure": {
+      "direction_in": {
+        "sheet": {
+          "filename": "__base__/graphics/entity/loader/loader-structure.png",
+          "priority": "extra-high",
+          "width": 64,
+          "height": 64
+        }
+      },
+      "direction_out": {
+        "sheet": {
+          "filename": "__base__/graphics/entity/loader/loader-structure.png",
+          "priority": "extra-high",
+          "width": 64,
+          "height": 64,
+          "y": 64
+        }
+      }
+    }
+  },
+  {
+    "type": "loader",
+    "name": "fast-loader",
+    "icon": "__base__/graphics/icons/loader.png",
+    "flags": [
+      "placeable-neutral",
+      "player-creation",
+      "fast-replaceable-no-build-while-moving"
+    ],
+    "minable": {
+      "hardness": 0.2,
+      "mining_time": 0.5,
+      "result": "fast-loader"
+    },
+    "max_health": 70,
+    "filter_count": 5,
+    "corpse": "small-remnants",
+    "resistances": [
+      {
+        "type": "fire",
+        "percent": 60
+      }
+    ],
+    "collision_box": [
+      [
+        null,
+        null
+      ],
+      [
+        0.4,
+        0.9
+      ]
+    ],
+    "selection_box": [
+      [
+        null,
+        null
+      ],
+      [
+        0.5,
+        1
+      ]
+    ],
+    "animation_speed_coefficient": 32,
+    "fast_replaceable_group": "loader",
+    "speed": 0.0625,
+    "structure": {
+      "direction_in": {
+        "sheet": {
+          "filename": "__base__/graphics/entity/loader/loader-structure.png",
+          "priority": "extra-high",
+          "width": 64,
+          "height": 64
+        }
+      },
+      "direction_out": {
+        "sheet": {
+          "filename": "__base__/graphics/entity/loader/loader-structure.png",
+          "priority": "extra-high",
+          "width": 64,
+          "height": 64,
+          "y": 64
+        }
+      }
+    }
+  },
+  {
+    "type": "loader",
+    "name": "express-loader",
+    "icon": "__base__/graphics/icons/loader.png",
+    "flags": [
+      "placeable-neutral",
+      "player-creation",
+      "fast-replaceable-no-build-while-moving"
+    ],
+    "minable": {
+      "hardness": 0.2,
+      "mining_time": 0.5,
+      "result": "express-loader"
+    },
+    "max_health": 70,
+    "filter_count": 5,
+    "corpse": "small-remnants",
+    "resistances": [
+      {
+        "type": "fire",
+        "percent": 60
+      }
+    ],
+    "collision_box": [
+      [
+        null,
+        null
+      ],
+      [
+        0.4,
+        0.9
+      ]
+    ],
+    "selection_box": [
+      [
+        null,
+        null
+      ],
+      [
+        0.5,
+        1
+      ]
+    ],
+    "animation_speed_coefficient": 32,
+    "fast_replaceable_group": "loader",
+    "speed": 0.09375,
+    "structure": {
+      "direction_in": {
+        "sheet": {
+          "filename": "__base__/graphics/entity/loader/loader-structure.png",
+          "priority": "extra-high",
+          "width": 64,
+          "height": 64
+        }
+      },
+      "direction_out": {
+        "sheet": {
+          "filename": "__base__/graphics/entity/loader/loader-structure.png",
+          "priority": "extra-high",
+          "width": 64,
+          "height": 64,
+          "y": 64
+        }
+      }
+    }
+  },
+  {
+    "type": "splitter",
+    "name": "splitter",
+    "icon": "__base__/graphics/icons/splitter.png",
+    "flags": [
+      "placeable-neutral",
+      "player-creation"
+    ],
+    "minable": {
+      "hardness": 0.2,
+      "mining_time": 0.5,
+      "result": "splitter"
     },
     "max_health": 80,
     "corpse": "medium-remnants",
@@ -10777,7 +10882,7 @@
       ],
       [
         0.9,
-        0.1
+        0.4
       ]
     ],
     "selection_box": [
@@ -10797,7 +10902,7 @@
     "speed": 0.03125,
     "structure": {
       "north": {
-        "filename": "__base__/graphics/entity/basic-splitter/basic-splitter-north.png",
+        "filename": "__base__/graphics/entity/splitter/splitter-north.png",
         "frame_count": 32,
         "line_length": 16,
         "priority": "extra-high",
@@ -10809,7 +10914,7 @@
         ]
       },
       "east": {
-        "filename": "__base__/graphics/entity/basic-splitter/basic-splitter-east.png",
+        "filename": "__base__/graphics/entity/splitter/splitter-east.png",
         "frame_count": 32,
         "line_length": 16,
         "priority": "extra-high",
@@ -10821,7 +10926,7 @@
         ]
       },
       "south": {
-        "filename": "__base__/graphics/entity/basic-splitter/basic-splitter-south.png",
+        "filename": "__base__/graphics/entity/splitter/splitter-south.png",
         "frame_count": 32,
         "line_length": 16,
         "priority": "extra-high",
@@ -10833,7 +10938,7 @@
         ]
       },
       "west": {
-        "filename": "__base__/graphics/entity/basic-splitter/basic-splitter-west.png",
+        "filename": "__base__/graphics/entity/splitter/splitter-west.png",
         "frame_count": 32,
         "line_length": 16,
         "priority": "extra-high",
@@ -10874,7 +10979,7 @@
       ],
       [
         0.9,
-        0.1
+        0.4
       ]
     ],
     "selection_box": [
@@ -10971,7 +11076,7 @@
       ],
       [
         0.9,
-        0.1
+        0.4
       ]
     ],
     "selection_box": [
@@ -11083,7 +11188,7 @@
     ],
     "working_sound": {
       "sound": {
-        "filename": "__base__/sound/basic-transport-belt.ogg",
+        "filename": "__base__/sound/fast-transport-belt.ogg",
         "volume": 0.4
       },
       "max_sounds_per_type": 3
@@ -12032,10 +12137,33 @@
       "width": 48,
       "height": 34,
       "shift": [
-        0.2,
+        0.1875,
         0
       ]
-    }
+    },
+    "circuit_wire_connection_point": {
+      "shadow": {
+        "red": [
+          0.734375,
+          0.453125
+        ],
+        "green": [
+          0.609375,
+          0.515625
+        ]
+      },
+      "wire": {
+        "red": [
+          0.40625,
+          0.21875
+        ],
+        "green": [
+          0.40625,
+          0.375
+        ]
+      }
+    },
+    "circuit_wire_max_distance": 7.5
   },
   {
     "type": "container",
@@ -12097,95 +12225,29 @@
       "width": 48,
       "height": 34,
       "shift": [
-        0.2,
+        0.1875,
         0
-      ]
-    }
-  },
-  {
-    "type": "smart-container",
-    "name": "smart-chest",
-    "icon": "__base__/graphics/icons/smart-chest.png",
-    "flags": [
-      "placeable-neutral",
-      "player-creation"
-    ],
-    "open_sound": {
-      "filename": "__base__/sound/metallic-chest-open.ogg",
-      "volume": 0.65
-    },
-    "close_sound": {
-      "filename": "__base__/sound/metallic-chest-close.ogg",
-      "volume": 0.7
-    },
-    "minable": {
-      "hardness": 0.2,
-      "mining_time": 0.5,
-      "result": "smart-chest"
-    },
-    "max_health": 150,
-    "corpse": "small-remnants",
-    "resistances": [
-      {
-        "type": "fire",
-        "percent": 70
-      }
-    ],
-    "collision_box": [
-      [
-        null,
-        null
-      ],
-      [
-        0.35,
-        0.35
-      ]
-    ],
-    "selection_box": [
-      [
-        null,
-        null
-      ],
-      [
-        0.5,
-        0.5
-      ]
-    ],
-    "fast_replaceable_group": "container",
-    "inventory_size": 48,
-    "vehicle_impact_sound": {
-      "filename": "__base__/sound/car-metal-impact.ogg",
-      "volume": 0.65
-    },
-    "picture": {
-      "filename": "__base__/graphics/entity/smart-chest/smart-chest.png",
-      "priority": "extra-high",
-      "width": 62,
-      "height": 41,
-      "shift": [
-        0.4,
-        null
       ]
     },
     "circuit_wire_connection_point": {
       "shadow": {
         "red": [
-          0.7,
-          null
+          0.734375,
+          0.453125
         ],
         "green": [
-          0.7,
-          null
+          0.609375,
+          0.515625
         ]
       },
       "wire": {
         "red": [
-          0.3,
-          null
+          0.40625,
+          0.21875
         ],
         "green": [
-          0.3,
-          null
+          0.40625,
+          0.375
         ]
       }
     },
@@ -12322,7 +12384,11 @@
         "filename": "__base__/graphics/entity/long-handed-inserter/long-handed-inserter-platform.png",
         "priority": "extra-high",
         "width": 46,
-        "height": 46
+        "height": 46,
+        "shift": [
+          0.09375,
+          0
+        ]
       }
     }
   },
@@ -12376,12 +12442,12 @@
       0,
       1.2
     ],
-    "energy_per_movement": 5000,
-    "energy_per_rotation": 5000,
+    "energy_per_movement": 7000,
+    "energy_per_rotation": 7000,
     "energy_source": {
       "type": "electric",
       "usage_priority": "secondary-input",
-      "drain": "0.4kW"
+      "drain": "0.5kW"
     },
     "extension_speed": 0.07,
     "rotation_speed": 0.04,
@@ -12456,14 +12522,297 @@
         "filename": "__base__/graphics/entity/fast-inserter/fast-inserter-platform.png",
         "priority": "extra-high",
         "width": 46,
-        "height": 46
+        "height": 46,
+        "shift": [
+          0.09375,
+          0
+        ]
       }
     }
   },
   {
     "type": "inserter",
-    "name": "smart-inserter",
-    "icon": "__base__/graphics/icons/smart-inserter.png",
+    "name": "stack-inserter",
+    "icon": "__base__/graphics/icons/stack-inserter.png",
+    "flags": [
+      "placeable-neutral",
+      "placeable-player",
+      "player-creation"
+    ],
+    "stack": true,
+    "minable": {
+      "hardness": 0.2,
+      "mining_time": 0.5,
+      "result": "stack-inserter"
+    },
+    "max_health": 40,
+    "corpse": "small-remnants",
+    "resistances": [
+      {
+        "type": "fire",
+        "percent": 90
+      }
+    ],
+    "collision_box": [
+      [
+        null,
+        null
+      ],
+      [
+        0.15,
+        0.15
+      ]
+    ],
+    "selection_box": [
+      [
+        null,
+        null
+      ],
+      [
+        0.4,
+        0.45
+      ]
+    ],
+    "pickup_position": [
+      0,
+      null
+    ],
+    "insert_position": [
+      0,
+      1.2
+    ],
+    "energy_per_movement": 20000,
+    "energy_per_rotation": 20000,
+    "energy_source": {
+      "type": "electric",
+      "usage_priority": "secondary-input",
+      "drain": "1kW"
+    },
+    "extension_speed": 0.07,
+    "rotation_speed": 0.04,
+    "fast_replaceable_group": "inserter",
+    "vehicle_impact_sound": {
+      "filename": "__base__/sound/car-metal-impact.ogg",
+      "volume": 0.65
+    },
+    "working_sound": {
+      "match_progress_to_activity": true,
+      "sound": [
+        {
+          "filename": "__base__/sound/inserter-fast-1.ogg",
+          "volume": 0.75
+        },
+        {
+          "filename": "__base__/sound/inserter-fast-2.ogg",
+          "volume": 0.75
+        },
+        {
+          "filename": "__base__/sound/inserter-fast-3.ogg",
+          "volume": 0.75
+        },
+        {
+          "filename": "__base__/sound/inserter-fast-4.ogg",
+          "volume": 0.75
+        },
+        {
+          "filename": "__base__/sound/inserter-fast-5.ogg",
+          "volume": 0.75
+        }
+      ]
+    },
+    "hand_base_picture": {
+      "filename": "__base__/graphics/entity/stack-inserter/stack-inserter-hand-base.png",
+      "priority": "extra-high",
+      "width": 8,
+      "height": 34
+    },
+    "hand_closed_picture": {
+      "filename": "__base__/graphics/entity/stack-inserter/stack-inserter-hand-closed.png",
+      "priority": "extra-high",
+      "width": 24,
+      "height": 41
+    },
+    "hand_open_picture": {
+      "filename": "__base__/graphics/entity/stack-inserter/stack-inserter-hand-open.png",
+      "priority": "extra-high",
+      "width": 32,
+      "height": 41
+    },
+    "hand_base_shadow": {
+      "filename": "__base__/graphics/entity/burner-inserter/burner-inserter-hand-base-shadow.png",
+      "priority": "extra-high",
+      "width": 8,
+      "height": 34
+    },
+    "hand_closed_shadow": {
+      "filename": "__base__/graphics/entity/burner-inserter/burner-inserter-hand-closed-shadow.png",
+      "priority": "extra-high",
+      "width": 18,
+      "height": 41
+    },
+    "hand_open_shadow": {
+      "filename": "__base__/graphics/entity/burner-inserter/burner-inserter-hand-open-shadow.png",
+      "priority": "extra-high",
+      "width": 18,
+      "height": 41
+    },
+    "platform_picture": {
+      "sheet": {
+        "filename": "__base__/graphics/entity/stack-inserter/stack-inserter-platform.png",
+        "priority": "extra-high",
+        "width": 46,
+        "height": 46,
+        "shift": [
+          0.09375,
+          0
+        ]
+      }
+    }
+  },
+  {
+    "type": "inserter",
+    "name": "stack-filter-inserter",
+    "icon": "__base__/graphics/icons/stack-filter-inserter.png",
+    "flags": [
+      "placeable-neutral",
+      "placeable-player",
+      "player-creation"
+    ],
+    "stack": true,
+    "filter_count": 1,
+    "minable": {
+      "hardness": 0.2,
+      "mining_time": 0.5,
+      "result": "stack-filter-inserter"
+    },
+    "max_health": 40,
+    "corpse": "small-remnants",
+    "resistances": [
+      {
+        "type": "fire",
+        "percent": 90
+      }
+    ],
+    "collision_box": [
+      [
+        null,
+        null
+      ],
+      [
+        0.15,
+        0.15
+      ]
+    ],
+    "selection_box": [
+      [
+        null,
+        null
+      ],
+      [
+        0.4,
+        0.45
+      ]
+    ],
+    "pickup_position": [
+      0,
+      null
+    ],
+    "insert_position": [
+      0,
+      1.2
+    ],
+    "energy_per_movement": 20000,
+    "energy_per_rotation": 20000,
+    "energy_source": {
+      "type": "electric",
+      "usage_priority": "secondary-input",
+      "drain": "1kW"
+    },
+    "extension_speed": 0.07,
+    "rotation_speed": 0.04,
+    "fast_replaceable_group": "inserter",
+    "vehicle_impact_sound": {
+      "filename": "__base__/sound/car-metal-impact.ogg",
+      "volume": 0.65
+    },
+    "working_sound": {
+      "match_progress_to_activity": true,
+      "sound": [
+        {
+          "filename": "__base__/sound/inserter-fast-1.ogg",
+          "volume": 0.75
+        },
+        {
+          "filename": "__base__/sound/inserter-fast-2.ogg",
+          "volume": 0.75
+        },
+        {
+          "filename": "__base__/sound/inserter-fast-3.ogg",
+          "volume": 0.75
+        },
+        {
+          "filename": "__base__/sound/inserter-fast-4.ogg",
+          "volume": 0.75
+        },
+        {
+          "filename": "__base__/sound/inserter-fast-5.ogg",
+          "volume": 0.75
+        }
+      ]
+    },
+    "hand_base_picture": {
+      "filename": "__base__/graphics/entity/stack-filter-inserter/stack-filter-inserter-hand-base.png",
+      "priority": "extra-high",
+      "width": 8,
+      "height": 34
+    },
+    "hand_closed_picture": {
+      "filename": "__base__/graphics/entity/stack-filter-inserter/stack-filter-inserter-hand-closed.png",
+      "priority": "extra-high",
+      "width": 24,
+      "height": 41
+    },
+    "hand_open_picture": {
+      "filename": "__base__/graphics/entity/stack-filter-inserter/stack-filter-inserter-hand-open.png",
+      "priority": "extra-high",
+      "width": 32,
+      "height": 41
+    },
+    "hand_base_shadow": {
+      "filename": "__base__/graphics/entity/burner-inserter/burner-inserter-hand-base-shadow.png",
+      "priority": "extra-high",
+      "width": 8,
+      "height": 34
+    },
+    "hand_closed_shadow": {
+      "filename": "__base__/graphics/entity/burner-inserter/burner-inserter-hand-closed-shadow.png",
+      "priority": "extra-high",
+      "width": 18,
+      "height": 41
+    },
+    "hand_open_shadow": {
+      "filename": "__base__/graphics/entity/burner-inserter/burner-inserter-hand-open-shadow.png",
+      "priority": "extra-high",
+      "width": 18,
+      "height": 41
+    },
+    "platform_picture": {
+      "sheet": {
+        "filename": "__base__/graphics/entity/stack-filter-inserter/stack-filter-inserter-platform.png",
+        "priority": "extra-high",
+        "width": 46,
+        "height": 46,
+        "shift": [
+          0.09375,
+          0
+        ]
+      }
+    }
+  },
+  {
+    "type": "inserter",
+    "name": "filter-inserter",
+    "icon": "__base__/graphics/icons/filter-inserter.png",
     "flags": [
       "placeable-neutral",
       "placeable-player",
@@ -12472,7 +12821,7 @@
     "minable": {
       "hardness": 0.2,
       "mining_time": 0.5,
-      "result": "smart-inserter"
+      "result": "filter-inserter"
     },
     "max_health": 40,
     "corpse": "small-remnants",
@@ -12539,31 +12888,31 @@
       0,
       1.2
     ],
-    "energy_per_movement": 7000,
-    "energy_per_rotation": 7000,
+    "energy_per_movement": 8000,
+    "energy_per_rotation": 8000,
     "energy_source": {
       "type": "electric",
       "usage_priority": "secondary-input",
-      "drain": "0.4kW"
+      "drain": "0.5kW"
     },
     "extension_speed": 0.07,
     "rotation_speed": 0.04,
     "fast_replaceable_group": "inserter",
     "filter_count": 5,
     "hand_base_picture": {
-      "filename": "__base__/graphics/entity/smart-inserter/smart-inserter-hand-base.png",
+      "filename": "__base__/graphics/entity/filter-inserter/filter-inserter-hand-base.png",
       "priority": "extra-high",
       "width": 8,
       "height": 34
     },
     "hand_closed_picture": {
-      "filename": "__base__/graphics/entity/smart-inserter/smart-inserter-hand-closed.png",
+      "filename": "__base__/graphics/entity/filter-inserter/filter-inserter-hand-closed.png",
       "priority": "extra-high",
       "width": 18,
       "height": 41
     },
     "hand_open_picture": {
-      "filename": "__base__/graphics/entity/smart-inserter/smart-inserter-hand-open.png",
+      "filename": "__base__/graphics/entity/filter-inserter/filter-inserter-hand-open.png",
       "priority": "extra-high",
       "width": 18,
       "height": 41
@@ -12588,36 +12937,16 @@
     },
     "platform_picture": {
       "sheet": {
-        "filename": "__base__/graphics/entity/smart-inserter/smart-inserter-platform.png",
+        "filename": "__base__/graphics/entity/filter-inserter/filter-inserter-platform.png",
         "priority": "extra-high",
         "width": 46,
-        "height": 46
-      }
-    },
-    "programmable": true,
-    "circuit_wire_connection_point": {
-      "shadow": {
-        "red": [
-          0,
-          0
-        ],
-        "green": [
-          0,
-          0
-        ]
-      },
-      "wire": {
-        "red": [
-          0,
-          0
-        ],
-        "green": [
-          0,
+        "height": 46,
+        "shift": [
+          0.09375,
           0
         ]
       }
-    },
-    "circuit_wire_max_distance": 7.5
+    }
   },
   {
     "type": "solar-panel",
@@ -12702,8 +13031,8 @@
         null
       ],
       [
-        0.9,
-        2.5
+        1,
+        3
       ]
     ],
     "drawing_box": [
@@ -12719,11 +13048,12 @@
     "weight": 2000,
     "max_speed": 1.2,
     "max_power": "600kW",
+    "reversing_power_modifier": 0.6,
     "braking_force": 10,
-    "friction_force": 0.0015,
-    "air_resistance": 0.002,
-    "connection_distance": 3.3,
-    "joint_distance": 4.6,
+    "friction_force": 0.5,
+    "air_resistance": 0.0075,
+    "connection_distance": 3,
+    "joint_distance": 4,
     "energy_per_hit_point": 5,
     "resistances": [
       {
@@ -12813,26 +13143,88 @@
         "intensity": 0.6
       }
     ],
+    "color": {
+      "r": 0.92,
+      "g": 0.07,
+      "b": 0,
+      "a": 0.5
+    },
     "pictures": {
-      "priority": "very-low",
-      "width": 346,
-      "height": 248,
-      "direction_count": 256,
-      "filenames": [
-        "__base__/graphics/entity/diesel-locomotive/diesel-locomotive-01.png",
-        "__base__/graphics/entity/diesel-locomotive/diesel-locomotive-02.png",
-        "__base__/graphics/entity/diesel-locomotive/diesel-locomotive-03.png",
-        "__base__/graphics/entity/diesel-locomotive/diesel-locomotive-04.png",
-        "__base__/graphics/entity/diesel-locomotive/diesel-locomotive-05.png",
-        "__base__/graphics/entity/diesel-locomotive/diesel-locomotive-06.png",
-        "__base__/graphics/entity/diesel-locomotive/diesel-locomotive-07.png",
-        "__base__/graphics/entity/diesel-locomotive/diesel-locomotive-08.png"
-      ],
-      "line_length": 4,
-      "lines_per_file": 8,
-      "shift": [
-        1,
-        null
+      "layers": [
+        {
+          "priority": "very-low",
+          "width": 238,
+          "height": 230,
+          "direction_count": 256,
+          "filenames": [
+            "__base__/graphics/entity/diesel-locomotive/diesel-locomotive-01.png",
+            "__base__/graphics/entity/diesel-locomotive/diesel-locomotive-02.png",
+            "__base__/graphics/entity/diesel-locomotive/diesel-locomotive-03.png",
+            "__base__/graphics/entity/diesel-locomotive/diesel-locomotive-04.png",
+            "__base__/graphics/entity/diesel-locomotive/diesel-locomotive-05.png",
+            "__base__/graphics/entity/diesel-locomotive/diesel-locomotive-06.png",
+            "__base__/graphics/entity/diesel-locomotive/diesel-locomotive-07.png",
+            "__base__/graphics/entity/diesel-locomotive/diesel-locomotive-08.png"
+          ],
+          "line_length": 4,
+          "lines_per_file": 8,
+          "shift": [
+            0,
+            null
+          ]
+        },
+        {
+          "priority": "very-low",
+          "flags": [
+            "mask"
+          ],
+          "width": 236,
+          "height": 228,
+          "direction_count": 256,
+          "filenames": [
+            "__base__/graphics/entity/diesel-locomotive/diesel-locomotive-mask-01.png",
+            "__base__/graphics/entity/diesel-locomotive/diesel-locomotive-mask-02.png",
+            "__base__/graphics/entity/diesel-locomotive/diesel-locomotive-mask-03.png",
+            "__base__/graphics/entity/diesel-locomotive/diesel-locomotive-mask-04.png",
+            "__base__/graphics/entity/diesel-locomotive/diesel-locomotive-mask-05.png",
+            "__base__/graphics/entity/diesel-locomotive/diesel-locomotive-mask-06.png",
+            "__base__/graphics/entity/diesel-locomotive/diesel-locomotive-mask-07.png",
+            "__base__/graphics/entity/diesel-locomotive/diesel-locomotive-mask-08.png"
+          ],
+          "line_length": 4,
+          "lines_per_file": 8,
+          "shift": [
+            0,
+            null
+          ],
+          "apply_runtime_tint": true
+        },
+        {
+          "priority": "very-low",
+          "flags": [
+            "compressed"
+          ],
+          "width": 253,
+          "height": 212,
+          "direction_count": 256,
+          "draw_as_shadow": true,
+          "filenames": [
+            "__base__/graphics/entity/diesel-locomotive/diesel-locomotive-shadow-01.png",
+            "__base__/graphics/entity/diesel-locomotive/diesel-locomotive-shadow-02.png",
+            "__base__/graphics/entity/diesel-locomotive/diesel-locomotive-shadow-03.png",
+            "__base__/graphics/entity/diesel-locomotive/diesel-locomotive-shadow-04.png",
+            "__base__/graphics/entity/diesel-locomotive/diesel-locomotive-shadow-05.png",
+            "__base__/graphics/entity/diesel-locomotive/diesel-locomotive-shadow-06.png",
+            "__base__/graphics/entity/diesel-locomotive/diesel-locomotive-shadow-07.png",
+            "__base__/graphics/entity/diesel-locomotive/diesel-locomotive-shadow-08.png"
+          ],
+          "line_length": 4,
+          "lines_per_file": 8,
+          "shift": [
+            1,
+            0.3
+          ]
+        }
       ]
     },
     "rail_category": "regular",
@@ -12923,7 +13315,7 @@
       "placeable-off-grid",
       "not-on-map"
     ],
-    "inventory_size": 30,
+    "inventory_size": 40,
     "minable": {
       "mining_time": 1,
       "result": "cargo-wagon"
@@ -12951,15 +13343,15 @@
       ],
       [
         1,
-        2.5
+        3.296875
       ]
     ],
     "weight": 1000,
     "max_speed": 1.5,
     "braking_force": 3,
-    "friction_force": 0.0015,
-    "air_resistance": 0.002,
-    "connection_distance": 3.3,
+    "friction_force": 0.5,
+    "air_resistance": 0.01,
+    "connection_distance": 3,
     "joint_distance": 4,
     "energy_per_hit_point": 5,
     "resistances": [
@@ -12989,23 +13381,198 @@
         "percent": 20
       }
     ],
+    "color": {
+      "r": 0.43,
+      "g": 0.23,
+      "b": 0,
+      "a": 0.5
+    },
     "pictures": {
-      "priority": "very-low",
-      "width": 285,
-      "height": 218,
-      "back_equals_front": true,
-      "direction_count": 128,
-      "filenames": [
-        "__base__/graphics/entity/cargo-wagon/cargo-wagon-spritesheet-1.png",
-        "__base__/graphics/entity/cargo-wagon/cargo-wagon-spritesheet-2.png",
-        "__base__/graphics/entity/cargo-wagon/cargo-wagon-spritesheet-3.png",
-        "__base__/graphics/entity/cargo-wagon/cargo-wagon-spritesheet-4.png"
-      ],
-      "line_length": 4,
-      "lines_per_file": 8,
-      "shift": [
-        0.7,
-        null
+      "layers": [
+        {
+          "priority": "very-low",
+          "width": 222,
+          "height": 205,
+          "back_equals_front": true,
+          "direction_count": 128,
+          "filenames": [
+            "__base__/graphics/entity/cargo-wagon/cargo-wagon-1.png",
+            "__base__/graphics/entity/cargo-wagon/cargo-wagon-2.png",
+            "__base__/graphics/entity/cargo-wagon/cargo-wagon-3.png",
+            "__base__/graphics/entity/cargo-wagon/cargo-wagon-4.png"
+          ],
+          "line_length": 4,
+          "lines_per_file": 8,
+          "shift": [
+            0,
+            null
+          ]
+        },
+        {
+          "flags": [
+            "mask"
+          ],
+          "width": 196,
+          "height": 174,
+          "direction_count": 128,
+          "back_equals_front": true,
+          "apply_runtime_tint": true,
+          "shift": [
+            0,
+            null
+          ],
+          "filenames": [
+            "__base__/graphics/entity/cargo-wagon/cargo-wagon-mask-1.png",
+            "__base__/graphics/entity/cargo-wagon/cargo-wagon-mask-2.png",
+            "__base__/graphics/entity/cargo-wagon/cargo-wagon-mask-3.png"
+          ],
+          "line_length": 4,
+          "lines_per_file": 11
+        },
+        {
+          "flags": [
+            "compressed"
+          ],
+          "width": 246,
+          "height": 201,
+          "back_equals_front": true,
+          "draw_as_shadow": true,
+          "direction_count": 128,
+          "filenames": [
+            "__base__/graphics/entity/cargo-wagon/cargo-wagon-shadow-1.png",
+            "__base__/graphics/entity/cargo-wagon/cargo-wagon-shadow-2.png",
+            "__base__/graphics/entity/cargo-wagon/cargo-wagon-shadow-3.png",
+            "__base__/graphics/entity/cargo-wagon/cargo-wagon-shadow-4.png"
+          ],
+          "line_length": 4,
+          "lines_per_file": 8,
+          "shift": [
+            0.8,
+            null
+          ]
+        }
+      ]
+    },
+    "horizontal_doors": {
+      "layers": [
+        {
+          "filename": "__base__/graphics/entity/cargo-wagon/cargo-wagon-door-horizontal-end.png",
+          "line_length": 1,
+          "width": 220,
+          "height": 33,
+          "frame_count": 8,
+          "shift": [
+            0,
+            null
+          ]
+        },
+        {
+          "filename": "__base__/graphics/entity/cargo-wagon/cargo-wagon-door-horizontal-side.png",
+          "line_length": 1,
+          "width": 186,
+          "height": 38,
+          "frame_count": 8,
+          "shift": [
+            0,
+            null
+          ]
+        },
+        {
+          "filename": "__base__/graphics/entity/cargo-wagon/cargo-wagon-door-horizontal-side-mask.png",
+          "width": 182,
+          "height": 35,
+          "line_length": 1,
+          "frame_count": 8,
+          "shift": [
+            0,
+            null
+          ],
+          "apply_runtime_tint": true
+        },
+        {
+          "filename": "__base__/graphics/entity/cargo-wagon/cargo-wagon-door-horizontal-top.png",
+          "line_length": 1,
+          "width": 184,
+          "height": 28,
+          "frame_count": 8,
+          "shift": [
+            0.015625,
+            null
+          ]
+        },
+        {
+          "filename": "__base__/graphics/entity/cargo-wagon/cargo-wagon-door-horizontal-top-mask.png",
+          "width": 185,
+          "height": 23,
+          "frame_count": 8,
+          "line_length": 1,
+          "shift": [
+            0.015625,
+            null
+          ],
+          "apply_runtime_tint": true
+        }
+      ]
+    },
+    "vertical_doors": {
+      "layers": [
+        {
+          "filename": "__base__/graphics/entity/cargo-wagon/cargo-wagon-door-vertical-end.png",
+          "line_length": 8,
+          "width": 30,
+          "height": 202,
+          "frame_count": 8,
+          "shift": [
+            0,
+            null
+          ]
+        },
+        {
+          "filename": "__base__/graphics/entity/cargo-wagon/cargo-wagon-door-vertical-side.png",
+          "line_length": 8,
+          "width": 67,
+          "height": 169,
+          "frame_count": 8,
+          "shift": [
+            0.015625,
+            null
+          ]
+        },
+        {
+          "filename": "__base__/graphics/entity/cargo-wagon/cargo-wagon-door-vertical-side-mask.png",
+          "line_length": 8,
+          "width": 56,
+          "height": 163,
+          "frame_count": 8,
+          "shift": [
+            0,
+            null
+          ],
+          "apply_runtime_tint": true
+        },
+        {
+          "filename": "__base__/graphics/entity/cargo-wagon/cargo-wagon-door-vertical-top.png",
+          "line_length": 8,
+          "width": 32,
+          "height": 168,
+          "frame_count": 8,
+          "shift": [
+            0,
+            null
+          ]
+        },
+        {
+          "filename": "__base__/graphics/entity/cargo-wagon/cargo-wagon-door-vertical-top-mask.png",
+          "line_length": 8,
+          "width": 32,
+          "height": 166,
+          "frame_count": 8,
+          "shift": [
+            0,
+            null
+          ],
+          "apply_runtime_tint": true
+        }
       ]
     },
     "rail_category": "regular",
@@ -13356,7 +13923,7 @@
             "height": 31,
             "shift": [
               0.3,
-              0.2
+              null
             ],
             "draw_as_shadow": true
           }
@@ -13369,7 +13936,7 @@
             "width": 11,
             "height": 40,
             "shift": [
-              0.328125,
+              null,
               null
             ]
           },
@@ -13378,7 +13945,7 @@
             "width": 38,
             "height": 32,
             "shift": [
-              0.8125,
+              null,
               0.46875
             ],
             "draw_as_shadow": true
@@ -13424,55 +13991,13 @@
             "width": 46,
             "height": 32,
             "shift": [
-              0.1875,
+              null,
               0.46875
             ],
             "draw_as_shadow": true
           }
         ]
       }
-    },
-    "wall_diode_green": {
-      "filename": "__base__/graphics/entity/gate/wall-diode-green.png",
-      "width": 21,
-      "height": 22,
-      "shift": [
-        0,
-        null
-      ]
-    },
-    "wall_diode_green_light": {
-      "minimum_darkness": 0.3,
-      "color": {
-        "g": 1
-      },
-      "shift": [
-        0,
-        null
-      ],
-      "size": 1,
-      "intensity": 0.3
-    },
-    "wall_diode_red": {
-      "filename": "__base__/graphics/entity/gate/wall-diode-red.png",
-      "width": 21,
-      "height": 22,
-      "shift": [
-        0,
-        null
-      ]
-    },
-    "wall_diode_red_light": {
-      "minimum_darkness": 0.3,
-      "color": {
-        "r": 1
-      },
-      "shift": [
-        0,
-        null
-      ],
-      "size": 1,
-      "intensity": 0.3
     },
     "vehicle_impact_sound": {
       "filename": "__base__/sound/car-metal-impact.ogg",
@@ -13542,18 +14067,24 @@
   {
     "type": "straight-rail",
     "name": "straight-rail",
-    "icon": "__base__/graphics/icons/straight-rail.png",
+    "icon": "__base__/graphics/icons/rail.png",
     "flags": [
       "placeable-neutral",
       "player-creation",
       "building-direction-8-way"
     ],
     "minable": {
-      "mining_time": 1,
-      "result": "straight-rail"
+      "mining_time": 0.5,
+      "result": "rail"
     },
     "max_health": 100,
     "corpse": "straight-rail-remnants",
+    "resistances": [
+      {
+        "type": "fire",
+        "percent": 100
+      }
+    ],
     "collision_box": [
       [
         null,
@@ -13586,11 +14117,18 @@
       "building-direction-8-way"
     ],
     "minable": {
-      "mining_time": 1,
-      "result": "curved-rail"
+      "mining_time": 0.5,
+      "result": "rail",
+      "count": 4
     },
     "max_health": 200,
     "corpse": "curved-rail-remnants",
+    "resistances": [
+      {
+        "type": "fire",
+        "percent": 100
+      }
+    ],
     "collision_box": [
       [
         null,
@@ -13621,36 +14159,10 @@
         0.8
       ]
     ],
-    "rail_category": "regular"
-  },
-  {
-    "type": "flame-thrower-explosion",
-    "name": "flame-thrower-explosion",
-    "flags": [
-      "not-on-map"
-    ],
-    "animation_speed": 1,
-    "animations": [
-      {
-        "filename": "__base__/graphics/entity/flame-thrower-explosion/flame-thrower-explosion.png",
-        "priority": "extra-high",
-        "width": 64,
-        "height": 64,
-        "frame_count": 64,
-        "line_length": 8
-      }
-    ],
-    "light": {
-      "intensity": 0.2,
-      "size": 20
-    },
-    "slow_down_factor": 1,
-    "smoke": "smoke-fast",
-    "smoke_count": 1,
-    "smoke_slow_down_factor": 0.95,
-    "damage": {
-      "amount": 0.25,
-      "type": "fire"
+    "rail_category": "regular",
+    "placeable_by": {
+      "item": "rail",
+      "count": 4
     }
   },
   {
@@ -13775,68 +14287,156 @@
         null
       ],
       [
-        0.6,
-        0.6
+        0.9,
+        0.9
       ]
     ],
-    "drawing_box": [
-      [
-        null,
-        null
+    "drawing_boxes": {
+      "north": [
+        [
+          null,
+          null
+        ],
+        [
+          0.8,
+          1.25
+        ]
       ],
-      [
-        0.5,
-        0.5
+      "east": [
+        [
+          null,
+          null
+        ],
+        [
+          1.625,
+          0.5
+        ]
+      ],
+      "south": [
+        [
+          null,
+          null
+        ],
+        [
+          2.75,
+          0.4375
+        ]
+      ],
+      "west": [
+        [
+          null,
+          null
+        ],
+        [
+          2.0625,
+          2.75
+        ]
       ]
-    ],
+    },
     "tile_width": 2,
     "tile_height": 2,
     "animation_ticks_per_frame": 20,
-    "animations": {
-      "north": {
-        "filename": "__base__/graphics/entity/train-stop/train-stop-north.png",
-        "priority": "high",
-        "width": 180,
-        "height": 136,
-        "frame_count": 2,
-        "shift": [
-          1.65,
-          null
-        ]
+    "light1": {
+      "light": {
+        "intensity": 0.5,
+        "size": 3
       },
-      "east": {
-        "filename": "__base__/graphics/entity/train-stop/train-stop-east.png",
-        "priority": "high",
-        "width": 173,
-        "height": 128,
-        "frame_count": 2,
-        "shift": [
-          1.7,
-          null
-        ]
-      },
-      "south": {
-        "filename": "__base__/graphics/entity/train-stop/train-stop-south.png",
-        "priority": "high",
-        "width": 155,
-        "height": 132,
-        "frame_count": 2,
-        "shift": [
-          1.7,
-          null
-        ]
-      },
-      "west": {
-        "filename": "__base__/graphics/entity/train-stop/train-stop-west.png",
-        "priority": "high",
-        "width": 173,
-        "height": 126,
-        "frame_count": 2,
-        "shift": [
-          2,
-          null
-        ]
+      "picture": {
+        "north": {
+          "filename": "__base__/graphics/entity/train-stop/train-stop-north-light-1.png",
+          "width": 9,
+          "height": 8,
+          "frame_count": 1,
+          "shift": [
+            null,
+            null
+          ]
+        },
+        "east": {
+          "filename": "__base__/graphics/entity/train-stop/train-stop-east-light-1.png",
+          "width": 6,
+          "height": 9,
+          "frame_count": 1,
+          "shift": [
+            null,
+            null
+          ]
+        },
+        "south": {
+          "filename": "__base__/graphics/entity/train-stop/train-stop-south-light-1.png",
+          "width": 9,
+          "height": 7,
+          "frame_count": 1,
+          "shift": [
+            2.20312,
+            null
+          ]
+        },
+        "west": {
+          "filename": "__base__/graphics/entity/train-stop/train-stop-west-light-1.png",
+          "width": 7,
+          "height": 9,
+          "frame_count": 1,
+          "shift": [
+            1.01562,
+            0.578125
+          ]
+        }
       }
+    },
+    "light2": {
+      "light": {
+        "intensity": 0.5,
+        "size": 3
+      },
+      "picture": {
+        "north": {
+          "filename": "__base__/graphics/entity/train-stop/train-stop-north-light-2.png",
+          "width": 9,
+          "height": 8,
+          "frame_count": 1,
+          "shift": [
+            null,
+            null
+          ]
+        },
+        "east": {
+          "filename": "__base__/graphics/entity/train-stop/train-stop-east-light-2.png",
+          "width": 7,
+          "height": 9,
+          "frame_count": 1,
+          "shift": [
+            null,
+            null
+          ]
+        },
+        "south": {
+          "filename": "__base__/graphics/entity/train-stop/train-stop-south-light-2.png",
+          "width": 9,
+          "height": 7,
+          "frame_count": 1,
+          "shift": [
+            1.79688,
+            null
+          ]
+        },
+        "west": {
+          "filename": "__base__/graphics/entity/train-stop/train-stop-west-light-2.png",
+          "width": 7,
+          "height": 9,
+          "frame_count": 1,
+          "shift": [
+            1.01562,
+            0.296875
+          ]
+        }
+      }
+    },
+    "color": {
+      "r": 0.95,
+      "g": 0,
+      "b": 0,
+      "a": 0.5
     },
     "vehicle_impact_sound": {
       "filename": "__base__/sound/car-metal-impact.ogg",
@@ -13847,7 +14447,104 @@
         "filename": "__base__/sound/train-stop.ogg",
         "volume": 0.8
       }
-    }
+    },
+    "circuit_wire_connection_points": [
+      {
+        "shadow": {
+          "red": [
+            null,
+            1.21875
+          ],
+          "green": [
+            null,
+            1.21875
+          ]
+        },
+        "wire": {
+          "red": [
+            null,
+            1.09375
+          ],
+          "green": [
+            null,
+            1.09375
+          ]
+        }
+      },
+      {
+        "shadow": {
+          "red": [
+            null,
+            null
+          ],
+          "green": [
+            null,
+            null
+          ]
+        },
+        "wire": {
+          "red": [
+            null,
+            null
+          ],
+          "green": [
+            null,
+            null
+          ]
+        }
+      },
+      {
+        "shadow": {
+          "red": [
+            0.78125,
+            0.46875
+          ],
+          "green": [
+            0.59375,
+            0.46875
+          ]
+        },
+        "wire": {
+          "red": [
+            0.65625,
+            0.34375
+          ],
+          "green": [
+            0.5,
+            0.34375
+          ]
+        }
+      },
+      {
+        "shadow": {
+          "red": [
+            null,
+            1.28125
+          ],
+          "green": [
+            null,
+            1.15625
+          ]
+        },
+        "wire": {
+          "red": [
+            null,
+            1.15625
+          ],
+          "green": [
+            null,
+            1.03125
+          ]
+        }
+      }
+    ],
+    "circuit_connector_sprites": [
+      null,
+      null,
+      null,
+      null
+    ],
+    "circuit_wire_max_distance": 7.5
   },
   {
     "type": "rail-signal",
@@ -13862,22 +14559,12 @@
     ],
     "fast_replaceable_group": "rail-signal",
     "minable": {
-      "mining_time": 1,
+      "mining_time": 0.5,
       "result": "rail-signal"
     },
     "max_health": 80,
     "corpse": "small-remnants",
     "collision_box": [
-      [
-        null,
-        null
-      ],
-      [
-        0.2,
-        0.2
-      ]
-    ],
-    "building_collision_box": [
       [
         null,
         null
@@ -13926,7 +14613,199 @@
       "color": {
         "r": 1
       }
-    }
+    },
+    "circuit_wire_connection_points": [
+      {
+        "shadow": {
+          "red": [
+            0.609375,
+            null
+          ],
+          "green": [
+            0.765625,
+            null
+          ]
+        },
+        "wire": {
+          "red": [
+            0.5,
+            null
+          ],
+          "green": [
+            0.65625,
+            null
+          ]
+        }
+      },
+      {
+        "shadow": {
+          "red": [
+            0.8125,
+            null
+          ],
+          "green": [
+            0.9375,
+            0.0625
+          ]
+        },
+        "wire": {
+          "red": [
+            0.65625,
+            null
+          ],
+          "green": [
+            0.75,
+            null
+          ]
+        }
+      },
+      {
+        "shadow": {
+          "red": [
+            0.734375,
+            0.453125
+          ],
+          "green": [
+            0.734375,
+            0.578125
+          ]
+        },
+        "wire": {
+          "red": [
+            0.5625,
+            0.34375
+          ],
+          "green": [
+            0.5625,
+            0.5
+          ]
+        }
+      },
+      {
+        "shadow": {
+          "red": [
+            0.234375,
+            0.484375
+          ],
+          "green": [
+            0.109375,
+            0.578125
+          ]
+        },
+        "wire": {
+          "red": [
+            0.09375,
+            0.34375
+          ],
+          "green": [
+            null,
+            0.4375
+          ]
+        }
+      },
+      {
+        "shadow": {
+          "red": [
+            null,
+            0.484375
+          ],
+          "green": [
+            null,
+            0.484375
+          ]
+        },
+        "wire": {
+          "red": [
+            null,
+            0.34375
+          ],
+          "green": [
+            null,
+            0.34375
+          ]
+        }
+      },
+      {
+        "shadow": {
+          "red": [
+            null,
+            0.140625
+          ],
+          "green": [
+            null,
+            0.046875
+          ]
+        },
+        "wire": {
+          "red": [
+            null,
+            0.0625
+          ],
+          "green": [
+            null,
+            null
+          ]
+        }
+      },
+      {
+        "shadow": {
+          "red": [
+            null,
+            null
+          ],
+          "green": [
+            null,
+            null
+          ]
+        },
+        "wire": {
+          "red": [
+            null,
+            null
+          ],
+          "green": [
+            null,
+            null
+          ]
+        }
+      },
+      {
+        "shadow": {
+          "red": [
+            null,
+            null
+          ],
+          "green": [
+            0.078125,
+            null
+          ]
+        },
+        "wire": {
+          "red": [
+            null,
+            null
+          ],
+          "green": [
+            0,
+            null
+          ]
+        }
+      }
+    ],
+    "circuit_connector_sprites": [
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    "circuit_wire_max_distance": 7.5,
+    "default_red_output_signal": "signal-red",
+    "default_orange_output_signal": "signal-yellow",
+    "default_green_output_signal": "signal-green"
   },
   {
     "type": "rail-chain-signal",
@@ -13941,22 +14820,12 @@
     ],
     "fast_replaceable_group": "rail-signal",
     "minable": {
-      "mining_time": 1,
+      "mining_time": 0.5,
       "result": "rail-chain-signal"
     },
     "max_health": 80,
     "corpse": "small-remnants",
     "collision_box": [
-      [
-        null,
-        null
-      ],
-      [
-        0.2,
-        0.2
-      ]
-    ],
-    "building_collision_box": [
       [
         null,
         null
@@ -14177,6 +15046,12 @@
       "mining_time": 0.1,
       "result": "logistic-robot"
     },
+    "resistances": [
+      {
+        "type": "fire",
+        "percent": 85
+      }
+    ],
     "max_health": 100,
     "collision_box": [
       [
@@ -14201,10 +15076,10 @@
     "max_payload_size": 1,
     "speed": 0.05,
     "transfer_distance": 0.5,
-    "max_energy": "300kJ",
-    "energy_per_tick": "0.01kJ",
+    "max_energy": "1.5MJ",
+    "energy_per_tick": "0.05kJ",
     "speed_multiplier_when_out_of_energy": 0.2,
-    "energy_per_move": "1kJ",
+    "energy_per_move": "5kJ",
     "min_to_charge": 0.2,
     "max_to_charge": 0.95,
     "idle": {
@@ -14336,6 +15211,12 @@
       "mining_time": 0.1,
       "result": "construction-robot"
     },
+    "resistances": [
+      {
+        "type": "fire",
+        "percent": 85
+      }
+    ],
     "max_health": 100,
     "collision_box": [
       [
@@ -14360,10 +15241,10 @@
     "max_payload_size": 1,
     "speed": 0.06,
     "transfer_distance": 0.5,
-    "max_energy": "300kJ",
-    "energy_per_tick": "0.01kJ",
+    "max_energy": "1.5MJ",
+    "energy_per_tick": "0.05kJ",
     "speed_multiplier_when_out_of_energy": 0.2,
-    "energy_per_move": "1kJ",
+    "energy_per_move": "5kJ",
     "min_to_charge": 0.2,
     "max_to_charge": 0.95,
     "working_light": {
@@ -14570,7 +15451,6 @@
         "animation_speed": 0.3
       }
     ],
-    "repair_pack": "repair-pack",
     "cargo_centered": [
       0,
       0.2
@@ -14636,9 +15516,31 @@
       "width": 38,
       "height": 32,
       "shift": [
-        0.1,
+        0.09375,
         0
       ]
+    },
+    "circuit_wire_connection_point": {
+      "shadow": {
+        "red": [
+          0.734375,
+          0.453125
+        ],
+        "green": [
+          0.609375,
+          0.515625
+        ]
+      },
+      "wire": {
+        "red": [
+          0.40625,
+          0.21875
+        ],
+        "green": [
+          0.40625,
+          0.375
+        ]
+      }
     },
     "circuit_wire_max_distance": 7.5
   },
@@ -14698,9 +15600,31 @@
       "width": 38,
       "height": 32,
       "shift": [
-        0.1,
+        0.09375,
         0
       ]
+    },
+    "circuit_wire_connection_point": {
+      "shadow": {
+        "red": [
+          0.734375,
+          0.453125
+        ],
+        "green": [
+          0.609375,
+          0.515625
+        ]
+      },
+      "wire": {
+        "red": [
+          0.40625,
+          0.21875
+        ],
+        "green": [
+          0.40625,
+          0.375
+        ]
+      }
     },
     "circuit_wire_max_distance": 7.5
   },
@@ -14760,9 +15684,31 @@
       "width": 38,
       "height": 32,
       "shift": [
-        0.1,
+        0.09375,
         0
       ]
+    },
+    "circuit_wire_connection_point": {
+      "shadow": {
+        "red": [
+          0.734375,
+          0.453125
+        ],
+        "green": [
+          0.609375,
+          0.515625
+        ]
+      },
+      "wire": {
+        "red": [
+          0.40625,
+          0.21875
+        ],
+        "green": [
+          0.40625,
+          0.375
+        ]
+      }
     },
     "circuit_wire_max_distance": 7.5
   },
@@ -14812,15 +15758,41 @@
       "filename": "__base__/sound/metallic-chest-close.ogg",
       "volume": 0.7
     },
+    "vehicle_impact_sound": {
+      "filename": "__base__/sound/car-metal-impact.ogg",
+      "volume": 0.65
+    },
     "picture": {
       "filename": "__base__/graphics/entity/logistic-chest/logistic-chest-requester.png",
       "priority": "extra-high",
       "width": 38,
       "height": 32,
       "shift": [
-        0.1,
+        0.09375,
         0
       ]
+    },
+    "circuit_wire_connection_point": {
+      "shadow": {
+        "red": [
+          0.734375,
+          0.453125
+        ],
+        "green": [
+          0.609375,
+          0.515625
+        ]
+      },
+      "wire": {
+        "red": [
+          0.40625,
+          0.21875
+        ],
+        "green": [
+          0.40625,
+          0.375
+        ]
+      }
     },
     "circuit_wire_max_distance": 7.5
   },
@@ -15593,12 +16565,12 @@
     "energy_source": {
       "type": "electric",
       "usage_priority": "secondary-input",
-      "input_flow_limit": "2MW",
-      "buffer_capacity": "48MJ"
+      "input_flow_limit": "5MW",
+      "buffer_capacity": "100MJ"
     },
-    "recharge_minimum": "20MJ",
-    "energy_usage": "200kW",
-    "charging_energy": "200kW",
+    "recharge_minimum": "40MJ",
+    "energy_usage": "50kW",
+    "charging_energy": "1000kW",
     "logistics_radius": 25,
     "construction_radius": 50,
     "charge_approach_distance": 5,
@@ -15706,18 +16678,8 @@
       "size": 5
     },
     "request_to_open_door_timeout": 15,
-    "radius_visualisation_picture": {
-      "filename": "__base__/graphics/entity/roboport/roboport-radius-visualization.png",
-      "width": 12,
-      "height": 12,
-      "priority": "extra-high-no-scale"
-    },
-    "construction_radius_visualisation_picture": {
-      "filename": "__base__/graphics/entity/roboport/roboport-construction-radius-visualization.png",
-      "width": 12,
-      "height": 12,
-      "priority": "extra-high-no-scale"
-    },
+    "draw_logistic_radius_visualization": true,
+    "draw_construction_radius_visualization": true,
     "open_door_trigger_effect": [
       {
         "type": "play-sound",
@@ -15735,7 +16697,34 @@
           "volume": 0.75
         }
       }
-    ]
+    ],
+    "circuit_wire_connection_point": {
+      "shadow": {
+        "red": [
+          1.17188,
+          1.98438
+        ],
+        "green": [
+          1.04688,
+          2.04688
+        ]
+      },
+      "wire": {
+        "red": [
+          0.78125,
+          1.375
+        ],
+        "green": [
+          0.78125,
+          1.53125
+        ]
+      }
+    },
+    "circuit_wire_max_distance": 7.5,
+    "default_available_logistic_output_signal": "signal-X",
+    "default_total_logistic_output_signal": "signal-Y",
+    "default_available_construction_output_signal": "signal-Z",
+    "default_total_construction_output_signal": "signal-T"
   },
   {
     "type": "storage-tank",
@@ -15861,34 +16850,12 @@
       {
         "shadow": {
           "red": [
-            2.6875,
-            1.3125
+            2.35938,
+            0.890625
           ],
           "green": [
-            2.6875,
-            1.3125
-          ]
-        },
-        "wire": {
-          "red": [
-            1.1875,
-            null
-          ],
-          "green": [
-            1.1875,
-            null
-          ]
-        }
-      },
-      {
-        "shadow": {
-          "red": [
-            0.21875,
-            1.1875
-          ],
-          "green": [
-            0.21875,
-            1.1875
+            2.29688,
+            0.953125
           ]
         },
         "wire": {
@@ -15905,21 +16872,21 @@
       {
         "shadow": {
           "red": [
-            2.6875,
-            1.3125
+            2.35938,
+            0.890625
           ],
           "green": [
-            2.6875,
-            1.3125
+            2.29688,
+            0.953125
           ]
         },
         "wire": {
           "red": [
-            1.1875,
+            0.46875,
             null
           ],
           "green": [
-            1.1875,
+            0.375,
             null
           ]
         }
@@ -15927,12 +16894,12 @@
       {
         "shadow": {
           "red": [
-            0.21875,
-            1.1875
+            2.35938,
+            0.890625
           ],
           "green": [
-            0.21875,
-            1.1875
+            2.29688,
+            0.953125
           ]
         },
         "wire": {
@@ -15942,10 +16909,38 @@
           ],
           "green": [
             null,
+            null
+          ]
+        }
+      },
+      {
+        "shadow": {
+          "red": [
+            2.35938,
+            0.890625
+          ],
+          "green": [
+            2.29688,
+            0.953125
+          ]
+        },
+        "wire": {
+          "red": [
+            0.46875,
+            null
+          ],
+          "green": [
+            0.375,
             null
           ]
         }
       }
+    ],
+    "circuit_connector_sprites": [
+      null,
+      null,
+      null,
+      null
     ],
     "circuit_wire_max_distance": 7.5
   },
@@ -16069,91 +17064,97 @@
       {
         "shadow": {
           "red": [
-            0.65625,
-            0.03125
+            0.171875,
+            0.140625
           ],
           "green": [
-            0.65625,
-            0.03125
+            0.171875,
+            0.265625
+          ]
+        },
+        "wire": {
+          "red": [
+            null,
+            null
+          ],
+          "green": [
+            null,
+            0
+          ]
+        }
+      },
+      {
+        "shadow": {
+          "red": [
+            0.890625,
+            0.703125
+          ],
+          "green": [
+            0.75,
+            0.75
           ]
         },
         "wire": {
           "red": [
             0.34375,
-            null
+            0.28125
           ],
           "green": [
             0.34375,
-            null
+            0.4375
           ]
         }
       },
       {
         "shadow": {
           "red": [
+            0.15625,
+            0.0625
+          ],
+          "green": [
+            0.09375,
+            0.125
+          ]
+        },
+        "wire": {
+          "red": [
+            null,
+            null
+          ],
+          "green": [
+            null,
+            0.03125
+          ]
+        }
+      },
+      {
+        "shadow": {
+          "red": [
+            0.796875,
+            0.703125
+          ],
+          "green": [
             0.625,
-            0.46875
-          ],
-          "green": [
-            0.625,
-            0.46875
+            0.75
           ]
         },
         "wire": {
           "red": [
-            0.1875,
-            null
+            0.40625,
+            0.28125
           ],
           "green": [
-            0.1875,
-            null
-          ]
-        }
-      },
-      {
-        "shadow": {
-          "red": [
-            0.1875,
-            0.1875
-          ],
-          "green": [
-            0.1875,
-            0.1875
-          ]
-        },
-        "wire": {
-          "red": [
-            null,
-            null
-          ],
-          "green": [
-            null,
-            null
-          ]
-        }
-      },
-      {
-        "shadow": {
-          "red": [
-            0.3125,
-            null
-          ],
-          "green": [
-            0.3125,
-            null
-          ]
-        },
-        "wire": {
-          "red": [
-            null,
-            null
-          ],
-          "green": [
-            null,
-            null
+            0.40625,
+            0.4375
           ]
         }
       }
+    ],
+    "circuit_connector_sprites": [
+      null,
+      null,
+      null,
+      null
     ],
     "circuit_wire_max_distance": 7.5
   },
@@ -16276,8 +17277,8 @@
         null
       ],
       [
-        0.7,
-        0.7
+        0.65,
+        0.65
       ]
     ],
     "selection_box": [
@@ -16343,7 +17344,7 @@
             null
           ],
           "red": [
-            0.6,
+            0.625,
             null
           ]
         }
@@ -16373,7 +17374,7 @@
             null
           ],
           "red": [
-            0.3,
+            0.34375,
             null
           ]
         }
@@ -16425,11 +17426,11 @@
         },
         "wire": {
           "copper": [
-            0,
+            null,
             null
           ],
           "green": [
-            0.45,
+            0.375,
             null
           ],
           "red": [
@@ -16562,7 +17563,7 @@
         },
         "wire": {
           "copper": [
-            0.05,
+            0.0625,
             null
           ],
           "green": [
@@ -16570,7 +17571,7 @@
             null
           ],
           "red": [
-            0.25,
+            0.28125,
             null
           ]
         }
@@ -16622,11 +17623,11 @@
         },
         "wire": {
           "copper": [
-            0,
+            null,
             null
           ],
           "green": [
-            0.22,
+            0.15625,
             null
           ],
           "red": [
@@ -16744,7 +17745,7 @@
             null
           ],
           "red": [
-            0.35,
+            0.34375,
             null
           ]
         }
@@ -16774,7 +17775,7 @@
             null
           ],
           "red": [
-            0.17,
+            0.1875,
             null
           ]
         }
@@ -16834,7 +17835,7 @@
             null
           ],
           "red": [
-            0.25,
+            0.1875,
             null
           ]
         }
@@ -16849,8 +17850,8 @@
   },
   {
     "type": "accumulator",
-    "name": "basic-accumulator",
-    "icon": "__base__/graphics/icons/basic-accumulator.png",
+    "name": "accumulator",
+    "icon": "__base__/graphics/icons/accumulator.png",
     "flags": [
       "placeable-neutral",
       "player-creation"
@@ -16858,7 +17859,7 @@
     "minable": {
       "hardness": 0.2,
       "mining_time": 0.5,
-      "result": "basic-accumulator"
+      "result": "accumulator"
     },
     "max_health": 150,
     "corpse": "medium-remnants",
@@ -16890,23 +17891,23 @@
       "output_flow_limit": "300kW"
     },
     "picture": {
-      "filename": "__base__/graphics/entity/basic-accumulator/basic-accumulator.png",
+      "filename": "__base__/graphics/entity/accumulator/accumulator.png",
       "priority": "extra-high",
       "width": 124,
       "height": 103,
       "shift": [
-        0.7,
+        0.6875,
         null
       ]
     },
     "charge_animation": {
-      "filename": "__base__/graphics/entity/basic-accumulator/basic-accumulator-charge-animation.png",
+      "filename": "__base__/graphics/entity/accumulator/accumulator-charge-animation.png",
       "width": 138,
       "height": 135,
       "line_length": 8,
       "frame_count": 24,
       "shift": [
-        0.482,
+        0.46875,
         null
       ],
       "animation_speed": 0.5
@@ -16917,13 +17918,13 @@
       "size": 7
     },
     "discharge_animation": {
-      "filename": "__base__/graphics/entity/basic-accumulator/basic-accumulator-discharge-animation.png",
+      "filename": "__base__/graphics/entity/accumulator/accumulator-discharge-animation.png",
       "width": 147,
       "height": 128,
       "line_length": 8,
       "frame_count": 24,
       "shift": [
-        0.395,
+        0.390625,
         null
       ],
       "animation_speed": 0.5
@@ -16947,7 +17948,31 @@
         "volume": 0.4
       },
       "max_sounds_per_type": 5
-    }
+    },
+    "circuit_wire_connection_point": {
+      "shadow": {
+        "red": [
+          0.984375,
+          1.10938
+        ],
+        "green": [
+          0.890625,
+          1.10938
+        ]
+      },
+      "wire": {
+        "red": [
+          0.6875,
+          0.59375
+        ],
+        "green": [
+          0.6875,
+          0.71875
+        ]
+      }
+    },
+    "circuit_wire_max_distance": 7.5,
+    "default_output_signal": "signal-A"
   },
   {
     "type": "furnace",
@@ -17025,18 +18050,7 @@
       ]
     },
     "animation": {
-      "filename": "__base__/graphics/entity/steel-furnace/steel-furnace-working.png",
-      "priority": "high",
-      "width": 140,
-      "height": 76,
-      "frame_count": 1,
-      "shift": [
-        1.21875,
-        null
-      ]
-    },
-    "idle_animation": {
-      "filename": "__base__/graphics/entity/steel-furnace/steel-furnace-idle.png",
+      "filename": "__base__/graphics/entity/steel-furnace/steel-furnace.png",
       "priority": "high",
       "width": 140,
       "height": 76,
@@ -17067,13 +18081,15 @@
         "animation": {
           "filename": "__base__/graphics/entity/steel-furnace/steel-furnace-fire.png",
           "priority": "high",
-          "width": 21,
-          "height": 9,
-          "frame_count": 28,
-          "scale": 1.02,
+          "line_length": 8,
+          "width": 29,
+          "height": 41,
+          "frame_count": 48,
+          "axially_symmetrical": false,
+          "direction_count": 1,
           "shift": [
-            0.046875,
-            0.640625
+            null,
+            0.171875
           ]
         },
         "light": {
@@ -17108,6 +18124,40 @@
           "shift": [
             0.03125,
             0.640625
+          ],
+          "blend_mode": "additive"
+        }
+      },
+      {
+        "north_position": [
+          0,
+          0
+        ],
+        "east_position": [
+          0,
+          0
+        ],
+        "south_position": [
+          0,
+          0
+        ],
+        "west_position": [
+          0,
+          0
+        ],
+        "effect": "flicker",
+        "animation": {
+          "filename": "__base__/graphics/entity/steel-furnace/steel-furnace-working-lighting.png",
+          "priority": "high",
+          "line_length": 8,
+          "width": 58,
+          "height": 59,
+          "frame_count": 1,
+          "axially_symmetrical": false,
+          "direction_count": 1,
+          "shift": [
+            0.09375,
+            0.046875
           ],
           "blend_mode": "additive"
         }
@@ -17264,15 +18314,15 @@
   },
   {
     "type": "beacon",
-    "name": "basic-beacon",
-    "icon": "__base__/graphics/icons/basic-beacon.png",
+    "name": "beacon",
+    "icon": "__base__/graphics/icons/beacon.png",
     "flags": [
       "placeable-player",
       "player-creation"
     ],
     "minable": {
       "mining_time": 1,
-      "result": "basic-beacon"
+      "result": "beacon"
     },
     "max_health": 200,
     "corpse": "big-remnants",
@@ -17303,16 +18353,16 @@
       "pollution"
     ],
     "base_picture": {
-      "filename": "__base__/graphics/entity/basic-beacon/basic-beacon-base.png",
+      "filename": "__base__/graphics/entity/beacon/beacon-base.png",
       "width": 116,
       "height": 93,
       "shift": [
-        0.34,
-        0.06
+        0.34375,
+        0.046875
       ]
     },
     "animation": {
-      "filename": "__base__/graphics/entity/basic-beacon/basic-beacon-antenna.png",
+      "filename": "__base__/graphics/entity/beacon/beacon-antenna.png",
       "width": 54,
       "height": 50,
       "line_length": 8,
@@ -17324,19 +18374,19 @@
       "animation_speed": 0.5
     },
     "animation_shadow": {
-      "filename": "__base__/graphics/entity/basic-beacon/basic-beacon-antenna-shadow.png",
+      "filename": "__base__/graphics/entity/beacon/beacon-antenna-shadow.png",
       "width": 63,
       "height": 49,
       "line_length": 8,
       "frame_count": 32,
       "shift": [
-        3.12,
-        0.5
+        3.140625,
+        0.484375
       ],
       "animation_speed": 0.5
     },
     "radius_visualisation_picture": {
-      "filename": "__base__/graphics/entity/basic-beacon/beacon-radius-visualization.png",
+      "filename": "__base__/graphics/entity/beacon/beacon-radius-visualization.png",
       "width": 12,
       "height": 12
     },
@@ -17368,6 +18418,9 @@
     "show_when_smoke_off": true,
     "animation": {
       "filename": "__base__/graphics/entity/cloud/cloud-45-frames.png",
+      "flags": [
+        "compressed"
+      ],
       "priority": "low",
       "width": 256,
       "height": 256,
@@ -17423,6 +18476,12 @@
       "placeable-off-grid",
       "not-on-map",
       "not-repairable"
+    ],
+    "resistances": [
+      {
+        "type": "fire",
+        "percent": 95
+      }
     ],
     "order": "e-a-b",
     "subgroup": "capsule",
@@ -17584,6 +18643,12 @@
       "placeable-off-grid",
       "not-on-map",
       "not-repairable"
+    ],
+    "resistances": [
+      {
+        "type": "fire",
+        "percent": 95
+      }
     ],
     "subgroup": "capsule",
     "order": "e-a-a",
@@ -17763,6 +18828,12 @@
       "not-on-map",
       "not-repairable"
     ],
+    "resistances": [
+      {
+        "type": "fire",
+        "percent": 95
+      }
+    ],
     "subgroup": "capsule",
     "order": "e-a-c",
     "max_health": 60,
@@ -17927,7 +18998,7 @@
       "frame_count": 13,
       "animation_speed": 0.4
     },
-    "magnitude": 0.5
+    "target_movement_modifier": 0.5
   },
   {
     "type": "assembling-machine",
@@ -17967,6 +19038,7 @@
     "module_specification": {
       "module_slots": 2
     },
+    "scale_entity_info_icon": true,
     "allowed_effects": [
       "consumption",
       "speed",
@@ -18402,7 +19474,7 @@
       ],
       [
         0.35,
-        0.85
+        0.65
       ]
     ],
     "selection_box": [
@@ -18419,295 +19491,318 @@
       "type": "electric",
       "usage_priority": "secondary-input"
     },
-    "active_energy_usage": "2KW",
+    "active_energy_usage": "1KW",
     "sprites": {
       "north": {
-        "filename": "__base__/graphics/entity/combinator/aritmetic.png",
-        "width": 101,
-        "height": 85,
+        "filename": "__base__/graphics/entity/combinator/combinator-entities.png",
+        "x": 158,
+        "width": 79,
+        "height": 63,
         "frame_count": 1,
         "shift": [
-          0.578125,
-          0.078125
+          0.140625,
+          0.140625
         ]
       },
       "east": {
-        "filename": "__base__/graphics/entity/combinator/aritmetic.png",
-        "x": 101,
-        "width": 101,
-        "height": 85,
+        "filename": "__base__/graphics/entity/combinator/combinator-entities.png",
+        "width": 79,
+        "height": 63,
         "frame_count": 1,
         "shift": [
-          0.078125,
-          0.578125
+          0.140625,
+          0.140625
         ]
       },
       "south": {
-        "filename": "__base__/graphics/entity/combinator/aritmetic.png",
-        "x": 202,
-        "width": 101,
-        "height": 85,
+        "filename": "__base__/graphics/entity/combinator/combinator-entities.png",
+        "x": 237,
+        "width": 79,
+        "height": 63,
         "frame_count": 1,
         "shift": [
-          0.578125,
-          0.078125
+          0.140625,
+          0.140625
         ]
       },
       "west": {
-        "filename": "__base__/graphics/entity/combinator/aritmetic.png",
-        "x": 303,
-        "width": 101,
-        "height": 85,
+        "filename": "__base__/graphics/entity/combinator/combinator-entities.png",
+        "x": 79,
+        "width": 79,
+        "height": 63,
         "frame_count": 1,
         "shift": [
-          0.078125,
-          0.578125
+          0.140625,
+          0.140625
         ]
       }
     },
     "activity_led_sprites": {
       "north": {
-        "filename": "__base__/graphics/entity/combinator/aritmetic-led.png",
-        "width": 57,
-        "height": 58,
+        "filename": "__base__/graphics/entity/combinator/activity-leds/combinator-led-arithmetic-north.png",
+        "width": 11,
+        "height": 11,
         "frame_count": 1,
         "shift": [
-          0.453125,
+          0.234375,
           null
         ]
       },
       "east": {
-        "filename": "__base__/graphics/entity/combinator/aritmetic-led.png",
-        "x": 57,
-        "width": 57,
-        "height": 58,
+        "filename": "__base__/graphics/entity/combinator/activity-leds/combinator-led-arithmetic-east.png",
+        "width": 10,
+        "height": 10,
         "frame_count": 1,
         "shift": [
-          null,
-          0.28125
+          0.5,
+          0
         ]
       },
       "south": {
-        "filename": "__base__/graphics/entity/combinator/aritmetic-led.png",
-        "x": 114,
-        "width": 57,
-        "height": 58,
-        "frame_count": 1,
-        "shift": [
-          0.453125,
-          null
-        ]
-      },
-      "west": {
-        "filename": "__base__/graphics/entity/combinator/aritmetic-led.png",
-        "x": 171,
-        "width": 57,
-        "height": 58,
+        "filename": "__base__/graphics/entity/combinator/activity-leds/combinator-led-arithmetic-south.png",
+        "width": 13,
+        "height": 11,
         "frame_count": 1,
         "shift": [
           null,
-          0.28125
+          0.140625
+        ]
+      },
+      "west": {
+        "filename": "__base__/graphics/entity/combinator/activity-leds/combinator-led-arithmetic-west.png",
+        "width": 13,
+        "height": 11,
+        "frame_count": 1,
+        "shift": [
+          null,
+          null
         ]
       }
     },
     "activity_led_light": {
-      "intensity": 0.7,
-      "size": 1.2
+      "intensity": 0.8,
+      "size": 1
     },
     "activity_led_light_offsets": [
       [
-        0.3,
+        0.234375,
         null
       ],
       [
-        0.7,
+        0.5,
         0
       ],
       [
         null,
-        0.5
+        0.140625
       ],
       [
         null,
         null
       ]
     ],
+    "screen_light": {
+      "intensity": 0.3,
+      "size": 0.6
+    },
+    "screen_light_offsets": [
+      [
+        0.015625,
+        null
+      ],
+      [
+        0.015625,
+        null
+      ],
+      [
+        0.015625,
+        null
+      ],
+      [
+        0.015625,
+        null
+      ]
+    ],
     "plus_symbol_sprites": {
       "north": {
-        "filename": "__base__/graphics/entity/combinator/aritmetic-symbols.png",
-        "width": 80,
-        "height": 36,
+        "filename": "__base__/graphics/entity/combinator/combinator-displays.png",
+        "x": 15,
+        "width": 15,
+        "height": 11,
         "frame_count": 1,
         "shift": [
-          0.9375,
+          0.015625,
           null
         ]
       },
       "east": {
-        "filename": "__base__/graphics/entity/combinator/aritmetic-symbols.png",
-        "width": 80,
-        "height": 36,
+        "filename": "__base__/graphics/entity/combinator/combinator-displays.png",
+        "x": 15,
+        "width": 15,
+        "height": 11,
         "frame_count": 1,
         "shift": [
-          0.875,
+          0.015625,
           null
         ]
       },
       "south": {
-        "filename": "__base__/graphics/entity/combinator/aritmetic-symbols.png",
-        "width": 80,
-        "height": 36,
+        "filename": "__base__/graphics/entity/combinator/combinator-displays.png",
+        "x": 15,
+        "width": 15,
+        "height": 11,
         "frame_count": 1,
         "shift": [
-          0.9375,
+          0.015625,
           null
         ]
       },
       "west": {
-        "filename": "__base__/graphics/entity/combinator/aritmetic-symbols.png",
-        "width": 80,
-        "height": 36,
+        "filename": "__base__/graphics/entity/combinator/combinator-displays.png",
+        "x": 15,
+        "width": 15,
+        "height": 11,
         "frame_count": 1,
         "shift": [
-          0.9375,
+          0.015625,
           null
         ]
       }
     },
     "minus_symbol_sprites": {
       "north": {
-        "filename": "__base__/graphics/entity/combinator/aritmetic-symbols.png",
-        "x": 80,
-        "width": 80,
-        "height": 36,
+        "filename": "__base__/graphics/entity/combinator/combinator-displays.png",
+        "x": 30,
+        "width": 15,
+        "height": 11,
         "frame_count": 1,
         "shift": [
-          0.9375,
+          0.015625,
           null
         ]
       },
       "east": {
-        "filename": "__base__/graphics/entity/combinator/aritmetic-symbols.png",
-        "x": 80,
-        "width": 80,
-        "height": 36,
+        "filename": "__base__/graphics/entity/combinator/combinator-displays.png",
+        "x": 30,
+        "width": 15,
+        "height": 11,
         "frame_count": 1,
         "shift": [
-          0.875,
+          0.015625,
           null
         ]
       },
       "south": {
-        "filename": "__base__/graphics/entity/combinator/aritmetic-symbols.png",
-        "x": 80,
-        "width": 80,
-        "height": 36,
+        "filename": "__base__/graphics/entity/combinator/combinator-displays.png",
+        "x": 30,
+        "width": 15,
+        "height": 11,
         "frame_count": 1,
         "shift": [
-          0.9375,
+          0.015625,
           null
         ]
       },
       "west": {
-        "filename": "__base__/graphics/entity/combinator/aritmetic-symbols.png",
-        "x": 80,
-        "width": 80,
-        "height": 36,
+        "filename": "__base__/graphics/entity/combinator/combinator-displays.png",
+        "x": 30,
+        "width": 15,
+        "height": 11,
         "frame_count": 1,
         "shift": [
-          0.9375,
+          0.015625,
           null
         ]
       }
     },
     "multiply_symbol_sprites": {
       "north": {
-        "filename": "__base__/graphics/entity/combinator/aritmetic-symbols.png",
-        "x": 160,
-        "width": 80,
-        "height": 36,
+        "filename": "__base__/graphics/entity/combinator/combinator-displays.png",
+        "x": 45,
+        "width": 15,
+        "height": 11,
         "frame_count": 1,
         "shift": [
-          0.9375,
+          0.015625,
           null
         ]
       },
       "east": {
-        "filename": "__base__/graphics/entity/combinator/aritmetic-symbols.png",
-        "x": 160,
-        "width": 80,
-        "height": 36,
+        "filename": "__base__/graphics/entity/combinator/combinator-displays.png",
+        "x": 45,
+        "width": 15,
+        "height": 11,
         "frame_count": 1,
         "shift": [
-          0.875,
+          0.015625,
           null
         ]
       },
       "south": {
-        "filename": "__base__/graphics/entity/combinator/aritmetic-symbols.png",
-        "x": 160,
-        "width": 80,
-        "height": 36,
+        "filename": "__base__/graphics/entity/combinator/combinator-displays.png",
+        "x": 45,
+        "width": 15,
+        "height": 11,
         "frame_count": 1,
         "shift": [
-          0.9375,
+          0.015625,
           null
         ]
       },
       "west": {
-        "filename": "__base__/graphics/entity/combinator/aritmetic-symbols.png",
-        "x": 160,
-        "width": 80,
-        "height": 36,
+        "filename": "__base__/graphics/entity/combinator/combinator-displays.png",
+        "x": 45,
+        "width": 15,
+        "height": 11,
         "frame_count": 1,
         "shift": [
-          0.9375,
+          0.015625,
           null
         ]
       }
     },
     "divide_symbol_sprites": {
       "north": {
-        "filename": "__base__/graphics/entity/combinator/aritmetic-symbols.png",
-        "x": 240,
-        "width": 80,
-        "height": 36,
+        "filename": "__base__/graphics/entity/combinator/combinator-displays.png",
+        "y": 11,
+        "width": 15,
+        "height": 11,
         "frame_count": 1,
         "shift": [
-          0.9375,
+          0.015625,
           null
         ]
       },
       "east": {
-        "filename": "__base__/graphics/entity/combinator/aritmetic-symbols.png",
-        "x": 240,
-        "width": 80,
-        "height": 36,
+        "filename": "__base__/graphics/entity/combinator/combinator-displays.png",
+        "y": 11,
+        "width": 15,
+        "height": 11,
         "frame_count": 1,
         "shift": [
-          0.875,
+          0.015625,
           null
         ]
       },
       "south": {
-        "filename": "__base__/graphics/entity/combinator/aritmetic-symbols.png",
-        "x": 240,
-        "width": 80,
-        "height": 36,
+        "filename": "__base__/graphics/entity/combinator/combinator-displays.png",
+        "y": 11,
+        "width": 15,
+        "height": 11,
         "frame_count": 1,
         "shift": [
-          0.9375,
+          0.015625,
           null
         ]
       },
       "west": {
-        "filename": "__base__/graphics/entity/combinator/aritmetic-symbols.png",
-        "x": 240,
-        "width": 80,
-        "height": 36,
+        "filename": "__base__/graphics/entity/combinator/combinator-displays.png",
+        "y": 11,
+        "width": 15,
+        "height": 11,
         "frame_count": 1,
         "shift": [
-          0.9375,
+          0.015625,
           null
         ]
       }
@@ -18736,22 +19831,22 @@
       {
         "shadow": {
           "red": [
-            0.296875,
-            1.07812
+            0.171875,
+            0.703125
           ],
           "green": [
-            0.984375,
-            1.07812
+            0.765625,
+            0.703125
           ]
         },
         "wire": {
           "red": [
             null,
-            0.57812
+            0.34375
           ],
           "green": [
-            0.328125,
-            0.57812
+            0.28125,
+            0.34375
           ]
         }
       },
@@ -18763,60 +19858,60 @@
           ],
           "green": [
             null,
+            0.328125
+          ]
+        },
+        "wire": {
+          "red": [
+            null,
+            null
+          ],
+          "green": [
+            null,
+            null
+          ]
+        }
+      },
+      {
+        "shadow": {
+          "red": [
+            0.734375,
+            null
+          ],
+          "green": [
+            0.171875,
+            null
+          ]
+        },
+        "wire": {
+          "red": [
+            0.25,
+            null
+          ],
+          "green": [
+            null,
+            null
+          ]
+        }
+      },
+      {
+        "shadow": {
+          "red": [
+            1.20313,
             0.359375
-          ]
-        },
-        "wire": {
-          "red": [
-            null,
-            null
           ],
           "green": [
-            null,
-            0.046875
-          ]
-        }
-      },
-      {
-        "shadow": {
-          "red": [
-            0.890625,
-            null
-          ],
-          "green": [
-            0.296875,
+            1.20313,
             null
           ]
         },
         "wire": {
           "red": [
-            0.328125,
-            null
+            0.78125,
+            0
           ],
           "green": [
-            null,
-            null
-          ]
-        }
-      },
-      {
-        "shadow": {
-          "red": [
-            1.60938,
-            0.421875
-          ],
-          "green": [
-            1.60938,
-            null
-          ]
-        },
-        "wire": {
-          "red": [
-            0.98438,
-            null
-          ],
-          "green": [
-            0.98438,
+            0.78125,
             null
           ]
         }
@@ -18826,11 +19921,11 @@
       {
         "shadow": {
           "red": [
-            0.265625,
+            0.140625,
             null
           ],
           "green": [
-            0.859375,
+            0.734375,
             null
           ]
         },
@@ -18840,7 +19935,7 @@
             null
           ],
           "green": [
-            0.328125,
+            0.28125,
             null
           ]
         }
@@ -18848,44 +19943,44 @@
       {
         "shadow": {
           "red": [
-            1.45312,
+            1.17188,
             null
           ],
           "green": [
-            1.45312,
-            0.390625
+            1.17188,
+            0.328125
           ]
         },
         "wire": {
           "red": [
-            0.89062,
+            0.6875,
             null
           ],
           "green": [
-            0.89062,
-            0.078125
+            0.6875,
+            0.0625
           ]
         }
       },
       {
         "shadow": {
           "red": [
-            0.765625,
-            1.07812
+            0.703125,
+            0.671875
           ],
           "green": [
-            0.171875,
-            1.07812
+            0.109375,
+            0.671875
           ]
         },
         "wire": {
           "red": [
-            0.328125,
-            0.73438
+            0.28125,
+            0.375
           ],
           "green": [
             null,
-            0.73438
+            0.375
           ]
         }
       },
@@ -18893,17 +19988,17 @@
         "shadow": {
           "red": [
             null,
-            0.421875
+            0.328125
           ],
           "green": [
             null,
-            0.015625
+            null
           ]
         },
         "wire": {
           "red": [
             null,
-            null
+            0.03125
           ],
           "green": [
             null,
@@ -18936,7 +20031,7 @@
       ],
       [
         0.35,
-        0.85
+        0.65
       ]
     ],
     "selection_box": [
@@ -18953,249 +20048,288 @@
       "type": "electric",
       "usage_priority": "secondary-input"
     },
-    "active_energy_usage": "2KW",
+    "active_energy_usage": "1KW",
     "sprites": {
       "north": {
-        "filename": "__base__/graphics/entity/combinator/decider.png",
-        "width": 104,
-        "height": 84,
+        "filename": "__base__/graphics/entity/combinator/combinator-entities.png",
+        "x": 158,
+        "y": 63,
+        "width": 79,
+        "height": 63,
         "frame_count": 1,
         "shift": [
-          null,
-          0.0625
+          0.140625,
+          0.140625
         ]
       },
       "east": {
-        "filename": "__base__/graphics/entity/combinator/decider.png",
-        "x": 104,
-        "width": 104,
-        "height": 84,
+        "filename": "__base__/graphics/entity/combinator/combinator-entities.png",
+        "y": 63,
+        "width": 79,
+        "height": 63,
         "frame_count": 1,
         "shift": [
-          0.4375,
-          0.5625
+          0.140625,
+          0.140625
         ]
       },
       "south": {
-        "filename": "__base__/graphics/entity/combinator/decider.png",
-        "x": 208,
-        "width": 104,
-        "height": 84,
+        "filename": "__base__/graphics/entity/combinator/combinator-entities.png",
+        "x": 237,
+        "y": 63,
+        "width": 79,
+        "height": 63,
         "frame_count": 1,
         "shift": [
-          null,
-          0.0625
+          0.140625,
+          0.140625
         ]
       },
       "west": {
-        "filename": "__base__/graphics/entity/combinator/decider.png",
-        "x": 312,
-        "width": 104,
-        "height": 84,
+        "filename": "__base__/graphics/entity/combinator/combinator-entities.png",
+        "x": 79,
+        "y": 63,
+        "width": 79,
+        "height": 63,
         "frame_count": 1,
         "shift": [
-          0.4375,
-          0.5625
+          0.140625,
+          0.140625
         ]
       }
     },
     "activity_led_sprites": {
       "north": {
-        "filename": "__base__/graphics/entity/combinator/decider-led.png",
-        "width": 56,
-        "height": 53,
+        "filename": "__base__/graphics/entity/combinator/activity-leds/combinator-led-decider-north.png",
+        "width": 11,
+        "height": 12,
         "frame_count": 1,
         "shift": [
-          null,
+          0.265625,
           null
         ]
       },
       "east": {
-        "filename": "__base__/graphics/entity/combinator/decider-led.png",
-        "x": 56,
-        "width": 56,
-        "height": 53,
+        "filename": "__base__/graphics/entity/combinator/activity-leds/combinator-led-decider-east.png",
+        "width": 11,
+        "height": 11,
         "frame_count": 1,
         "shift": [
-          0.09375,
-          0.046875
+          0.515625,
+          null
         ]
       },
       "south": {
-        "filename": "__base__/graphics/entity/combinator/decider-led.png",
-        "x": 112,
-        "width": 56,
-        "height": 53,
+        "filename": "__base__/graphics/entity/combinator/activity-leds/combinator-led-decider-south.png",
+        "width": 12,
+        "height": 12,
+        "frame_count": 1,
+        "shift": [
+          null,
+          0.03125
+        ]
+      },
+      "west": {
+        "filename": "__base__/graphics/entity/combinator/activity-leds/combinator-led-decider-west.png",
+        "width": 12,
+        "height": 12,
         "frame_count": 1,
         "shift": [
           null,
           null
         ]
-      },
-      "west": {
-        "filename": "__base__/graphics/entity/combinator/decider-led.png",
-        "x": 168,
-        "width": 56,
-        "height": 53,
-        "frame_count": 1,
-        "shift": [
-          0.09375,
-          0.046875
-        ]
       }
     },
     "activity_led_light": {
-      "intensity": 0.7,
-      "size": 1.2
+      "intensity": 0.8,
+      "size": 1
     },
     "activity_led_light_offsets": [
       [
-        0.3,
+        0.265625,
         null
       ],
       [
-        0.7,
-        0
+        0.515625,
+        null
       ],
       [
         null,
-        0.3
+        0.03125
       ],
       [
         null,
         null
       ]
     ],
+    "screen_light": {
+      "intensity": 0.3,
+      "size": 0.6
+    },
+    "screen_light_offsets": [
+      [
+        0.015625,
+        null
+      ],
+      [
+        0.015625,
+        null
+      ],
+      [
+        0.015625,
+        null
+      ],
+      [
+        0.015625,
+        null
+      ]
+    ],
     "equal_symbol_sprites": {
       "north": {
-        "filename": "__base__/graphics/entity/combinator/decider-symbols.png",
-        "width": 22,
-        "height": 18,
+        "filename": "__base__/graphics/entity/combinator/combinator-displays.png",
+        "x": 15,
+        "y": 11,
+        "width": 15,
+        "height": 11,
         "frame_count": 1,
         "shift": [
-          0.03125,
+          0.015625,
           null
         ]
       },
       "east": {
-        "filename": "__base__/graphics/entity/combinator/decider-symbols.png",
-        "width": 22,
-        "height": 18,
+        "filename": "__base__/graphics/entity/combinator/combinator-displays.png",
+        "x": 15,
+        "y": 11,
+        "width": 15,
+        "height": 11,
         "frame_count": 1,
         "shift": [
-          0.1875,
+          0.015625,
           null
         ]
       },
       "south": {
-        "filename": "__base__/graphics/entity/combinator/decider-symbols.png",
-        "width": 22,
-        "height": 18,
+        "filename": "__base__/graphics/entity/combinator/combinator-displays.png",
+        "x": 15,
+        "y": 11,
+        "width": 15,
+        "height": 11,
         "frame_count": 1,
         "shift": [
-          0.03125,
+          0.015625,
           null
         ]
       },
       "west": {
-        "filename": "__base__/graphics/entity/combinator/decider-symbols.png",
-        "width": 22,
-        "height": 18,
+        "filename": "__base__/graphics/entity/combinator/combinator-displays.png",
+        "x": 15,
+        "y": 11,
+        "width": 15,
+        "height": 11,
         "frame_count": 1,
         "shift": [
-          null,
+          0.015625,
           null
         ]
       }
     },
     "greater_symbol_sprites": {
       "north": {
-        "filename": "__base__/graphics/entity/combinator/decider-symbols.png",
-        "x": 22,
-        "width": 22,
-        "height": 18,
+        "filename": "__base__/graphics/entity/combinator/combinator-displays.png",
+        "x": 30,
+        "y": 11,
+        "width": 15,
+        "height": 11,
         "frame_count": 1,
         "shift": [
-          0.03125,
+          0.015625,
           null
         ]
       },
       "east": {
-        "filename": "__base__/graphics/entity/combinator/decider-symbols.png",
-        "x": 22,
-        "width": 22,
-        "height": 18,
+        "filename": "__base__/graphics/entity/combinator/combinator-displays.png",
+        "x": 30,
+        "y": 11,
+        "width": 15,
+        "height": 11,
         "frame_count": 1,
         "shift": [
-          0.1875,
+          0.015625,
           null
         ]
       },
       "south": {
-        "filename": "__base__/graphics/entity/combinator/decider-symbols.png",
-        "x": 22,
-        "width": 22,
-        "height": 18,
+        "filename": "__base__/graphics/entity/combinator/combinator-displays.png",
+        "x": 30,
+        "y": 11,
+        "width": 15,
+        "height": 11,
         "frame_count": 1,
         "shift": [
-          0.03125,
+          0.015625,
           null
         ]
       },
       "west": {
-        "filename": "__base__/graphics/entity/combinator/decider-symbols.png",
-        "x": 22,
-        "width": 22,
-        "height": 18,
+        "filename": "__base__/graphics/entity/combinator/combinator-displays.png",
+        "x": 30,
+        "y": 11,
+        "width": 15,
+        "height": 11,
         "frame_count": 1,
         "shift": [
-          null,
+          0.015625,
           null
         ]
       }
     },
     "less_symbol_sprites": {
       "north": {
-        "filename": "__base__/graphics/entity/combinator/decider-symbols.png",
-        "x": 44,
-        "width": 22,
-        "height": 18,
+        "filename": "__base__/graphics/entity/combinator/combinator-displays.png",
+        "x": 45,
+        "y": 11,
+        "width": 15,
+        "height": 11,
         "frame_count": 1,
         "shift": [
-          0.03125,
+          0.015625,
           null
         ]
       },
       "east": {
-        "filename": "__base__/graphics/entity/combinator/decider-symbols.png",
-        "x": 44,
-        "width": 22,
-        "height": 18,
+        "filename": "__base__/graphics/entity/combinator/combinator-displays.png",
+        "x": 45,
+        "y": 11,
+        "width": 15,
+        "height": 11,
         "frame_count": 1,
         "shift": [
-          0.1875,
+          0.015625,
           null
         ]
       },
       "south": {
-        "filename": "__base__/graphics/entity/combinator/decider-symbols.png",
-        "x": 44,
-        "width": 22,
-        "height": 18,
+        "filename": "__base__/graphics/entity/combinator/combinator-displays.png",
+        "x": 45,
+        "y": 11,
+        "width": 15,
+        "height": 11,
         "frame_count": 1,
         "shift": [
-          0.03125,
+          0.015625,
           null
         ]
       },
       "west": {
-        "filename": "__base__/graphics/entity/combinator/decider-symbols.png",
-        "x": 44,
-        "width": 22,
-        "height": 18,
+        "filename": "__base__/graphics/entity/combinator/combinator-displays.png",
+        "x": 45,
+        "y": 11,
+        "width": 15,
+        "height": 11,
         "frame_count": 1,
         "shift": [
-          null,
+          0.015625,
           null
         ]
       }
@@ -19222,180 +20356,180 @@
     ],
     "input_connection_points": [
       {
-        "wire": {
-          "green": [
-            0.328125,
-            0.57812
-          ],
-          "red": [
-            null,
-            0.57812
-          ]
-        },
         "shadow": {
-          "green": [
-            0.890625,
-            0.95312
-          ],
-          "red": [
-            null,
-            0.57812
-          ]
-        }
-      },
-      {
-        "wire": {
-          "green": [
-            null,
-            null
-          ],
-          "red": [
-            null,
-            null
-          ]
-        },
-        "shadow": {
-          "green": [
-            null,
-            0.359375
-          ],
-          "red": [
-            null,
-            null
-          ]
-        }
-      },
-      {
-        "wire": {
-          "green": [
-            null,
-            null
-          ],
           "red": [
             0.328125,
-            null
-          ]
-        },
-        "shadow": {
-          "green": [
-            0.296875,
-            null
+            0.703125
           ],
-          "red": [
+          "green": [
             0.859375,
+            0.703125
+          ]
+        },
+        "wire": {
+          "red": [
+            null,
+            0.34375
+          ],
+          "green": [
+            0.25,
+            0.34375
+          ]
+        }
+      },
+      {
+        "shadow": {
+          "red": [
+            null,
+            null
+          ],
+          "green": [
+            null,
+            0.296875
+          ]
+        },
+        "wire": {
+          "red": [
+            null,
+            null
+          ],
+          "green": [
+            null,
             null
           ]
         }
       },
       {
-        "wire": {
-          "green": [
-            0.953125,
+        "shadow": {
+          "red": [
+            0.828125,
             null
           ],
-          "red": [
-            0.984375,
+          "green": [
+            0.234375,
             null
           ]
         },
-        "shadow": {
-          "green": [
-            1.51562,
+        "wire": {
+          "red": [
+            0.25,
             null
           ],
+          "green": [
+            null,
+            null
+          ]
+        }
+      },
+      {
+        "shadow": {
           "red": [
-            1.54688,
-            0.359375
+            1.29688,
+            0.328125
+          ],
+          "green": [
+            1.29688,
+            null
+          ]
+        },
+        "wire": {
+          "red": [
+            0.75,
+            null
+          ],
+          "green": [
+            0.75,
+            null
           ]
         }
       }
     ],
     "output_connection_points": [
       {
-        "wire": {
-          "green": [
-            0.328125,
+        "shadow": {
+          "red": [
+            0.234375,
             null
           ],
-          "red": [
-            null,
+          "green": [
+            0.828125,
             null
           ]
         },
-        "shadow": {
-          "green": [
-            0.890625,
+        "wire": {
+          "red": [
+            null,
             null
           ],
-          "red": [
-            0.296875,
+          "green": [
+            0.28125,
             null
           ]
         }
       },
       {
-        "wire": {
-          "green": [
-            1.046875,
+        "shadow": {
+          "red": [
+            1.17188,
             null
           ],
-          "red": [
-            1.046875,
-            null
+          "green": [
+            1.17188,
+            0.296875
           ]
         },
-        "shadow": {
-          "green": [
-            1.57812,
-            0.328125
-          ],
+        "wire": {
           "red": [
-            1.57812,
+            0.65625,
+            null
+          ],
+          "green": [
+            0.65625,
             null
           ]
         }
       },
       {
-        "wire": {
-          "green": [
-            null,
-            0.64062
-          ],
+        "shadow": {
           "red": [
-            0.328125,
-            0.64062
+            0.828125,
+            0.765625
+          ],
+          "green": [
+            0.234375,
+            0.765625
           ]
         },
-        "shadow": {
-          "green": [
-            0.265625,
-            1.01562
-          ],
+        "wire": {
           "red": [
-            0.859375,
-            1.01562
+            0.28125,
+            0.40625
+          ],
+          "green": [
+            null,
+            0.40625
           ]
         }
       },
       {
-        "wire": {
-          "green": [
-            null,
-            null
-          ],
-          "red": [
-            null,
-            null
-          ]
-        },
         "shadow": {
-          "green": [
-            null,
-            null
-          ],
           "red": [
             null,
             0.328125
+          ],
+          "green": [
+            null,
+            null
+          ]
+        },
+        "wire": {
+          "red": [
+            null,
+            null
+          ],
+          "green": [
+            null,
+            null
           ]
         }
       }
@@ -19438,39 +20572,1275 @@
       ]
     ],
     "item_slot_count": 15,
-    "sprite": {
-      "filename": "__base__/graphics/entity/combinator/constanter.png",
-      "x": 61,
-      "width": 61,
-      "height": 50,
+    "sprites": {
+      "north": {
+        "filename": "__base__/graphics/entity/combinator/combinator-entities.png",
+        "x": 158,
+        "y": 126,
+        "width": 79,
+        "height": 63,
+        "frame_count": 1,
+        "shift": [
+          0.140625,
+          0.140625
+        ]
+      },
+      "east": {
+        "filename": "__base__/graphics/entity/combinator/combinator-entities.png",
+        "y": 126,
+        "width": 79,
+        "height": 63,
+        "frame_count": 1,
+        "shift": [
+          0.140625,
+          0.140625
+        ]
+      },
+      "south": {
+        "filename": "__base__/graphics/entity/combinator/combinator-entities.png",
+        "x": 237,
+        "y": 126,
+        "width": 79,
+        "height": 63,
+        "frame_count": 1,
+        "shift": [
+          0.140625,
+          0.140625
+        ]
+      },
+      "west": {
+        "filename": "__base__/graphics/entity/combinator/combinator-entities.png",
+        "x": 79,
+        "y": 126,
+        "width": 79,
+        "height": 63,
+        "frame_count": 1,
+        "shift": [
+          0.140625,
+          0.140625
+        ]
+      }
+    },
+    "activity_led_sprites": {
+      "north": {
+        "filename": "__base__/graphics/entity/combinator/activity-leds/combinator-led-constant-north.png",
+        "width": 11,
+        "height": 10,
+        "frame_count": 1,
+        "shift": [
+          0.296875,
+          null
+        ]
+      },
+      "east": {
+        "filename": "__base__/graphics/entity/combinator/activity-leds/combinator-led-constant-east.png",
+        "width": 14,
+        "height": 12,
+        "frame_count": 1,
+        "shift": [
+          0.25,
+          null
+        ]
+      },
+      "south": {
+        "filename": "__base__/graphics/entity/combinator/activity-leds/combinator-led-constant-south.png",
+        "width": 11,
+        "height": 11,
+        "frame_count": 1,
+        "shift": [
+          null,
+          null
+        ]
+      },
+      "west": {
+        "filename": "__base__/graphics/entity/combinator/activity-leds/combinator-led-constant-west.png",
+        "width": 12,
+        "height": 12,
+        "frame_count": 1,
+        "shift": [
+          null,
+          null
+        ]
+      }
+    },
+    "activity_led_light": {
+      "intensity": 0.8,
+      "size": 1
+    },
+    "activity_led_light_offsets": [
+      [
+        0.296875,
+        null
+      ],
+      [
+        0.25,
+        null
+      ],
+      [
+        null,
+        null
+      ],
+      [
+        null,
+        null
+      ]
+    ],
+    "circuit_wire_connection_points": [
+      {
+        "shadow": {
+          "red": [
+            0.15625,
+            null
+          ],
+          "green": [
+            0.65625,
+            null
+          ]
+        },
+        "wire": {
+          "red": [
+            null,
+            null
+          ],
+          "green": [
+            0.21875,
+            null
+          ]
+        }
+      },
+      {
+        "shadow": {
+          "red": [
+            0.75,
+            null
+          ],
+          "green": [
+            0.75,
+            0.25
+          ]
+        },
+        "wire": {
+          "red": [
+            0.46875,
+            null
+          ],
+          "green": [
+            0.46875,
+            null
+          ]
+        }
+      },
+      {
+        "shadow": {
+          "red": [
+            0.75,
+            0.5625
+          ],
+          "green": [
+            0.21875,
+            0.5625
+          ]
+        },
+        "wire": {
+          "red": [
+            0.28125,
+            0.15625
+          ],
+          "green": [
+            null,
+            0.15625
+          ]
+        }
+      },
+      {
+        "shadow": {
+          "red": [
+            null,
+            0.28125
+          ],
+          "green": [
+            null,
+            null
+          ]
+        },
+        "wire": {
+          "red": [
+            null,
+            0
+          ],
+          "green": [
+            null,
+            null
+          ]
+        }
+      }
+    ],
+    "circuit_wire_max_distance": 7.5
+  },
+  {
+    "type": "power-switch",
+    "name": "power-switch",
+    "icon": "__base__/graphics/icons/power-switch.png",
+    "flags": [
+      "placeable-neutral",
+      "player-creation"
+    ],
+    "minable": {
+      "hardness": 0.2,
+      "mining_time": 1,
+      "result": "power-switch"
+    },
+    "max_health": 150,
+    "corpse": "medium-remnants",
+    "collision_box": [
+      [
+        null,
+        null
+      ],
+      [
+        0.7,
+        0.7
+      ]
+    ],
+    "selection_box": [
+      [
+        null,
+        null
+      ],
+      [
+        1,
+        1
+      ]
+    ],
+    "power_on_animation": {
+      "filename": "__base__/graphics/entity/power-switch/power-switch.png",
+      "animation_speed": 0.2,
+      "line_length": 2,
+      "width": 117,
+      "height": 74,
+      "frame_count": 6,
+      "axially_symmetrical": false,
+      "direction_count": 1,
       "shift": [
-        0.078125,
-        0.15625
+        0.453125,
+        0.1875
+      ]
+    },
+    "overlay_start_delay": 3,
+    "overlay_start": {
+      "filename": "__base__/graphics/entity/power-switch/power-switch-electricity-start.png",
+      "blend_mode": "additive",
+      "animation_speed": 0.2,
+      "line_length": 2,
+      "width": 38,
+      "height": 49,
+      "frame_count": 2,
+      "axially_symmetrical": false,
+      "direction_count": 1,
+      "shift": [
+        0.15625,
+        0.046875
+      ]
+    },
+    "overlay_loop": {
+      "filename": "__base__/graphics/entity/power-switch/power-switch-electricity-loop.png",
+      "blend_mode": "additive",
+      "animation_speed": 0.25,
+      "line_length": 4,
+      "width": 53,
+      "height": 56,
+      "frame_count": 16,
+      "axially_symmetrical": false,
+      "direction_count": 1,
+      "shift": [
+        0.046875,
+        null
+      ]
+    },
+    "led_on": {
+      "filename": "__base__/graphics/entity/power-switch/power-switch-led.png",
+      "x": 6,
+      "width": 6,
+      "height": 9,
+      "frame_count": 1,
+      "shift": [
+        0.71875,
+        0.140625
+      ]
+    },
+    "led_off": {
+      "filename": "__base__/graphics/entity/power-switch/power-switch-led.png",
+      "width": 6,
+      "height": 9,
+      "frame_count": 1,
+      "shift": [
+        0.71875,
+        0.140625
       ]
     },
     "circuit_wire_connection_point": {
       "shadow": {
         "red": [
-          0.828125,
-          0.328125
+          null,
+          1.01563
         ],
         "green": [
-          0.828125,
-          null
+          null,
+          1.01563
         ]
       },
       "wire": {
         "red": [
-          0.515625,
-          null
+          null,
+          0.828125
         ],
         "green": [
-          0.515625,
+          null,
+          0.828125
+        ]
+      }
+    },
+    "left_wire_connection_point": {
+      "shadow": {
+        "copper": [
+          0.296875,
+          null
+        ]
+      },
+      "wire": {
+        "copper": [
+          null,
           null
         ]
       }
     },
-    "circuit_wire_max_distance": 7.5
+    "right_wire_connection_point": {
+      "shadow": {
+        "copper": [
+          2.14063,
+          0.015625
+        ]
+      },
+      "wire": {
+        "copper": [
+          0.859375,
+          null
+        ]
+      }
+    },
+    "wire_max_distance": 10
+  },
+  {
+    "type": "electric-energy-interface",
+    "name": "electric-energy-interface",
+    "icon": "__base__/graphics/icons/accumulator.png",
+    "flags": [
+      "placeable-neutral",
+      "player-creation"
+    ],
+    "minable": {
+      "hardness": 0.2,
+      "mining_time": 0.5,
+      "result": "electric-energy-interface"
+    },
+    "max_health": 150,
+    "corpse": "medium-remnants",
+    "collision_box": [
+      [
+        null,
+        null
+      ],
+      [
+        0.9,
+        0.9
+      ]
+    ],
+    "selection_box": [
+      [
+        null,
+        null
+      ],
+      [
+        1,
+        1
+      ]
+    ],
+    "energy_source": {
+      "type": "electric",
+      "buffer_capacity": "10MJ",
+      "usage_priority": "terciary",
+      "input_flow_limit": "1000kW",
+      "output_flow_limit": "1000kW"
+    },
+    "energy_production": "1000kW",
+    "energy_usage": "0kW",
+    "picture": {
+      "filename": "__base__/graphics/entity/accumulator/accumulator.png",
+      "priority": "extra-high",
+      "width": 124,
+      "height": 103,
+      "shift": [
+        0.6875,
+        null
+      ]
+    },
+    "vehicle_impact_sound": {
+      "filename": "__base__/sound/car-metal-impact.ogg",
+      "volume": 0.65
+    },
+    "working_sound": {
+      "sound": {
+        "filename": "__base__/sound/accumulator-working.ogg",
+        "volume": 1
+      },
+      "idle_sound": {
+        "filename": "__base__/sound/accumulator-idle.ogg",
+        "volume": 0.4
+      },
+      "max_sounds_per_type": 5
+    }
+  },
+  {
+    "type": "fire",
+    "name": "fire-flame",
+    "flags": [
+      "placeable-off-grid",
+      "not-on-map"
+    ],
+    "duration": 600,
+    "fade_away_duration": 600,
+    "spread_duration": 600,
+    "start_scale": 0.2,
+    "end_scale": 1,
+    "color": {
+      "r": 1,
+      "g": 0.9,
+      "b": 0,
+      "a": 0.5
+    },
+    "damage_per_tick": {
+      "type": "fire"
+    },
+    "spawn_entity": "fire-flame-on-tree",
+    "spread_delay": 300,
+    "spread_delay_deviation": 180,
+    "maximum_spread_count": 100,
+    "initial_lifetime": 480,
+    "flame_alpha": 0.35,
+    "flame_alpha_deviation": 0.05,
+    "emissions_per_tick": 0.005,
+    "add_fuel_cooldown": 10,
+    "increase_duration_cooldown": 10,
+    "increase_duration_by": 20,
+    "fade_in_duration": 30,
+    "fade_out_duration": 30,
+    "lifetime_increase_by": 20,
+    "lifetime_increase_cooldown": 10,
+    "delay_between_initial_flames": 10,
+    "burnt_patch_lifetime": 1800,
+    "on_fuel_added_action": {
+      "type": "direct",
+      "action_delivery": {
+        "type": "instant",
+        "target_effects": [
+          {
+            "type": "create-smoke",
+            "entity_name": "fire-smoke-on-adding-fuel",
+            "offset_deviation": [
+              [
+                null,
+                null
+              ],
+              [
+                0.5,
+                0.5
+              ]
+            ],
+            "speed_from_center": 0.01
+          }
+        ]
+      }
+    },
+    "smoke_source_pictures": [
+      {
+        "filename": "__base__/graphics/entity/fire-flame/fire-smoke-source-1.png",
+        "line_length": 8,
+        "width": 101,
+        "height": 138,
+        "frame_count": 31,
+        "axially_symmetrical": false,
+        "direction_count": 1,
+        "shift": [
+          null,
+          null
+        ],
+        "animation_speed": 0.5
+      },
+      {
+        "filename": "__base__/graphics/entity/fire-flame/fire-smoke-source-2.png",
+        "line_length": 8,
+        "width": 99,
+        "height": 138,
+        "frame_count": 31,
+        "axially_symmetrical": false,
+        "direction_count": 1,
+        "shift": [
+          null,
+          null
+        ],
+        "animation_speed": 0.5
+      }
+    ],
+    "burnt_patch_alpha_default": 0.4,
+    "burnt_patch_alpha_variations": [
+      {
+        "tile": "grass-dry",
+        "alpha": 0.45
+      },
+      {
+        "tile": "dirt",
+        "alpha": 0.3
+      },
+      {
+        "tile": "dirt-dark",
+        "alpha": 0.35
+      },
+      {
+        "tile": "sand",
+        "alpha": 0.24
+      },
+      {
+        "tile": "sand-dark",
+        "alpha": 0.28
+      },
+      {
+        "tile": "stone-path",
+        "alpha": 0.26
+      },
+      {
+        "tile": "concrete",
+        "alpha": 0.24
+      }
+    ],
+    "smoke": [
+      {
+        "name": "fire-smoke",
+        "deviation": [
+          0.5,
+          0.5
+        ],
+        "position": [
+          0,
+          null
+        ],
+        "starting_vertical_speed": 0.05,
+        "starting_vertical_speed_deviation": 0.005,
+        "vertical_speed_slowdown": 0.99,
+        "starting_frame_deviation": 60
+      }
+    ],
+    "light": {
+      "intensity": 1,
+      "size": 20
+    },
+    "working_sound": {
+      "sound": {
+        "filename": "__base__/sound/furnace.ogg"
+      },
+      "max_sounds_per_type": 3
+    }
+  },
+  {
+    "type": "fire",
+    "name": "fire-flame-on-tree",
+    "flags": [
+      "placeable-off-grid",
+      "not-on-map"
+    ],
+    "damage_per_tick": {
+      "type": "fire"
+    },
+    "spawn_entity": "fire-flame-on-tree",
+    "maximum_spread_count": 100,
+    "spread_delay": 300,
+    "spread_delay_deviation": 180,
+    "flame_alpha": 0.35,
+    "flame_alpha_deviation": 0.05,
+    "tree_dying_factor": 0.8,
+    "emissions_per_tick": 0.005,
+    "fade_in_duration": 120,
+    "fade_out_duration": 100,
+    "smoke_fade_in_duration": 100,
+    "smoke_fade_out_duration": 130,
+    "delay_between_initial_flames": 20,
+    "smoke_source_pictures": [
+      {
+        "filename": "__base__/graphics/entity/fire-flame/fire-smoke-source-1.png",
+        "line_length": 8,
+        "width": 101,
+        "height": 138,
+        "frame_count": 31,
+        "axially_symmetrical": false,
+        "direction_count": 1,
+        "scale": 0.6,
+        "shift": [
+          null,
+          null
+        ],
+        "animation_speed": 0.5
+      },
+      {
+        "filename": "__base__/graphics/entity/fire-flame/fire-smoke-source-2.png",
+        "line_length": 8,
+        "width": 99,
+        "height": 138,
+        "frame_count": 31,
+        "axially_symmetrical": false,
+        "direction_count": 1,
+        "scale": 0.6,
+        "shift": [
+          null,
+          null
+        ],
+        "animation_speed": 0.5
+      }
+    ],
+    "smoke": [
+      {
+        "name": "fire-smoke-without-glow",
+        "deviation": [
+          0.5,
+          0.5
+        ],
+        "position": [
+          0,
+          null
+        ],
+        "starting_vertical_speed": 0.008,
+        "starting_vertical_speed_deviation": 0.05,
+        "starting_frame_deviation": 60
+      }
+    ],
+    "light": {
+      "intensity": 1,
+      "size": 20
+    },
+    "working_sound": {
+      "sound": {
+        "filename": "__base__/sound/furnace.ogg"
+      },
+      "max_sounds_per_type": 3
+    }
+  },
+  {
+    "type": "fluid-turret",
+    "name": "flamethrower-turret",
+    "icon": "__base__/graphics/icons/flamethrower-turret.png",
+    "flags": [
+      "placeable-player",
+      "player-creation"
+    ],
+    "minable": {
+      "mining_time": 0.5,
+      "result": "flamethrower-turret"
+    },
+    "max_health": 1400,
+    "order": "z-z-z",
+    "corpse": "medium-remnants",
+    "collision_box": [
+      [
+        null,
+        null
+      ],
+      [
+        0.7,
+        1.2
+      ]
+    ],
+    "selection_box": [
+      [
+        null,
+        null
+      ],
+      [
+        1,
+        1.5
+      ]
+    ],
+    "rotation_speed": 0.015,
+    "preparing_speed": 0.08,
+    "folding_speed": 0.08,
+    "attacking_speed": 1,
+    "ending_attack_speed": 0.2,
+    "dying_explosion": "medium-explosion",
+    "inventory_size": 1,
+    "automated_ammo_count": 10,
+    "attacking_animation_fade_out": 10,
+    "resistances": [
+      {
+        "type": "fire",
+        "percent": 100
+      }
+    ],
+    "fluid_box": {
+      "secondary_draw_order": 0,
+      "render_layer": "lower-object",
+      "base_area": 1,
+      "pipe_connections": [
+        {
+          "position": [
+            null,
+            1
+          ]
+        },
+        {
+          "position": [
+            1.5,
+            1
+          ]
+        }
+      ]
+    },
+    "fluid_buffer_size": 10,
+    "activation_buffer_ratio": 0.25,
+    "indicator_light": {
+      "intensity": 0.8,
+      "size": 0.9
+    },
+    "gun_animation_render_layer": "object",
+    "gun_animation_secondary_draw_order": 1,
+    "base_picture_render_layer": "lower-object",
+    "base_picture_secondary_draw_order": 1,
+    "base_picture": {
+      "north": {
+        "layers": [
+          {
+            "filename": "__base__/graphics/entity/flamethrower-turret/flamethrower-turret-base-north.png",
+            "line_length": 1,
+            "width": 69,
+            "height": 86,
+            "frame_count": 1,
+            "axially_symmetrical": false,
+            "direction_count": 1,
+            "shift": [
+              null,
+              0.34375
+            ]
+          },
+          {
+            "filename": "__base__/graphics/entity/flamethrower-turret/flamethrower-turret-base-north-mask.png",
+            "flags": [
+              "mask"
+            ],
+            "line_length": 1,
+            "width": 37,
+            "height": 37,
+            "frame_count": 1,
+            "axially_symmetrical": false,
+            "direction_count": 1,
+            "shift": [
+              null,
+              1.04688
+            ],
+            "apply_runtime_tint": true
+          },
+          {
+            "filename": "__base__/graphics/entity/flamethrower-turret/flamethrower-turret-base-north-shadow.png",
+            "draw_as_shadow": true,
+            "line_length": 1,
+            "width": 71,
+            "height": 78,
+            "frame_count": 1,
+            "axially_symmetrical": false,
+            "direction_count": 1,
+            "shift": [
+              0.140625,
+              0.46875
+            ]
+          }
+        ]
+      },
+      "east": {
+        "layers": [
+          {
+            "filename": "__base__/graphics/entity/flamethrower-turret/flamethrower-turret-base-east.png",
+            "line_length": 1,
+            "width": 95,
+            "height": 60,
+            "frame_count": 1,
+            "axially_symmetrical": false,
+            "direction_count": 1,
+            "shift": [
+              null,
+              0.125
+            ]
+          },
+          {
+            "filename": "__base__/graphics/entity/flamethrower-turret/flamethrower-turret-base-east-mask.png",
+            "flags": [
+              "mask"
+            ],
+            "apply_runtime_tint": true,
+            "line_length": 1,
+            "width": 33,
+            "height": 42,
+            "frame_count": 1,
+            "axially_symmetrical": false,
+            "direction_count": 1,
+            "shift": [
+              null,
+              0.03125
+            ]
+          },
+          {
+            "filename": "__base__/graphics/entity/flamethrower-turret/flamethrower-turret-base-east-shadow.png",
+            "draw_as_shadow": true,
+            "line_length": 1,
+            "width": 100,
+            "height": 44,
+            "frame_count": 1,
+            "axially_symmetrical": false,
+            "direction_count": 1,
+            "shift": [
+              0.03125,
+              0.28125
+            ]
+          }
+        ]
+      },
+      "south": {
+        "layers": [
+          {
+            "filename": "__base__/graphics/entity/flamethrower-turret/flamethrower-turret-base-south.png",
+            "line_length": 1,
+            "width": 70,
+            "height": 90,
+            "frame_count": 1,
+            "axially_symmetrical": false,
+            "direction_count": 1,
+            "shift": [
+              0,
+              null
+            ]
+          },
+          {
+            "filename": "__base__/graphics/entity/flamethrower-turret/flamethrower-turret-base-south-mask.png",
+            "flags": [
+              "mask"
+            ],
+            "apply_runtime_tint": true,
+            "line_length": 1,
+            "width": 37,
+            "height": 37,
+            "frame_count": 1,
+            "axially_symmetrical": false,
+            "direction_count": 1,
+            "shift": [
+              0.015625,
+              null
+            ]
+          },
+          {
+            "filename": "__base__/graphics/entity/flamethrower-turret/flamethrower-turret-base-south-shadow.png",
+            "draw_as_shadow": true,
+            "line_length": 1,
+            "width": 67,
+            "height": 70,
+            "frame_count": 1,
+            "axially_symmetrical": false,
+            "direction_count": 1,
+            "shift": [
+              0.140625,
+              null
+            ]
+          }
+        ]
+      },
+      "west": {
+        "layers": [
+          {
+            "filename": "__base__/graphics/entity/flamethrower-turret/flamethrower-turret-base-west.png",
+            "line_length": 1,
+            "width": 93,
+            "height": 59,
+            "frame_count": 1,
+            "axially_symmetrical": false,
+            "direction_count": 1,
+            "shift": [
+              0.140625,
+              0.203125
+            ]
+          },
+          {
+            "filename": "__base__/graphics/entity/flamethrower-turret/flamethrower-turret-base-west-mask.png",
+            "flags": [
+              "mask"
+            ],
+            "apply_runtime_tint": true,
+            "line_length": 1,
+            "width": 33,
+            "height": 40,
+            "frame_count": 1,
+            "axially_symmetrical": false,
+            "direction_count": 1,
+            "shift": [
+              1.01563,
+              0.09375
+            ]
+          },
+          {
+            "filename": "__base__/graphics/entity/flamethrower-turret/flamethrower-turret-base-west-shadow.png",
+            "draw_as_shadow": true,
+            "line_length": 1,
+            "width": 103,
+            "height": 45,
+            "frame_count": 1,
+            "axially_symmetrical": false,
+            "direction_count": 1,
+            "shift": [
+              0.484375,
+              0.296875
+            ]
+          }
+        ]
+      }
+    },
+    "muzzle_animation": {
+      "filename": "__base__/graphics/entity/flamethrower-turret/flamethrower-turret-muzzle-fire.png",
+      "line_length": 8,
+      "width": 17,
+      "height": 41,
+      "frame_count": 32,
+      "axially_symmetrical": false,
+      "direction_count": 1,
+      "blend_mode": "additive",
+      "scale": 0.5,
+      "shift": [
+        null,
+        null
+      ]
+    },
+    "muzzle_light": {
+      "intensity": 0.7,
+      "size": 3
+    },
+    "vehicle_impact_sound": {
+      "filename": "__base__/sound/car-metal-impact.ogg",
+      "volume": 0.65
+    },
+    "prepare_range": 35,
+    "shoot_in_prepare_state": true,
+    "attack_parameters": {
+      "type": "stream",
+      "ammo_category": "flame-thrower",
+      "cooldown": 4,
+      "range": 30,
+      "min_range": 6,
+      "fire_penalty": 15,
+      "fluids": [
+        {
+          "type": "crude-oil"
+        },
+        {
+          "type": "heavy-oil",
+          "damage_modifier": 1.05
+        },
+        {
+          "type": "light-oil",
+          "damage_modifier": 1.1
+        }
+      ],
+      "fluid_consumption": 0.008,
+      "gun_center_shift": {},
+      "gun_barrel_length": 0.4,
+      "ammo_type": {
+        "category": "flame-thrower",
+        "action": {
+          "type": "direct",
+          "action_delivery": {
+            "type": "stream",
+            "stream": "flamethrower-fire-stream",
+            "duration": 160,
+            "source_offset": [
+              0.15,
+              null
+            ]
+          }
+        }
+      },
+      "cyclic_sound": {
+        "begin_sound": [
+          {
+            "filename": "__base__/sound/fight/flamethrower-start.ogg",
+            "volume": 0.7
+          }
+        ],
+        "middle_sound": [
+          {
+            "filename": "__base__/sound/fight/flamethrower-mid.ogg",
+            "volume": 0.7
+          }
+        ],
+        "end_sound": [
+          {
+            "filename": "__base__/sound/fight/flamethrower-end.ogg",
+            "volume": 0.7
+          }
+        ]
+      }
+    },
+    "call_for_help_radius": 40
+  },
+  null,
+  null,
+  null,
+  null,
+  {
+    "type": "sticker",
+    "name": "fire-sticker",
+    "flags": [
+      "not-on-map"
+    ],
+    "animation": {
+      "filename": "__base__/graphics/entity/fire-flame/fire-flame-13.png",
+      "line_length": 8,
+      "width": 60,
+      "height": 118,
+      "frame_count": 25,
+      "axially_symmetrical": false,
+      "direction_count": 1,
+      "blend_mode": "normal",
+      "animation_speed": 1,
+      "scale": 0.2,
+      "tint": {
+        "r": 0.5,
+        "g": 0.5,
+        "b": 0.5,
+        "a": 0.18
+      }
+    },
+    "target_movement_modifier": 0.8,
+    "damage_per_tick": {
+      "type": "fire"
+    },
+    "spread_fire_entity": "fire-flame-on-tree",
+    "fire_spread_cooldown": 30,
+    "fire_spread_radius": 0.75
+  },
+  {
+    "type": "stream",
+    "name": "flamethrower-fire-stream",
+    "flags": [
+      "not-on-map"
+    ],
+    "stream_light": {
+      "intensity": 1,
+      "size": 4
+    },
+    "ground_light": {
+      "intensity": 0.8,
+      "size": 4
+    },
+    "smoke_sources": [
+      {
+        "name": "soft-fire-smoke",
+        "frequency": 0.05,
+        "position": [
+          0,
+          0
+        ],
+        "starting_frame_deviation": 60
+      }
+    ],
+    "particle_buffer_size": 90,
+    "particle_spawn_interval": 2,
+    "particle_spawn_timeout": 8,
+    "particle_start_alpha": 0.5,
+    "particle_end_alpha": 1,
+    "particle_start_scale": 0.2,
+    "particle_loop_frame_count": 3,
+    "particle_fade_out_threshold": 0.9,
+    "particle_loop_exit_threshold": 0.25,
+    "action": [
+      {
+        "type": "direct",
+        "action_delivery": {
+          "type": "instant",
+          "target_effects": [
+            {
+              "type": "create-fire",
+              "entity_name": "fire-flame"
+            }
+          ]
+        }
+      },
+      {
+        "type": "area",
+        "perimeter": 2.5,
+        "action_delivery": {
+          "type": "instant",
+          "target_effects": [
+            {
+              "type": "create-sticker",
+              "sticker": "fire-sticker"
+            },
+            {
+              "type": "damage",
+              "damage": {
+                "type": "fire"
+              }
+            }
+          ]
+        }
+      }
+    ],
+    "spine_animation": {
+      "filename": "__base__/graphics/entity/flamethrower-fire-stream/flamethrower-fire-stream-spine.png",
+      "blend_mode": "additive",
+      "line_length": 4,
+      "width": 32,
+      "height": 18,
+      "frame_count": 32,
+      "axially_symmetrical": false,
+      "direction_count": 1,
+      "animation_speed": 2,
+      "shift": [
+        0,
+        0
+      ]
+    },
+    "shadow": {
+      "filename": "__base__/graphics/entity/acid-projectile-purple/acid-projectile-purple-shadow.png",
+      "line_length": 5,
+      "width": 28,
+      "height": 16,
+      "frame_count": 33,
+      "priority": "high",
+      "shift": [
+        null,
+        0.395
+      ]
+    },
+    "particle": {
+      "filename": "__base__/graphics/entity/flamethrower-fire-stream/flamethrower-explosion.png",
+      "priority": "extra-high",
+      "width": 64,
+      "height": 64,
+      "frame_count": 32,
+      "line_length": 8
+    }
+  },
+  {
+    "type": "stream",
+    "name": "handheld-flamethrower-fire-stream",
+    "flags": [
+      "not-on-map"
+    ],
+    "working_sound_disabled": [
+      {
+        "filename": "__base__/sound/fight/electric-beam.ogg",
+        "volume": 0.7
+      }
+    ],
+    "smoke_sources": [
+      {
+        "name": "soft-fire-smoke",
+        "frequency": 0.05,
+        "position": [
+          0,
+          0
+        ],
+        "starting_frame_deviation": 60
+      }
+    ],
+    "stream_light": {
+      "intensity": 1
+    },
+    "ground_light": {
+      "intensity": 0.8
+    },
+    "particle_buffer_size": 65,
+    "particle_spawn_interval": 2,
+    "particle_spawn_timeout": 2,
+    "particle_horizontal_speed": 0.25,
+    "particle_horizontal_speed_deviation": 0.0035,
+    "particle_start_alpha": 0.5,
+    "particle_end_alpha": 1,
+    "particle_start_scale": 0.2,
+    "particle_loop_frame_count": 3,
+    "particle_fade_out_threshold": 0.9,
+    "particle_loop_exit_threshold": 0.25,
+    "action": [
+      {
+        "type": "direct",
+        "action_delivery": {
+          "type": "instant",
+          "target_effects": [
+            {
+              "type": "create-fire",
+              "entity_name": "fire-flame"
+            },
+            {
+              "type": "damage",
+              "damage": {
+                "type": "fire"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "type": "area",
+        "perimeter": 2.5,
+        "action_delivery": {
+          "type": "instant",
+          "target_effects": [
+            {
+              "type": "create-sticker",
+              "sticker": "fire-sticker"
+            }
+          ]
+        }
+      }
+    ],
+    "spine_animation": {
+      "filename": "__base__/graphics/entity/flamethrower-fire-stream/flamethrower-fire-stream-spine.png",
+      "blend_mode": "additive",
+      "line_length": 4,
+      "width": 32,
+      "height": 18,
+      "frame_count": 32,
+      "axially_symmetrical": false,
+      "direction_count": 1,
+      "animation_speed": 2,
+      "scale": 0.75,
+      "shift": [
+        0,
+        0
+      ]
+    },
+    "shadow": {
+      "filename": "__base__/graphics/entity/acid-projectile-purple/acid-projectile-purple-shadow.png",
+      "line_length": 5,
+      "width": 28,
+      "height": 16,
+      "frame_count": 33,
+      "priority": "high",
+      "scale": 0.5,
+      "shift": [
+        null,
+        null
+      ]
+    },
+    "particle": {
+      "filename": "__base__/graphics/entity/flamethrower-fire-stream/flamethrower-explosion.png",
+      "priority": "extra-high",
+      "width": 64,
+      "height": 64,
+      "frame_count": 32,
+      "line_length": 8,
+      "scale": 0.8
+    }
   },
   {
     "type": "mining-drill",
@@ -20076,7 +22446,7 @@
   },
   {
     "type": "projectile",
-    "name": "basic-grenade",
+    "name": "grenade",
     "flags": [
       "not-on-map"
     ],
@@ -20125,14 +22495,72 @@
       "size": 4
     },
     "animation": {
-      "filename": "__base__/graphics/entity/basic-grenade/basic-grenade.png",
+      "filename": "__base__/graphics/entity/grenade/grenade.png",
       "frame_count": 1,
       "width": 24,
       "height": 24,
       "priority": "high"
     },
     "shadow": {
-      "filename": "__base__/graphics/entity/basic-grenade/basic-grenade-shadow.png",
+      "filename": "__base__/graphics/entity/grenade/grenade-shadow.png",
+      "frame_count": 1,
+      "width": 24,
+      "height": 32,
+      "priority": "high"
+    }
+  },
+  {
+    "type": "projectile",
+    "name": "cluster-grenade",
+    "flags": [
+      "not-on-map"
+    ],
+    "acceleration": 0.005,
+    "action": [
+      {
+        "type": "direct",
+        "action_delivery": {
+          "type": "instant",
+          "target_effects": [
+            {
+              "type": "create-entity",
+              "entity_name": "explosion"
+            },
+            {
+              "type": "create-entity",
+              "entity_name": "small-scorchmark",
+              "check_buildability": true
+            }
+          ]
+        }
+      },
+      {
+        "type": "cluster",
+        "cluster_count": 7,
+        "distance": 4,
+        "distance_deviation": 3,
+        "action_delivery": {
+          "type": "projectile",
+          "projectile": "grenade",
+          "direction_deviation": 0.6,
+          "starting_speed": 0.25,
+          "starting_speed_deviation": 0.3
+        }
+      }
+    ],
+    "light": {
+      "intensity": 0.5,
+      "size": 4
+    },
+    "animation": {
+      "filename": "__base__/graphics/entity/cluster-grenade/cluster-grenade.png",
+      "frame_count": 1,
+      "width": 24,
+      "height": 24,
+      "priority": "high"
+    },
+    "shadow": {
+      "filename": "__base__/graphics/entity/grenade/grenade-shadow.png",
       "frame_count": 1,
       "width": 24,
       "height": 32,
@@ -20373,8 +22801,8 @@
     "category": "basic-fluid",
     "order": "a-b-a",
     "infinite": true,
-    "minimum": 750,
-    "normal": 7500,
+    "minimum": 1500,
+    "normal": 15000,
     "minable": {
       "hardness": 1,
       "mining_time": 1,
@@ -20410,25 +22838,16 @@
     ],
     "autoplace": {
       "control": "crude-oil",
-      "sharpness": 1,
-      "max_probability": 0.04,
-      "richness_multiplier": 150000,
-      "richness_base": 5000,
-      "size_control_multiplier": 0.06,
+      "sharpness": 0.99,
+      "max_probability": 0.035,
+      "richness_base": 6000,
+      "richness_multiplier": 30000,
+      "richness_multiplier_distance_bonus": 10,
+      "coverage": 0.02,
       "peaks": [
         {
-          "influence": 0.1
-        },
-        {
-          "influence": 0.105,
-          "starting_area_weight_optimal": 1,
-          "starting_area_weight_range": 0,
-          "starting_area_weight_max_range": 2
-        },
-        {
-          "influence": 0.67,
           "noise_layer": "crude-oil",
-          "noise_persistence": 0.3
+          "noise_persistence": 0.4
         }
       ]
     },
@@ -20527,32 +22946,8 @@
         }
       }
     },
-    "autoplace": {
-      "sharpness": 0.3,
-      "control": "enemy-base",
-      "order": "b[enemy]-a[base]",
-      "force": "enemy",
-      "peaks": [
-        {
-          "starting_area_weight_optimal": 1,
-          "starting_area_weight_range": 0,
-          "starting_area_weight_max_range": 2
-        },
-        {
-          "influence": 0.22,
-          "noise_layer": "enemy-base",
-          "noise_persistence": 0.5
-        },
-        {
-          "influence": 0.3,
-          "noise_layer": "enemy-base",
-          "noise_persistence": 0.5,
-          "tier_from_start_optimal": 10,
-          "tier_from_start_top_property_limit": 10,
-          "tier_from_start_max_range": 20
-        }
-      ]
-    }
+    "build_base_evolution_requirement": 0.3,
+    "call_for_help_radius": 40
   },
   {
     "type": "turret",
@@ -20630,32 +23025,8 @@
         }
       }
     },
-    "autoplace": {
-      "sharpness": 0.3,
-      "control": "enemy-base",
-      "order": "b[enemy]-a[base]",
-      "force": "enemy",
-      "peaks": [
-        {
-          "starting_area_weight_optimal": 1,
-          "starting_area_weight_range": 0,
-          "starting_area_weight_max_range": 2
-        },
-        {
-          "influence": 0.07,
-          "noise_layer": "enemy-base",
-          "noise_persistence": 0.5
-        },
-        {
-          "influence": 0.38,
-          "noise_layer": "enemy-base",
-          "noise_persistence": 0.5,
-          "tier_from_start_optimal": 10,
-          "tier_from_start_top_property_limit": 10,
-          "tier_from_start_max_range": 20
-        }
-      ]
-    }
+    "build_base_evolution_requirement": 0.5,
+    "call_for_help_radius": 40
   },
   {
     "type": "electric-turret",
@@ -20699,7 +23070,7 @@
     "energy_source": {
       "type": "electric",
       "buffer_capacity": "801kJ",
-      "input_flow_limit": "4800kW",
+      "input_flow_limit": "9600kW",
       "drain": "24kW",
       "usage_priority": "primary-input"
     },
@@ -20734,6 +23105,9 @@
         },
         {
           "filename": "__base__/graphics/entity/laser-turret/laser-turret-gun-mask.png",
+          "flags": [
+            "mask"
+          ],
           "line_length": 8,
           "width": 54,
           "height": 44,
@@ -20778,6 +23152,7 @@
           "height": 82,
           "axially_symmetrical": false,
           "direction_count": 1,
+          "frame_count": 1,
           "shift": [
             0.109375,
             0.03125
@@ -20785,6 +23160,9 @@
         },
         {
           "filename": "__base__/graphics/entity/laser-turret/laser-turret-base-mask.png",
+          "flags": [
+            "mask"
+          ],
           "line_length": 1,
           "width": 54,
           "height": 46,
@@ -20831,7 +23209,8 @@
           }
         ]
       }
-    }
+    },
+    "call_for_help_radius": 40
   },
   {
     "type": "corpse",

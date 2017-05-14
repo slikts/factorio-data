@@ -409,7 +409,8 @@
       "g": 51,
       "b": 17
     },
-    "ageing": 0.00045
+    "ageing": 0.00045,
+    "can_be_part_of_blueprint": false
   },
   {
     "type": "tile",
