@@ -2195,6 +2195,10 @@
         1.3
       ]
     ],
+    "vehicle_impact_sound": {
+      "filename": "__base__/sound/car-stone-impact.ogg",
+      "volume": 1
+    },
     "minable": {
       "mining_particle": "stone-particle",
       "mining_time": 8,
