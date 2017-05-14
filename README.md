@@ -1,19 +1,18 @@
-# factorio-recipes
+# factorio-data
 
+Factorio prototype data in JSON format.
 
-## Generating recipe JSON
+## Using
 ```sh
-npm install --global factorio-recipes
-GAME_DIR = example/Factorio
-factorio-recipes $GAME_DIR>recipes.json
-# or alternatively
-factorio-recipes $GAME_DIR --save # will save to recipes-$VERSION.json
-```
-
-## Importing premade JSON
-```sh
-npm install --save factorio-recipes
+npm install --save factorio-data
 ```
 ```js
-const recipes = require('factorio-recipes/recipes-0.15.10.json')
+const recipes = require('factorio-data/data/0.15.10/recipes.json')
+```
+
+## Generating
+```sh
+npm install --global factorio-data
+GAME_DIR=example/Factorio
+factorio-data $GAME_DIR --save # save to ./data/$GAME_VERSION
 ```
