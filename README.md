@@ -14,6 +14,9 @@ npm install --save factorio-data
 ```
 ```js
 const recipes = require('factorio-data/data/0.15.10/recipes.json')
+// or alternatively
+require('factorio-data/data/latest-experimental/recipes.json')
+require('factorio-data/data/latest-stable/recipes.json')
 ```
 
 ## Generating
