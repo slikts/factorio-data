@@ -3,7 +3,7 @@
     "type": "build-entity-achievement",
     "name": "getting-on-track",
     "order": "a[progress]-a[getting-on-track]",
-    "to_build": "diesel-locomotive",
+    "to_build": "locomotive",
     "icon": "__base__/graphics/achievement/getting-on-track.png"
   },
   {
@@ -103,7 +103,7 @@
     "type": "build-entity-achievement",
     "name": "getting-on-track-like-a-pro",
     "order": "c[teaching]-a[getting-on-track-like-a-pro]",
-    "to_build": "diesel-locomotive",
+    "to_build": "locomotive",
     "icon": "__base__/graphics/achievement/getting-on-track-like-a-pro.png"
   },
   {
@@ -569,9 +569,15 @@
   },
   {
     "type": "autoplace-control",
-    "name": "crude-oil",
+    "name": "uranium-ore",
     "richness": true,
     "order": "b-e"
+  },
+  {
+    "type": "autoplace-control",
+    "name": "crude-oil",
+    "richness": true,
+    "order": "b-f"
   },
   {
     "type": "autoplace-control",
@@ -637,6 +643,43 @@
     "equipment_categories": [
       "armor"
     ]
+  },
+  {
+    "type": "map-gen-presets",
+    "name": "default",
+    "default": {
+      "default": true,
+      "order": "a"
+    },
+    "undefined": {
+      "order": "e",
+      "basic_settings": {
+        "autoplace_controls": {
+          "coal": {
+            "frequency": "very-low",
+            "size": "high"
+          },
+          "undefined": {
+            "frequency": "very-low",
+            "size": "high"
+          },
+          "stone": {
+            "frequency": "very-low",
+            "size": "high"
+          }
+        },
+        "terrain_segmentation": "very-low",
+        "water": "high"
+      },
+      "advanced_settings": {
+        "enemy_evolution": {
+          "time_factor": 0.000002
+        },
+        "enemy_expansion": {
+          "enabled": false
+        }
+      }
+    }
   },
   {
     "type": "map-settings",
@@ -731,9 +774,76 @@
       "min_steps_to_check_path_find_termination": 2000,
       "start_to_goal_cost_multiplier_to_terminate_path_find": 500
     },
-    "attack": {
-      "max_pursue_distance": 500
-    },
-    "max_failed_behavior_count": 3
+    "max_failed_behavior_count": 3,
+    "difficulty_settings": {
+      "technology_price_multiplier": 1
+    }
+  },
+  {
+    "type": "tutorial",
+    "name": "trains-basics",
+    "scenario": "trains-basics",
+    "order": "a[trains]-a[basic-train]",
+    "technology": "railway",
+    "icon": "__base__/graphics/technology/railway.png",
+    "icon_size": 128,
+    "related_items": [
+      "rail",
+      "locomotive"
+    ]
+  },
+  {
+    "type": "tutorial",
+    "name": "trains-ghost-rail-planner",
+    "scenario": "trains-ghost-rail-planner",
+    "order": "a[trains]-b[ghost-rail-planner]",
+    "technology": "construction-robotics",
+    "icon": "__base__/graphics/technology/railway.png",
+    "icon_size": 128,
+    "related_items": [
+      "rail",
+      "construction-robot"
+    ]
+  },
+  {
+    "type": "tutorial",
+    "name": "trains-stations",
+    "scenario": "trains-stations",
+    "order": "a[trains]-c[stations]",
+    "technology": "automated-rail-transportation",
+    "icon": "__base__/graphics/technology/automated-rail-transportation.png",
+    "icon_size": 128,
+    "related_items": [
+      "train-stop",
+      "locomotive",
+      "cargo-wagon"
+    ]
+  },
+  {
+    "type": "tutorial",
+    "name": "trains-basic-signals",
+    "scenario": "trains-basic-signals",
+    "order": "a[trains]-d[basic-signal]",
+    "technology": "rail-signals",
+    "icon": "__base__/graphics/technology/rail-signals.png",
+    "icon_size": 128,
+    "related_items": [
+      "rail-signal",
+      "locomotive"
+    ]
+  },
+  {
+    "type": "tutorial",
+    "name": "trains-advanced-signals",
+    "scenario": "trains-advanced-signals",
+    "order": "a[trains]-e[advanced-signal]",
+    "technology": "rail-signals",
+    "icon": "__base__/graphics/technology/rail-signals.png",
+    "icon_size": 128,
+    "related_items": [
+      "rail-signal",
+      "rail-chain-signal",
+      "locomotive"
+    ]
   }
 ]

@@ -21,7 +21,7 @@
   },
   {
     "type": "ammo-category",
-    "name": "flame-thrower"
+    "name": "flamethrower"
   },
   {
     "type": "ammo-category",
@@ -58,6 +58,14 @@
   {
     "type": "equipment-category",
     "name": "armor"
+  },
+  {
+    "type": "fuel-category",
+    "name": "chemical"
+  },
+  {
+    "type": "fuel-category",
+    "name": "nuclear"
   },
   {
     "type": "module-category",
@@ -102,6 +110,10 @@
   {
     "type": "recipe-category",
     "name": "rocket-building"
+  },
+  {
+    "type": "recipe-category",
+    "name": "centrifuging"
   },
   {
     "type": "resource-category",
