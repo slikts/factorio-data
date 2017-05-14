@@ -1,22 +1,41 @@
 const test = require('tape')
+const path = require('path')
 
-const { readLua, parseNode } = require('..')
+const { parseFile, filterCalls, parseNode, getArg, readFile, extractData } = require('..')
 
-test('read', t => {
+const asset = filename => path.join('test/assets', filename)
+
+test('parse file', t => {
+  const ast = parseFile(asset('recipe.lua'))
+  t.equal(ast.type, 'Chunk')
+  t.end()
+})
+
+test('filter calls', t => {
+  const { body } = parseFile(asset('recipe.lua'))
+  const [{ type }] = filterCalls(body)
+  t.equal(type, 'CallStatement')
+  t.end()
+})
+
+test('get arg', t => {
+  const [call] = filterCalls(parseFile(asset('recipe.lua')).body)
+  const { type } = getArg(call)
+  t.equal(type, 'TableConstructorExpression')
+  t.end()
+})
+
+test('parse node', t => {
+  const [call] = filterCalls(parseFile(asset('recipe.lua')).body)
+  const data = parseNode(getArg(call))
+  const { stringify, parse } = JSON
+  t.equal(stringify(data), stringify(parse(readFile('test/assets/recipe.json'))))
+  t.end()
+})
+
+test('extract data', t => {
   t.plan(1)
-  readLua('test/recipe.lua')
-    .then(ast => {
-      const parsed = parseNode(ast.body[0].expression.arguments[0])
-      t.equal(
-        JSON.stringify(parsed),
-        JSON.stringify({
-          type: 'recipe',
-          name: 'fast-transport-belt',
-          enabled: false,
-          ingredients: [['iron-gear-wheel', 5], ['transport-belt', 1]],
-          result: 'fast-transport-belt',
-        })
-      )
-    })
-    .catch(console.error)
+  const data = extractData(asset('recipe.lua'))
+  const { stringify, parse } = JSON
+  t.equal(stringify(data), stringify([parse(readFile(asset('recipe.json')))]))
 })

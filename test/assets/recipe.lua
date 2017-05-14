@@ -1,4 +1,4 @@
-test({
+data:extend({
   type = "recipe",
   name = "fast-transport-belt",
   enabled = false,

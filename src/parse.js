@@ -1,10 +1,4 @@
-const fs = require('fs')
-const { parse: parseLua } = require('luaparse')
-const globby = require('globby')
-
 const { assign } = Object
-
-const readLua = filename => parseLua(fs.readFileSync(filename, 'utf8'), { comments: false })
 
 const defaultParser = ({ value }) => value
 
@@ -29,16 +23,6 @@ assign(typeParsers, {
   },
 })
 
-const parseFile = async filename => parseNode(readLua(filename).body[0].expression.arguments[0])
-
-const parseRecipes = async recipePath => {
-  const files = await globby([recipePath])
-  const recipes = [].concat(...(await Promise.all(files.map(name => parseFile(name)))))
-  return recipes.reduce((a, b) => assign(a, { [b.name]: b }), {})
-}
-
 module.exports = {
-  parseRecipes,
-  readLua,
   parseNode,
 }

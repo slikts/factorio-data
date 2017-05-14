@@ -1,10 +1,11 @@
 {
-  "name": "factorio-recipes",
+  "name": "factorio-data",
   "version": "1.0.2",
   "description": "Extract Factorio recipes to JSON",
-  "main": "recipes.js",
+  "main": "index.js",
   "scripts": {
-    "test": "node test/test.js"
+    "test": "node test/test.js",
+    "test:watch": "nodemon test/test.js"
   },
   "keywords": [
     "factorio",
@@ -14,6 +15,7 @@
   "author": "slikts",
   "license": "ISC",
   "dependencies": {
+    "debug": "^2.6.6",
     "globby": "^6.1.0",
     "luaparse": "^0.2.1",
     "minimist": "^1.2.0"
@@ -23,10 +25,11 @@
   },
   "devDependencies": {
     "eslint": "^3.19.0",
-    "eslint-plugin-import": "^2.2.0",
-    "eslint-config-slikts": "^1.0.10",
     "eslint-config-prettier": "^2.0.0",
+    "eslint-config-slikts": "^1.0.10",
+    "eslint-plugin-import": "^2.2.0",
     "eslint-plugin-prettier": "^2.0.1",
+    "nodemon": "^1.11.0",
     "prettier": "^1.3.1",
     "tape": "^4.6.3"
   }
