@@ -21,7 +21,7 @@
     "minimist": "^1.2.0"
   },
   "bin": {
-    "factorio-recipes": "bin/extract.js"
+    "factorio-data": "bin/extract.js"
   },
   "devDependencies": {
     "eslint": "^3.19.0",
