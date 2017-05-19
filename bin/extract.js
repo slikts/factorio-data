@@ -48,20 +48,7 @@ const main = async params => {
   const { version } = JSON.parse(fs.readFileSync(path.join(basePath, 'info.json'), 'utf8'))
   debug('base mod version:', version)
   const extracted = [...fileGroups]
-    .map(([groupName, groupFiles]) => [
-      groupName,
-      flatten(groupFiles.map(fileName => extractData(fileName))).filter(x => x).reduce((a, b) => {
-        if (printDupes && a[b.name]) {
-          debug('duplicate:', {
-            groupName,
-            protoName: b.name,
-            types: [a[b.name].type, b.type],
-          })
-        }
-        Object.assign(a, { [b.name]: b })
-        return a
-      }, {}),
-    ])
+    .map(([group, groupFiles]) => [group, flatten(groupFiles.map(name => extractData(name)))])
     .reduce((a, [group, data]) => Object.assign(a, { [group]: data }), {})
   debug('data extracted')
   if (dump) {
