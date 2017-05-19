@@ -8,16 +8,21 @@
 
 Factorio prototype data in JSON format.
 
-## Using
+## Using from Node.js
 ```sh
 npm install --save factorio-data
 ```
+
 ```js
-const recipes = require('factorio-data/data/0.15.10/recipes.json')
+const recipes = require('factorio-data/data/0.15.12/recipes')
 // or alternatively
-require('factorio-data/data/latest-experimental/recipes.json')
-require('factorio-data/data/latest-stable/recipes.json')
+require('factorio-data/data/latest-experimental/recipes')
+require('factorio-data/data/latest-stable/recipes')
 ```
+
+## Using from other languages
+
+File path example: `node_modules/factorio-data/data/latest-experimental/recipes.json`
 
 ## Generating
 ```sh
