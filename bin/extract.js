@@ -2,13 +2,12 @@
 
 const fs = require('fs')
 const path = require('path')
-const { extractData, debug } = require('..')
+const { extractData, packageName } = require('..')
+const debug = require('debug')(`${packageName} extract`)
 const argv = require('minimist')(process.argv.slice(2), {
-  boolean: ['save', 'debug'],
-  default: {
-    dataDir: './data',
-  },
+  boolean: ['save', 'debug', 'printDupes'],
 })
+
 const globby = require('globby')
 
 const makeDir = name => {
@@ -24,21 +23,22 @@ const writeFile = (name, contents) => {
   debug('wrote file:', name)
 }
 
-const saveData = () => {}
+const moduleTemplate = json => `module.exports = ${json};`
 
 const stringify = x => JSON.stringify(x, null, 2)
 
 const flatten = arr => [].concat(...arr)
 
-const main = async ({ save, _: [gameDir], dataDir, debug: dump }) => {
-  debug('params:', { save, gameDir, dataDir, dump })
+const main = async params => {
+  debug('params:', params)
+  const { save, _: [gameDir], dataDir = './data', debug: dump, printDupes } = params
   const basePath = path.join(gameDir, 'data/base')
   const dataPath = path.join(basePath, 'prototypes/**/*.lua')
   debug('data source:', dataPath)
   const allFiles = await globby(dataPath)
   debug('file count:', allFiles.length)
   const fileGroups = allFiles
-    .map(pathname => [path.basename(path.dirname(pathname)), pathname])
+    .map(pathName => [path.basename(path.dirname(pathName)), pathName])
     .map(([group, files]) => [group === 'prototypes' ? 'other' : group, files])
     .reduce(
       (a, [group, file]) => a.set(group, a.has(group) ? a.get(group).concat(file) : [file]),
@@ -48,7 +48,20 @@ const main = async ({ save, _: [gameDir], dataDir, debug: dump }) => {
   const { version } = JSON.parse(fs.readFileSync(path.join(basePath, 'info.json'), 'utf8'))
   debug('base mod version:', version)
   const extracted = [...fileGroups]
-    .map(([group, groupFiles]) => [group, flatten(groupFiles.map(name => extractData(name)))])
+    .map(([groupName, groupFiles]) => [
+      groupName,
+      flatten(groupFiles.map(fileName => extractData(fileName))).filter(x => x).reduce((a, b) => {
+        if (printDupes && a[b.name]) {
+          debug('duplicate:', {
+            groupName,
+            protoName: b.name,
+            types: [a[b.name].type, b.type],
+          })
+        }
+        Object.assign(a, { [b.name]: b })
+        return a
+      }, {}),
+    ])
     .reduce((a, [group, data]) => Object.assign(a, { [group]: data }), {})
   debug('data extracted')
   if (dump) {
@@ -59,11 +72,16 @@ const main = async ({ save, _: [gameDir], dataDir, debug: dump }) => {
     const targetDir = path.join(dataDir, version)
     makeDir(targetDir)
     Object.entries(extracted).forEach(([group, data]) => {
-      const file = path.join(targetDir, `${group}.json`)
-      writeFile(file, stringify(data))
+      const jsonFile = path.join(targetDir, `${group}.json`)
+      const json = stringify(data)
+      writeFile(jsonFile, json)
+      const moduleFile = path.join(targetDir, `${group}.js`)
+      writeFile(moduleFile, moduleTemplate(json))
     })
   }
 }
+
+module.exports = main
 
 if (require.main === module) {
   main(argv).catch(console.error)

@@ -15,10 +15,13 @@
   "author": "slikts",
   "license": "ISC",
   "dependencies": {
+    "cheerio": "^0.22.0",
     "debug": "^2.6.6",
     "globby": "^6.1.0",
     "luaparse": "^0.2.1",
-    "minimist": "^1.2.0"
+    "minimist": "^1.2.0",
+    "request-promise-native": "^1.0.4",
+    "shelljs": "^0.7.7"
   },
   "bin": {
     "factorio-data": "bin/extract.js"
