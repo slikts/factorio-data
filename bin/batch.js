@@ -9,10 +9,11 @@ const extract = require('./extract')
 
 const rp = require('request-promise-native')
 const argv = require('minimist')(process.argv.slice(2), {
-  boolean: ['fetchVersions'],
+  boolean: ['fetchVersions', 'extract'],
   default: {
     headlessDir: path.join(os.homedir(), 'factorio'),
     fetchHeadless: true,
+    updateLatest: true,
   },
 })
 
@@ -73,14 +74,23 @@ const main = async params => {
 
   const { headlessDir } = params
 
-  Object.entries(versionData).forEach(([type, versions]) => {
+  Object.entries(versionData).forEach(async ([type, versions]) => {
     if (params.fetchHeadless) {
       versions.forEach(ver => fetchHeadless(ver, headlessDir))
     }
-    versions.forEach(ver => {
-      const verPath = path.join(headlessDir, ver, 'factorio')
-      extract({ save: true, _: [verPath] }).catch(console.error)
-    })
+    if (params.extract) {
+      versions.forEach(ver => {
+        const verPath = path.join(headlessDir, ver, 'factorio')
+        extract({ save: true, _: [verPath] }).catch(console.error)
+      })
+    }
+    if (params.updateLatest) {
+      // XXX reuse dataDir from extract module
+      const dataDir = './data'
+      const [latestVer] = versions
+      debug('latest:', type, latestVer)
+      shell.cp('-R', path.join(dataDir, latestVer), path.join(dataDir, `latest-${type}`))
+    }
   })
 }
 
