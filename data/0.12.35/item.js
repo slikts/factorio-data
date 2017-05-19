@@ -1,8 +1,8 @@
-[
+module.exports = [
   {
     "type": "ammo",
-    "name": "piercing-rounds-magazine",
-    "icon": "__base__/graphics/icons/piercing-rounds-magazine.png",
+    "name": "piercing-bullet-magazine",
+    "icon": "__base__/graphics/icons/piercing-bullet-magazine.png",
     "flags": [
       "goes-to-main-inventory"
     ],
@@ -24,7 +24,7 @@
             {
               "type": "damage",
               "damage": {
-                "amount": 8,
+                "amount": 5,
                 "type": "physical"
               }
             }
@@ -34,91 +34,38 @@
     },
     "magazine_size": 10,
     "subgroup": "ammo",
-    "order": "a[basic-clips]-b[piercing-rounds-magazine]",
-    "stack_size": 200
+    "order": "a[basic-clips]-b[piercing-bullet-magazine]",
+    "stack_size": 100
   },
   {
     "type": "ammo",
-    "name": "uranium-rounds-magazine",
-    "icon": "__base__/graphics/icons/uranium-rounds-magazine.png",
+    "name": "flame-thrower-ammo",
+    "icon": "__base__/graphics/icons/flame-thrower-ammo.png",
     "flags": [
       "goes-to-main-inventory"
     ],
     "ammo_type": {
-      "category": "bullet",
+      "category": "flame-thrower",
+      "target_type": "direction",
       "action": {
         "type": "direct",
-        "action_delivery": {
-          "type": "instant",
-          "source_effects": {
-            "type": "create-explosion",
-            "entity_name": "explosion-gunshot"
-          },
-          "target_effects": [
-            {
-              "type": "create-entity",
-              "entity_name": "explosion-hit"
-            },
-            {
-              "type": "damage",
-              "damage": {
-                "amount": 24,
-                "type": "physical"
-              }
-            }
-          ]
-        }
+        "action_delivery": [
+          {
+            "type": "flame-thrower",
+            "explosion": "flame-thrower-explosion",
+            "direction_deviation": 0.07,
+            "speed_deviation": 0.1,
+            "starting_frame_deviation": 0.07,
+            "projectile_starting_speed": 0.2,
+            "starting_distance": 0.6
+          }
+        ]
       }
     },
-    "magazine_size": 10,
-    "subgroup": "ammo",
-    "order": "a[basic-clips]-c[uranium-rounds-magazine]",
-    "stack_size": 200
-  },
-  {
-    "type": "ammo",
-    "name": "flamethrower-ammo",
-    "icon": "__base__/graphics/icons/flamethrower-ammo.png",
-    "flags": [
-      "goes-to-main-inventory"
-    ],
-    "ammo_type": [
-      {
-        "source_type": "default",
-        "category": "flamethrower",
-        "target_type": "position",
-        "clamp_position": true,
-        "action": {
-          "type": "direct",
-          "action_delivery": {
-            "type": "stream",
-            "stream": "handheld-flamethrower-fire-stream",
-            "max_length": 15,
-            "duration": 160
-          }
-        }
-      },
-      {
-        "source_type": "vehicle",
-        "consumption_modifier": 1.125,
-        "category": "flamethrower",
-        "target_type": "position",
-        "clamp_position": true,
-        "action": {
-          "type": "direct",
-          "action_delivery": {
-            "type": "stream",
-            "stream": "tank-flamethrower-fire-stream",
-            "max_length": 9,
-            "duration": 160
-          }
-        }
-      }
-    ],
     "magazine_size": 100,
     "subgroup": "ammo",
-    "order": "e[flamethrower]",
-    "stack_size": 100
+    "order": "e[flame-thrower]",
+    "stack_size": 50
   },
   {
     "type": "ammo",
@@ -144,7 +91,7 @@
     },
     "subgroup": "ammo",
     "order": "d[rocket-launcher]-a[basic]",
-    "stack_size": 200
+    "stack_size": 100
   },
   {
     "type": "ammo",
@@ -170,36 +117,7 @@
     },
     "subgroup": "ammo",
     "order": "d[rocket-launcher]-b[explosive]",
-    "stack_size": 200
-  },
-  {
-    "type": "ammo",
-    "name": "atomic-bomb",
-    "icon": "__base__/graphics/icons/atomic-bomb.png",
-    "flags": [
-      "goes-to-main-inventory"
-    ],
-    "ammo_type": {
-      "range_modifier": 3,
-      "cooldown_modifier": 3,
-      "target_type": "position",
-      "category": "rocket",
-      "action": {
-        "type": "direct",
-        "action_delivery": {
-          "type": "projectile",
-          "projectile": "atomic-rocket",
-          "starting_speed": 0.05,
-          "source_effects": {
-            "type": "create-entity",
-            "entity_name": "explosion-hit"
-          }
-        }
-      }
-    },
-    "subgroup": "ammo",
-    "order": "d[rocket-launcher]-c[atomic-bomb]",
-    "stack_size": 10
+    "stack_size": 100
   },
   {
     "type": "ammo",
@@ -211,37 +129,27 @@
     "ammo_type": {
       "category": "shotgun-shell",
       "target_type": "direction",
-      "action": [
-        {
-          "type": "direct",
-          "action_delivery": {
-            "type": "instant",
-            "source_effects": [
-              {
-                "type": "create-explosion",
-                "entity_name": "explosion-gunshot"
-              }
-            ]
-          }
-        },
-        {
-          "type": "direct",
-          "repeat_count": 12,
-          "action_delivery": {
-            "type": "projectile",
-            "projectile": "shotgun-pellet",
-            "starting_speed": 1,
-            "direction_deviation": 0.3,
-            "range_deviation": 0.3,
-            "max_range": 15
-          }
+      "source_effects": {
+        "type": "create-explosion",
+        "entity_name": "explosion-gunshot"
+      },
+      "action": {
+        "type": "direct",
+        "repeat_count": 12,
+        "action_delivery": {
+          "type": "projectile",
+          "projectile": "shotgun-pellet",
+          "starting_speed": 1,
+          "direction_deviation": 0.3,
+          "range_deviation": 0.3,
+          "max_range": 15
         }
-      ]
+      }
     },
     "magazine_size": 10,
     "subgroup": "ammo",
     "order": "b[shotgun]-a[basic]",
-    "stack_size": 200
+    "stack_size": 100
   },
   {
     "type": "ammo",
@@ -253,37 +161,27 @@
     "ammo_type": {
       "category": "shotgun-shell",
       "target_type": "direction",
-      "action": [
-        {
-          "type": "direct",
-          "action_delivery": {
-            "type": "instant",
-            "source_effects": [
-              {
-                "type": "create-explosion",
-                "entity_name": "explosion-gunshot"
-              }
-            ]
-          }
-        },
-        {
-          "type": "direct",
-          "repeat_count": 16,
-          "action_delivery": {
-            "type": "projectile",
-            "projectile": "piercing-shotgun-pellet",
-            "starting_speed": 1,
-            "direction_deviation": 0.3,
-            "range_deviation": 0.3,
-            "max_range": 15
-          }
+      "source_effects": {
+        "type": "create-explosion",
+        "entity_name": "explosion-gunshot"
+      },
+      "action": {
+        "type": "direct",
+        "repeat_count": 16,
+        "action_delivery": {
+          "type": "projectile",
+          "projectile": "piercing-shotgun-pellet",
+          "starting_speed": 1,
+          "direction_deviation": 0.3,
+          "range_deviation": 0.3,
+          "max_range": 15
         }
-      ]
+      }
     },
     "magazine_size": 10,
     "subgroup": "ammo",
     "order": "b[shotgun]-b[piercing]",
-    "stack_size": 200
+    "stack_size": 100
   },
   {
     "type": "ammo",
@@ -319,7 +217,7 @@
     "magazine_size": 4,
     "subgroup": "ammo",
     "order": "c[railgun]",
-    "stack_size": 200
+    "stack_size": 100
   },
   {
     "type": "ammo",
@@ -349,7 +247,7 @@
     },
     "subgroup": "ammo",
     "order": "d[cannon-shell]-a[basic]",
-    "stack_size": 200
+    "stack_size": 100
   },
   {
     "type": "ammo",
@@ -378,68 +276,8 @@
       }
     },
     "subgroup": "ammo",
-    "order": "d[cannon-shell]-c[explosive]",
-    "stack_size": 200
-  },
-  {
-    "type": "ammo",
-    "name": "uranium-cannon-shell",
-    "icon": "__base__/graphics/icons/uranium-cannon-shell.png",
-    "flags": [
-      "goes-to-main-inventory"
-    ],
-    "ammo_type": {
-      "category": "cannon-shell",
-      "target_type": "direction",
-      "action": {
-        "type": "direct",
-        "action_delivery": {
-          "type": "projectile",
-          "projectile": "uranium-cannon-projectile",
-          "starting_speed": 1,
-          "direction_deviation": 0.1,
-          "range_deviation": 0.1,
-          "max_range": 30,
-          "source_effects": {
-            "type": "create-explosion",
-            "entity_name": "explosion-gunshot"
-          }
-        }
-      }
-    },
-    "subgroup": "ammo",
-    "order": "d[cannon-shell]-c[uranium]",
-    "stack_size": 200
-  },
-  {
-    "type": "ammo",
-    "name": "explosive-uranium-cannon-shell",
-    "icon": "__base__/graphics/icons/explosive-uranium-cannon-shell.png",
-    "flags": [
-      "goes-to-main-inventory"
-    ],
-    "ammo_type": {
-      "category": "cannon-shell",
-      "target_type": "direction",
-      "action": {
-        "type": "direct",
-        "action_delivery": {
-          "type": "projectile",
-          "projectile": "explosive-uranium-cannon-projectile",
-          "starting_speed": 1,
-          "direction_deviation": 0.1,
-          "range_deviation": 0.1,
-          "max_range": 30,
-          "source_effects": {
-            "type": "create-explosion",
-            "entity_name": "explosion-gunshot"
-          }
-        }
-      }
-    },
-    "subgroup": "ammo",
-    "order": "d[explosive-cannon-shell]-c[uranium]",
-    "stack_size": 200
+    "order": "d[cannon-shell]-b[explosive]",
+    "stack_size": 100
   },
   {
     "type": "armor",
@@ -456,17 +294,12 @@
       },
       {
         "type": "explosion",
-        "decrease": 20,
+        "decrease": 10,
         "percent": 30
       },
       {
         "type": "acid",
-        "decrease": 3,
-        "percent": 30
-      },
-      {
-        "type": "fire",
-        "decrease": 0,
+        "decrease": 5,
         "percent": 30
       }
     ],
@@ -477,8 +310,8 @@
   },
   {
     "type": "armor",
-    "name": "modular-armor",
-    "icon": "__base__/graphics/icons/modular-armor.png",
+    "name": "basic-modular-armor",
+    "icon": "__base__/graphics/icons/basic-modular-armor.png",
     "flags": [
       "goes-to-main-inventory"
     ],
@@ -495,21 +328,18 @@
       },
       {
         "type": "explosion",
-        "decrease": 30,
-        "percent": 35
-      },
-      {
-        "type": "fire",
-        "decrease": 0,
-        "percent": 40
+        "decrease": 10,
+        "percent": 30
       }
     ],
     "durability": 10000,
     "subgroup": "armor",
-    "order": "c[modular-armor]",
+    "order": "c[basic-modular-armor]",
     "stack_size": 1,
-    "equipment_grid": "small-equipment-grid",
-    "inventory_size_bonus": 10
+    "equipment_grid": {
+      "width": 5,
+      "height": 5
+    }
   },
   {
     "type": "armor",
@@ -531,21 +361,18 @@
       },
       {
         "type": "explosion",
-        "decrease": 40,
-        "percent": 40
-      },
-      {
-        "type": "fire",
-        "decrease": 0,
-        "percent": 60
+        "decrease": 15,
+        "percent": 30
       }
     ],
     "durability": 15000,
     "subgroup": "armor",
     "order": "d[power-armor]",
     "stack_size": 1,
-    "equipment_grid": "medium-equipment-grid",
-    "inventory_size_bonus": 20
+    "equipment_grid": {
+      "width": 7,
+      "height": 7
+    }
   },
   {
     "type": "armor",
@@ -567,26 +394,23 @@
       },
       {
         "type": "explosion",
-        "decrease": 60,
+        "decrease": 20,
         "percent": 50
-      },
-      {
-        "type": "fire",
-        "decrease": 0,
-        "percent": 70
       }
     ],
     "durability": 20000,
     "subgroup": "armor",
     "order": "e[power-armor-mk2]",
     "stack_size": 1,
-    "equipment_grid": "large-equipment-grid",
-    "inventory_size_bonus": 30
+    "equipment_grid": {
+      "width": 10,
+      "height": 10
+    }
   },
   {
     "type": "capsule",
-    "name": "grenade",
-    "icon": "__base__/graphics/icons/grenade.png",
+    "name": "basic-grenade",
+    "icon": "__base__/graphics/icons/basic-grenade.png",
     "flags": [
       "goes-to-quickbar"
     ],
@@ -594,18 +418,18 @@
       "type": "throw",
       "attack_parameters": {
         "type": "projectile",
-        "ammo_category": "grenade",
+        "ammo_category": "capsule",
         "cooldown": 30,
         "projectile_creation_distance": 0.6,
         "range": 15,
         "ammo_type": {
-          "category": "grenade",
+          "category": "capsule",
           "target_type": "position",
           "action": {
             "type": "direct",
             "action_delivery": {
               "type": "projectile",
-              "projectile": "grenade",
+              "projectile": "basic-grenade",
               "starting_speed": 0.3
             }
           }
@@ -613,40 +437,7 @@
       }
     },
     "subgroup": "capsule",
-    "order": "a[grenade]-a[normal]",
-    "stack_size": 100
-  },
-  {
-    "type": "capsule",
-    "name": "cluster-grenade",
-    "icon": "__base__/graphics/icons/cluster-grenade.png",
-    "flags": [
-      "goes-to-quickbar"
-    ],
-    "capsule_action": {
-      "type": "throw",
-      "attack_parameters": {
-        "type": "projectile",
-        "ammo_category": "grenade",
-        "cooldown": 30,
-        "projectile_creation_distance": 0.6,
-        "range": 20,
-        "ammo_type": {
-          "category": "grenade",
-          "target_type": "position",
-          "action": {
-            "type": "direct",
-            "action_delivery": {
-              "type": "projectile",
-              "projectile": "cluster-grenade",
-              "starting_speed": 0.3
-            }
-          }
-        }
-      }
-    },
-    "subgroup": "capsule",
-    "order": "a[grenade]-b[cluster]",
+    "order": "a[basic-grenade]",
     "stack_size": 100
   },
   {
@@ -816,14 +607,14 @@
   },
   {
     "type": "capsule",
-    "name": "discharge-defense-remote",
-    "icon": "__base__/graphics/equipment/discharge-defense-equipment-ability.png",
+    "name": "basic-electric-discharge-defense-remote",
+    "icon": "__base__/graphics/equipment/basic-electric-discharge-defense-equipment-ability.png",
     "flags": [
       "goes-to-quickbar"
     ],
     "capsule_action": {
       "type": "equipment-remote",
-      "equipment": "discharge-defense-equipment"
+      "equipment": "basic-electric-discharge-defense-equipment"
     },
     "subgroup": "capsule",
     "order": "z",
@@ -831,8 +622,8 @@
   },
   {
     "type": "ammo",
-    "name": "firearm-magazine",
-    "icon": "__base__/graphics/icons/firearm-magazine.png",
+    "name": "basic-bullet-magazine",
+    "icon": "__base__/graphics/icons/basic-bullet-magazine.png",
     "flags": [
       "goes-to-main-inventory"
     ],
@@ -858,7 +649,7 @@
                 {
                   "type": "damage",
                   "damage": {
-                    "amount": 5,
+                    "amount": 2,
                     "type": "physical"
                   }
                 }
@@ -870,13 +661,13 @@
     },
     "magazine_size": 10,
     "subgroup": "ammo",
-    "order": "a[basic-clips]-a[firearm-magazine]",
-    "stack_size": 200
+    "order": "a[basic-clips]-a[basic-bullet-magazine]",
+    "stack_size": 100
   },
   {
     "type": "armor",
-    "name": "light-armor",
-    "icon": "__base__/graphics/icons/light-armor.png",
+    "name": "basic-armor",
+    "icon": "__base__/graphics/icons/basic-armor.png",
     "flags": [
       "goes-to-main-inventory"
     ],
@@ -888,23 +679,18 @@
       },
       {
         "type": "acid",
-        "decrease": 0,
-        "percent": 10
+        "decrease": 3,
+        "percent": 30
       },
       {
         "type": "explosion",
         "decrease": 2,
         "percent": 20
-      },
-      {
-        "type": "fire",
-        "decrease": 0,
-        "percent": 10
       }
     ],
     "durability": 1000,
     "subgroup": "armor",
-    "order": "a[light-armor]",
+    "order": "a[basic-armor]",
     "stack_size": 10
   },
   {
@@ -919,8 +705,8 @@
     "attack_parameters": {
       "type": "projectile",
       "ammo_category": "bullet",
-      "cooldown": 15,
-      "movement_slow_down_factor": 0.2,
+      "cooldown": 10,
+      "movement_slow_down_factor": 0.7,
       "shell_particle": {
         "name": "shell-particle",
         "direction_deviation": 0.1,
@@ -950,7 +736,7 @@
     "attack_parameters": {
       "type": "projectile",
       "ammo_category": "bullet",
-      "cooldown": 6,
+      "cooldown": 4,
       "movement_slow_down_factor": 0.7,
       "shell_particle": {
         "name": "shell-particle",
@@ -965,15 +751,15 @@
         "starting_frame_speed_deviation": 0.1
       },
       "projectile_creation_distance": 1.125,
-      "range": 18
+      "range": 15
     },
-    "stack_size": 5
+    "stack_size": 1
   },
   {
     "type": "item-group",
     "name": "signals",
     "order": "f",
-    "icon": "__base__/graphics/item-group/signals.png"
+    "inventory_order": "a"
   },
   {
     "type": "item-subgroup",
@@ -985,292 +771,14 @@
     "type": "item-group",
     "name": "other",
     "icon": "__core__/graphics/questionmark.png",
-    "icon_size": 64,
-    "order": "z"
+    "order": "z",
+    "inventory_order": "z"
   },
   {
     "type": "item-subgroup",
     "name": "other",
     "group": "other",
     "order": "z"
-  },
-  {
-    "type": "item-subgroup",
-    "name": "virtual-signal-color",
-    "group": "signals",
-    "order": "d"
-  },
-  {
-    "type": "item-group",
-    "name": "environment",
-    "icon": "__core__/graphics/treex64-provisional.png",
-    "icon_size": 64,
-    "order": "a"
-  },
-  {
-    "type": "item-subgroup",
-    "name": "creatures",
-    "group": "environment",
-    "order": "a"
-  },
-  {
-    "type": "item-subgroup",
-    "name": "trees",
-    "group": "environment",
-    "order": "aa"
-  },
-  {
-    "type": "item-subgroup",
-    "name": "grass",
-    "group": "environment",
-    "order": "b"
-  },
-  {
-    "type": "item-subgroup",
-    "name": "corpses",
-    "group": "environment",
-    "order": "c"
-  },
-  {
-    "type": "item-subgroup",
-    "name": "remnants",
-    "group": "environment",
-    "order": "d"
-  },
-  {
-    "type": "item-subgroup",
-    "name": "wrecks",
-    "group": "environment",
-    "order": "e"
-  },
-  {
-    "type": "item-group",
-    "name": "enemies",
-    "icon": "__core__/graphics/enemy-force-icon.png",
-    "icon_size": 64,
-    "order": "aa"
-  },
-  {
-    "type": "item-subgroup",
-    "name": "enemies",
-    "group": "enemies",
-    "order": "a"
-  },
-  {
-    "type": "item-group",
-    "name": "logistics",
-    "order": "aaa",
-    "icon": "__base__/graphics/item-group/logistics.png"
-  },
-  {
-    "type": "item-subgroup",
-    "name": "storage",
-    "group": "logistics",
-    "order": "a"
-  },
-  {
-    "type": "item-subgroup",
-    "name": "belt",
-    "group": "logistics",
-    "order": "b"
-  },
-  {
-    "type": "item-subgroup",
-    "name": "inserter",
-    "group": "logistics",
-    "order": "c"
-  },
-  {
-    "type": "item-subgroup",
-    "name": "energy-pipe-distribution",
-    "group": "logistics",
-    "order": "d"
-  },
-  {
-    "type": "item-subgroup",
-    "name": "transport",
-    "group": "logistics",
-    "order": "e"
-  },
-  {
-    "type": "item-subgroup",
-    "name": "logistic-network",
-    "group": "logistics",
-    "order": "f"
-  },
-  {
-    "type": "item-subgroup",
-    "name": "circuit-network",
-    "group": "logistics",
-    "order": "g"
-  },
-  {
-    "type": "item-subgroup",
-    "name": "terrain",
-    "group": "logistics",
-    "order": "h"
-  },
-  {
-    "type": "item-group",
-    "name": "production",
-    "order": "b",
-    "icon": "__base__/graphics/item-group/production.png"
-  },
-  {
-    "type": "item-subgroup",
-    "name": "tool",
-    "group": "production",
-    "order": "a"
-  },
-  {
-    "type": "item-subgroup",
-    "name": "energy",
-    "group": "production",
-    "order": "b"
-  },
-  {
-    "type": "item-subgroup",
-    "name": "extraction-machine",
-    "group": "production",
-    "order": "c"
-  },
-  {
-    "type": "item-subgroup",
-    "name": "smelting-machine",
-    "group": "production",
-    "order": "d"
-  },
-  {
-    "type": "item-subgroup",
-    "name": "production-machine",
-    "group": "production",
-    "order": "e"
-  },
-  {
-    "type": "item-subgroup",
-    "name": "module",
-    "group": "production",
-    "order": "f"
-  },
-  {
-    "type": "item-group",
-    "name": "combat",
-    "order": "d",
-    "icon": "__base__/graphics/item-group/military.png"
-  },
-  {
-    "type": "item-subgroup",
-    "name": "gun",
-    "group": "combat",
-    "order": "a"
-  },
-  {
-    "type": "item-subgroup",
-    "name": "ammo",
-    "group": "combat",
-    "order": "b"
-  },
-  {
-    "type": "item-subgroup",
-    "name": "capsule",
-    "group": "combat",
-    "order": "c"
-  },
-  {
-    "type": "item-subgroup",
-    "name": "armor",
-    "group": "combat",
-    "order": "d"
-  },
-  {
-    "type": "item-subgroup",
-    "name": "equipment",
-    "group": "combat",
-    "order": "e"
-  },
-  {
-    "type": "item-subgroup",
-    "name": "defensive-structure",
-    "group": "combat",
-    "order": "f"
-  },
-  {
-    "type": "item-group",
-    "name": "intermediate-products",
-    "order": "c",
-    "icon": "__base__/graphics/item-group/intermediate-products.png"
-  },
-  {
-    "type": "item-subgroup",
-    "name": "fluid-recipes",
-    "group": "intermediate-products",
-    "order": "a"
-  },
-  {
-    "type": "item-subgroup",
-    "name": "raw-resource",
-    "group": "intermediate-products",
-    "order": "b"
-  },
-  {
-    "type": "item-subgroup",
-    "name": "raw-material",
-    "group": "intermediate-products",
-    "order": "c"
-  },
-  {
-    "type": "item-subgroup",
-    "name": "fill-barrel",
-    "group": "intermediate-products",
-    "order": "d"
-  },
-  {
-    "type": "item-subgroup",
-    "name": "empty-barrel",
-    "group": "intermediate-products",
-    "order": "e"
-  },
-  {
-    "type": "item-subgroup",
-    "name": "intermediate-product",
-    "group": "intermediate-products",
-    "order": "f"
-  },
-  {
-    "type": "item-subgroup",
-    "name": "science-pack",
-    "group": "intermediate-products",
-    "order": "g"
-  },
-  {
-    "type": "item-group",
-    "name": "fluids",
-    "order": "e",
-    "icon": "__base__/graphics/item-group/fluids.png"
-  },
-  {
-    "type": "item-subgroup",
-    "name": "fluid",
-    "group": "fluids",
-    "order": "a"
-  },
-  {
-    "type": "item-subgroup",
-    "name": "virtual-signal-number",
-    "group": "signals",
-    "order": "b"
-  },
-  {
-    "type": "item-subgroup",
-    "name": "virtual-signal-letter",
-    "group": "signals",
-    "order": "c"
-  },
-  {
-    "type": "item-subgroup",
-    "name": "virtual-signal",
-    "group": "signals",
-    "order": "e"
   },
   {
     "type": "item",
@@ -1298,10 +806,9 @@
       "goes-to-main-inventory"
     ],
     "fuel_value": "4MJ",
-    "fuel_category": "chemical",
     "subgroup": "raw-material",
     "order": "a[raw-wood]",
-    "stack_size": 100
+    "stack_size": 50
   },
   {
     "type": "item",
@@ -1311,7 +818,6 @@
     "flags": [
       "goes-to-main-inventory"
     ],
-    "fuel_category": "chemical",
     "fuel_value": "8MJ",
     "subgroup": "raw-material",
     "order": "b[coal]",
@@ -1357,7 +863,6 @@
     "flags": [
       "goes-to-main-inventory"
     ],
-    "fuel_category": "chemical",
     "fuel_value": "2MJ",
     "subgroup": "raw-material",
     "order": "a[wood]",
@@ -1387,24 +892,13 @@
   },
   {
     "type": "item",
-    "name": "copper-cable",
-    "icon": "__base__/graphics/icons/copper-cable.png",
-    "flags": [
-      "goes-to-main-inventory"
-    ],
-    "subgroup": "intermediate-product",
-    "order": "a[copper-cable]",
-    "stack_size": 200
-  },
-  {
-    "type": "item",
     "name": "iron-stick",
     "icon": "__base__/graphics/icons/iron-stick.png",
     "flags": [
       "goes-to-main-inventory"
     ],
     "subgroup": "intermediate-product",
-    "order": "b[iron-stick]",
+    "order": "a[iron-stick]",
     "stack_size": 100
   },
   {
@@ -1415,8 +909,19 @@
       "goes-to-main-inventory"
     ],
     "subgroup": "intermediate-product",
-    "order": "c[iron-gear-wheel]",
+    "order": "b[iron-gear-wheel]",
     "stack_size": 100
+  },
+  {
+    "type": "item",
+    "name": "copper-cable",
+    "icon": "__base__/graphics/icons/copper-cable.png",
+    "flags": [
+      "goes-to-main-inventory"
+    ],
+    "subgroup": "circuit-network",
+    "order": "a[wires]-a[copper-cable]",
+    "stack_size": 200
   },
   {
     "type": "item",
@@ -1426,7 +931,7 @@
       "goes-to-main-inventory"
     ],
     "subgroup": "intermediate-product",
-    "order": "e[electronic-circuit]",
+    "order": "c[electronic-circuit]",
     "stack_size": 200
   },
   {
@@ -1436,7 +941,6 @@
     "flags": [
       "goes-to-quickbar"
     ],
-    "fuel_category": "chemical",
     "fuel_value": "4MJ",
     "subgroup": "storage",
     "order": "a[items]-a[wooden-chest]",
@@ -1469,27 +973,27 @@
   },
   {
     "type": "item",
-    "name": "electric-mining-drill",
-    "icon": "__base__/graphics/icons/electric-mining-drill.png",
+    "name": "basic-mining-drill",
+    "icon": "__base__/graphics/icons/basic-mining-drill.png",
     "flags": [
       "goes-to-quickbar"
     ],
     "subgroup": "extraction-machine",
-    "order": "a[items]-b[electric-mining-drill]",
-    "place_result": "electric-mining-drill",
+    "order": "a[items]-b[basic-mining-drill]",
+    "place_result": "basic-mining-drill",
     "stack_size": 50
   },
   {
     "type": "item",
-    "name": "transport-belt",
-    "icon": "__base__/graphics/icons/transport-belt.png",
+    "name": "basic-transport-belt",
+    "icon": "__base__/graphics/icons/basic-transport-belt.png",
     "flags": [
       "goes-to-quickbar"
     ],
     "subgroup": "belt",
-    "order": "a[transport-belt]-a[transport-belt]",
-    "place_result": "transport-belt",
-    "stack_size": 100
+    "order": "a[transport-belt]-a[basic-transport-belt]",
+    "place_result": "basic-transport-belt",
+    "stack_size": 50
   },
   {
     "type": "item",
@@ -1505,14 +1009,14 @@
   },
   {
     "type": "item",
-    "name": "inserter",
-    "icon": "__base__/graphics/icons/inserter.png",
+    "name": "basic-inserter",
+    "icon": "__base__/graphics/icons/basic-inserter.png",
     "flags": [
       "goes-to-quickbar"
     ],
     "subgroup": "inserter",
-    "order": "b[inserter]",
-    "place_result": "inserter",
+    "order": "b[basic-inserter]",
+    "place_result": "basic-inserter",
     "stack_size": 50
   },
   {
@@ -1537,7 +1041,7 @@
     "subgroup": "energy-pipe-distribution",
     "order": "a[pipe]-a[pipe]",
     "place_result": "pipe",
-    "stack_size": 100
+    "stack_size": 50
   },
   {
     "type": "item",
@@ -1573,7 +1077,6 @@
     "subgroup": "energy-pipe-distribution",
     "order": "a[energy]-a[small-electric-pole]",
     "place_result": "small-electric-pole",
-    "fuel_category": "chemical",
     "fuel_value": "4MJ",
     "stack_size": 50
   },
@@ -1609,8 +1112,8 @@
       "goes-to-quickbar",
       "hidden"
     ],
-    "subgroup": "transport",
-    "order": "b[personal-transport]-c[small-plane]",
+    "subgroup": "defensive-structure",
+    "order": "h[small-plane]",
     "stack_size": 1
   },
   {
@@ -1620,10 +1123,22 @@
     "flags": [
       "goes-to-quickbar"
     ],
-    "subgroup": "circuit-network",
-    "order": "a[light]-a[small-lamp]",
+    "subgroup": "energy",
+    "order": "c[light]-a[small-lamp]",
     "place_result": "small-lamp",
     "stack_size": 50
+  },
+  {
+    "type": "item",
+    "name": "alien-artifact",
+    "icon": "__base__/graphics/icons/alien-artifact.png",
+    "flags": [
+      "goes-to-main-inventory"
+    ],
+    "subgroup": "raw-material",
+    "order": "g[alien-artifact]",
+    "stack_size": 500,
+    "default_request_amount": 10
   },
   {
     "type": "item",
@@ -1657,7 +1172,7 @@
       "goes-to-quickbar"
     ],
     "subgroup": "circuit-network",
-    "order": "b[wires]-a[red-wire]",
+    "order": "a[wires]-b[red-wire]",
     "stack_size": 200
   },
   {
@@ -1668,7 +1183,7 @@
       "goes-to-quickbar"
     ],
     "subgroup": "circuit-network",
-    "order": "b[wires]-b[green-wire]",
+    "order": "a[wires]-c[green-wire]",
     "stack_size": 200
   },
   {
@@ -1716,9 +1231,9 @@
     ],
     "subgroup": "tool",
     "order": "b[repair]-a[repair-pack]",
-    "speed": 2,
-    "durability": 300,
-    "stack_size": 100
+    "speed": 1,
+    "durability": 100,
+    "stack_size": 50
   },
   {
     "type": "item",
@@ -1730,7 +1245,7 @@
     "subgroup": "defensive-structure",
     "order": "a[stone-wall]-a[stone-wall]",
     "place_result": "stone-wall",
-    "stack_size": 100
+    "stack_size": 50
   },
   {
     "type": "mining-tool",
@@ -1848,38 +1363,38 @@
   },
   {
     "type": "item",
-    "name": "personal-laser-defense-equipment",
-    "icon": "__base__/graphics/icons/personal-laser-defense-equipment.png",
-    "placed_as_equipment_result": "personal-laser-defense-equipment",
+    "name": "basic-laser-defense-equipment",
+    "icon": "__base__/graphics/icons/basic-laser-defense-equipment.png",
+    "placed_as_equipment_result": "basic-laser-defense-equipment",
     "flags": [
       "goes-to-main-inventory"
     ],
     "subgroup": "equipment",
-    "order": "d[active-defense]-a[personal-laser-defense-equipment]",
+    "order": "d[active-defense]-a[basic-laser-defense-equipment]",
     "stack_size": 20
   },
   {
     "type": "item",
-    "name": "discharge-defense-equipment",
-    "icon": "__base__/graphics/icons/discharge-defense-equipment.png",
-    "placed_as_equipment_result": "discharge-defense-equipment",
+    "name": "basic-electric-discharge-defense-equipment",
+    "icon": "__base__/graphics/icons/basic-electric-discharge-defense-equipment.png",
+    "placed_as_equipment_result": "basic-electric-discharge-defense-equipment",
     "flags": [
       "goes-to-main-inventory"
     ],
     "subgroup": "equipment",
-    "order": "d[active-defense]-b[discharge-defense-equipment]",
+    "order": "d[active-defense]-b[basic-electric-discharge-defense-equipment]",
     "stack_size": 20
   },
   {
     "type": "item",
-    "name": "exoskeleton-equipment",
-    "icon": "__base__/graphics/icons/exoskeleton-equipment.png",
-    "placed_as_equipment_result": "exoskeleton-equipment",
+    "name": "basic-exoskeleton-equipment",
+    "icon": "__base__/graphics/icons/basic-exoskeleton-equipment.png",
+    "placed_as_equipment_result": "basic-exoskeleton-equipment",
     "flags": [
       "goes-to-main-inventory"
     ],
     "subgroup": "equipment",
-    "order": "e[exoskeleton]-a[exoskeleton-equipment]",
+    "order": "e[exoskeleton]-a[basic-exoskeleton-equipment]",
     "stack_size": 10
   },
   {
@@ -1896,18 +1411,6 @@
   },
   {
     "type": "item",
-    "name": "personal-roboport-mk2-equipment",
-    "icon": "__base__/graphics/icons/personal-roboport-mk2-equipment.png",
-    "placed_as_equipment_result": "personal-roboport-mk2-equipment",
-    "flags": [
-      "goes-to-main-inventory"
-    ],
-    "subgroup": "equipment",
-    "order": "e[robotics]-b[personal-roboport-mk2-equipment]",
-    "stack_size": 5
-  },
-  {
-    "type": "item",
     "name": "night-vision-equipment",
     "icon": "__base__/graphics/icons/night-vision-equipment.png",
     "placed_as_equipment_result": "night-vision-equipment",
@@ -1919,40 +1422,21 @@
     "stack_size": 20
   },
   {
-    "type": "item",
-    "name": "belt-immunity-equipment",
-    "icon": "__base__/graphics/icons/belt-immunity-equipment.png",
-    "placed_as_equipment_result": "belt-immunity-equipment",
-    "flags": [
-      "goes-to-main-inventory",
-      "hidden"
-    ],
-    "subgroup": "equipment",
-    "order": "a[belt-immunity]-a[belt-immunity]",
-    "stack_size": 1
-  },
-  {
     "type": "gun",
-    "name": "flamethrower",
-    "icon": "__base__/graphics/icons/flamethrower.png",
+    "name": "flame-thrower",
+    "icon": "__base__/graphics/icons/flame-thrower.png",
     "flags": [
       "goes-to-main-inventory"
     ],
     "subgroup": "gun",
-    "order": "e[flamethrower]",
+    "order": "e[flame-thrower]",
     "attack_parameters": {
-      "type": "stream",
-      "ammo_category": "flamethrower",
-      "cooldown": 1,
-      "movement_slow_down_factor": 0.4,
+      "type": "projectile",
+      "ammo_category": "flame-thrower",
+      "cooldown": 2,
+      "movement_slow_down_factor": 0.6,
       "projectile_creation_distance": 0.6,
-      "gun_barrel_length": 0.8,
-      "gun_center_shift": [
-        0,
-        null
-      ],
       "range": 15,
-      "min_range": 3,
       "cyclic_sound": {
         "begin_sound": [
           {
@@ -1981,8 +1465,7 @@
     "name": "vehicle-machine-gun",
     "icon": "__base__/graphics/icons/submachine-gun.png",
     "flags": [
-      "goes-to-main-inventory",
-      "hidden"
+      "goes-to-main-inventory"
     ],
     "subgroup": "gun",
     "order": "a[basic-clips]-b[vehicle-machine-gun]",
@@ -2004,7 +1487,7 @@
         "starting_frame_speed_deviation": 0.1
       },
       "projectile_creation_distance": 0.65,
-      "range": 20
+      "range": 15
     },
     "stack_size": 1
   },
@@ -2013,8 +1496,7 @@
     "name": "tank-machine-gun",
     "icon": "__base__/graphics/icons/submachine-gun.png",
     "flags": [
-      "goes-to-main-inventory",
-      "hidden"
+      "goes-to-main-inventory"
     ],
     "subgroup": "gun",
     "order": "a[basic-clips]-b[tank-machine-gun]",
@@ -2023,7 +1505,6 @@
       "ammo_category": "bullet",
       "cooldown": 4,
       "movement_slow_down_factor": 0.7,
-      "damage_modifier": 2,
       "shell_particle": {
         "name": "shell-particle",
         "direction_deviation": 0.1,
@@ -2041,52 +1522,7 @@
         null
       ],
       "projectile_creation_distance": 1,
-      "range": 20
-    },
-    "stack_size": 1
-  },
-  {
-    "type": "gun",
-    "name": "tank-flamethrower",
-    "icon": "__base__/graphics/icons/flamethrower.png",
-    "flags": [
-      "goes-to-main-inventory",
-      "hidden"
-    ],
-    "subgroup": "gun",
-    "order": "b[flamethrower]-b[tank-flamethrower]",
-    "attack_parameters": {
-      "type": "stream",
-      "ammo_category": "flamethrower",
-      "cooldown": 1,
-      "projectile_creation_distance": 0.6,
-      "gun_barrel_length": 1.4,
-      "gun_center_shift": [
-        null,
-        null
-      ],
-      "range": 9,
-      "min_range": 3,
-      "cyclic_sound": {
-        "begin_sound": [
-          {
-            "filename": "__base__/sound/fight/flamethrower-start.ogg",
-            "volume": 1
-          }
-        ],
-        "middle_sound": [
-          {
-            "filename": "__base__/sound/fight/flamethrower-mid.ogg",
-            "volume": 1
-          }
-        ],
-        "end_sound": [
-          {
-            "filename": "__base__/sound/fight/flamethrower-end.ogg",
-            "volume": 1
-          }
-        ]
-      }
+      "range": 15
     },
     "stack_size": 1
   },
@@ -2101,7 +1537,7 @@
     "subgroup": "gun",
     "order": "f[land-mine]",
     "place_result": "land-mine",
-    "stack_size": 100,
+    "stack_size": 20,
     "trigger_radius": 1
   },
   {
@@ -2145,9 +1581,10 @@
     "attack_parameters": {
       "type": "projectile",
       "ammo_category": "shotgun-shell",
+      "explosion": "explosion-gunshot",
       "cooldown": 60,
       "movement_slow_down_factor": 0.6,
-      "projectile_creation_distance": 1.125,
+      "projectile_creation_distance": 0.6,
       "range": 20,
       "sound": [
         {
@@ -2170,10 +1607,11 @@
     "attack_parameters": {
       "type": "projectile",
       "ammo_category": "shotgun-shell",
+      "explosion": "explosion-gunshot",
       "cooldown": 30,
       "movement_slow_down_factor": 0.5,
       "damage_modifier": 1.2,
-      "projectile_creation_distance": 1.125,
+      "projectile_creation_distance": 0.6,
       "range": 20,
       "sound": [
         {
@@ -2240,6 +1678,283 @@
     "stack_size": 5
   },
   {
+    "type": "item-group",
+    "name": "environment",
+    "icon": "__core__/graphics/neutral-force-icon.png",
+    "inventory_order": "a",
+    "order": "a"
+  },
+  {
+    "type": "item-subgroup",
+    "name": "creatures",
+    "group": "environment",
+    "order": "a"
+  },
+  {
+    "type": "item-subgroup",
+    "name": "trees",
+    "group": "environment",
+    "order": "aa"
+  },
+  {
+    "type": "item-subgroup",
+    "name": "grass",
+    "group": "environment",
+    "order": "b"
+  },
+  {
+    "type": "item-subgroup",
+    "name": "corpses",
+    "group": "environment",
+    "order": "c"
+  },
+  {
+    "type": "item-subgroup",
+    "name": "remnants",
+    "group": "environment",
+    "order": "d"
+  },
+  {
+    "type": "item-subgroup",
+    "name": "wrecks",
+    "group": "environment",
+    "order": "e"
+  },
+  {
+    "type": "item-group",
+    "name": "enemies",
+    "icon": "__core__/graphics/enemy-force-icon.png",
+    "inventory_order": "a",
+    "order": "aa"
+  },
+  {
+    "type": "item-subgroup",
+    "name": "enemies",
+    "group": "enemies",
+    "order": "a"
+  },
+  {
+    "type": "item-group",
+    "name": "logistics",
+    "order": "aaa",
+    "inventory_order": "c",
+    "icon": "__base__/graphics/item-group/logistics.png"
+  },
+  {
+    "type": "item-subgroup",
+    "name": "storage",
+    "group": "logistics",
+    "order": "a"
+  },
+  {
+    "type": "item-subgroup",
+    "name": "belt",
+    "group": "logistics",
+    "order": "b"
+  },
+  {
+    "type": "item-subgroup",
+    "name": "inserter",
+    "group": "logistics",
+    "order": "c"
+  },
+  {
+    "type": "item-subgroup",
+    "name": "energy-pipe-distribution",
+    "group": "logistics",
+    "order": "d"
+  },
+  {
+    "type": "item-subgroup",
+    "name": "transport",
+    "group": "logistics",
+    "order": "e"
+  },
+  {
+    "type": "item-subgroup",
+    "name": "logistic-network",
+    "group": "logistics",
+    "order": "f"
+  },
+  {
+    "type": "item-subgroup",
+    "name": "circuit-network",
+    "group": "logistics",
+    "order": "g"
+  },
+  {
+    "type": "item-subgroup",
+    "name": "terrain",
+    "group": "logistics",
+    "order": "h"
+  },
+  {
+    "type": "item-group",
+    "name": "production",
+    "order": "b",
+    "inventory_order": "d",
+    "icon": "__base__/graphics/item-group/production.png"
+  },
+  {
+    "type": "item-subgroup",
+    "name": "tool",
+    "group": "production",
+    "order": "a"
+  },
+  {
+    "type": "item-subgroup",
+    "name": "energy",
+    "group": "production",
+    "order": "b"
+  },
+  {
+    "type": "item-subgroup",
+    "name": "extraction-machine",
+    "group": "production",
+    "order": "c"
+  },
+  {
+    "type": "item-subgroup",
+    "name": "smelting-machine",
+    "group": "production",
+    "order": "d"
+  },
+  {
+    "type": "item-subgroup",
+    "name": "production-machine",
+    "group": "production",
+    "order": "e"
+  },
+  {
+    "type": "item-subgroup",
+    "name": "module",
+    "group": "production",
+    "order": "f"
+  },
+  {
+    "type": "item-group",
+    "name": "combat",
+    "order": "d",
+    "inventory_order": "b",
+    "icon": "__base__/graphics/item-group/military.png"
+  },
+  {
+    "type": "item-subgroup",
+    "name": "gun",
+    "group": "combat",
+    "order": "a"
+  },
+  {
+    "type": "item-subgroup",
+    "name": "ammo",
+    "group": "combat",
+    "order": "b"
+  },
+  {
+    "type": "item-subgroup",
+    "name": "capsule",
+    "group": "combat",
+    "order": "c"
+  },
+  {
+    "type": "item-subgroup",
+    "name": "armor",
+    "group": "combat",
+    "order": "d"
+  },
+  {
+    "type": "item-subgroup",
+    "name": "equipment",
+    "group": "combat",
+    "order": "e"
+  },
+  {
+    "type": "item-subgroup",
+    "name": "defensive-structure",
+    "group": "combat",
+    "order": "f"
+  },
+  {
+    "type": "item-group",
+    "name": "intermediate-products",
+    "order": "c",
+    "inventory_order": "a",
+    "icon": "__base__/graphics/item-group/intermediate-products.png"
+  },
+  {
+    "type": "item-subgroup",
+    "name": "fluid-recipes",
+    "group": "intermediate-products",
+    "order": "a"
+  },
+  {
+    "type": "item-subgroup",
+    "name": "raw-resource",
+    "group": "intermediate-products",
+    "order": "b"
+  },
+  {
+    "type": "item-subgroup",
+    "name": "raw-material",
+    "group": "intermediate-products",
+    "order": "c"
+  },
+  {
+    "type": "item-subgroup",
+    "name": "barrel",
+    "group": "intermediate-products",
+    "order": "d"
+  },
+  {
+    "type": "item-subgroup",
+    "name": "intermediate-product",
+    "group": "intermediate-products",
+    "order": "e"
+  },
+  {
+    "type": "item-subgroup",
+    "name": "science-pack",
+    "group": "intermediate-products",
+    "order": "f"
+  },
+  {
+    "type": "item-group",
+    "name": "fluids",
+    "order": "e",
+    "inventory_order": "a",
+    "icon": "__base__/graphics/item-group/fluids.png"
+  },
+  {
+    "type": "item-subgroup",
+    "name": "fluid",
+    "group": "fluids",
+    "order": "a"
+  },
+  {
+    "type": "item-subgroup",
+    "name": "virtual-signal-number",
+    "group": "signals",
+    "order": "b"
+  },
+  {
+    "type": "item-subgroup",
+    "name": "virtual-signal-letter",
+    "group": "signals",
+    "order": "c"
+  },
+  {
+    "type": "item-subgroup",
+    "name": "virtual-signal-color",
+    "group": "signals",
+    "order": "d"
+  },
+  {
+    "type": "item-subgroup",
+    "name": "virtual-signal",
+    "group": "signals",
+    "order": "e"
+  },
+  {
     "type": "item",
     "name": "iron-chest",
     "icon": "__base__/graphics/icons/iron-chest.png",
@@ -2265,6 +1980,18 @@
   },
   {
     "type": "item",
+    "name": "smart-chest",
+    "icon": "__base__/graphics/icons/smart-chest.png",
+    "flags": [
+      "goes-to-quickbar"
+    ],
+    "subgroup": "storage",
+    "order": "a[items]-d[smart-chest]",
+    "place_result": "smart-chest",
+    "stack_size": 50
+  },
+  {
+    "type": "item",
     "name": "fast-transport-belt",
     "icon": "__base__/graphics/icons/fast-transport-belt.png",
     "flags": [
@@ -2273,7 +2000,7 @@
     "subgroup": "belt",
     "order": "a[transport-belt]-b[fast-transport-belt]",
     "place_result": "fast-transport-belt",
-    "stack_size": 100
+    "stack_size": 50
   },
   {
     "type": "item",
@@ -2285,7 +2012,7 @@
     "subgroup": "belt",
     "order": "a[transport-belt]-c[express-transport-belt]",
     "place_result": "express-transport-belt",
-    "stack_size": 100
+    "stack_size": 50
   },
   {
     "type": "item",
@@ -2313,38 +2040,14 @@
   },
   {
     "type": "item",
-    "name": "filter-inserter",
-    "icon": "__base__/graphics/icons/filter-inserter.png",
+    "name": "smart-inserter",
+    "icon": "__base__/graphics/icons/smart-inserter.png",
     "flags": [
       "goes-to-quickbar"
     ],
     "subgroup": "inserter",
-    "order": "e[filter-inserter]",
-    "place_result": "filter-inserter",
-    "stack_size": 50
-  },
-  {
-    "type": "item",
-    "name": "stack-inserter",
-    "icon": "__base__/graphics/icons/stack-inserter.png",
-    "flags": [
-      "goes-to-quickbar"
-    ],
-    "subgroup": "inserter",
-    "order": "f[stack-inserter]",
-    "place_result": "stack-inserter",
-    "stack_size": 50
-  },
-  {
-    "type": "item",
-    "name": "stack-filter-inserter",
-    "icon": "__base__/graphics/icons/stack-filter-inserter.png",
-    "flags": [
-      "goes-to-quickbar"
-    ],
-    "subgroup": "inserter",
-    "order": "g[stack-filter-inserter]",
-    "place_result": "stack-filter-inserter",
+    "order": "f[inserter]-e[smart-inserter]",
+    "place_result": "smart-inserter",
     "stack_size": 50
   },
   {
@@ -2384,19 +2087,19 @@
     "stack_size": 50
   },
   {
-    "type": "item-with-entity-data",
-    "name": "locomotive",
+    "type": "item",
+    "name": "diesel-locomotive",
     "icon": "__base__/graphics/icons/diesel-locomotive.png",
     "flags": [
       "goes-to-quickbar"
     ],
     "subgroup": "transport",
     "order": "a[train-system]-f[diesel-locomotive]",
-    "place_result": "locomotive",
+    "place_result": "diesel-locomotive",
     "stack_size": 5
   },
   {
-    "type": "item-with-entity-data",
+    "type": "item",
     "name": "cargo-wagon",
     "icon": "__base__/graphics/icons/cargo-wagon.png",
     "flags": [
@@ -2408,30 +2111,28 @@
     "stack_size": 5
   },
   {
-    "type": "item-with-entity-data",
-    "name": "fluid-wagon",
-    "icon": "__base__/graphics/icons/fluid-wagon.png",
+    "type": "item",
+    "name": "straight-rail",
+    "icon": "__base__/graphics/icons/straight-rail.png",
     "flags": [
       "goes-to-quickbar"
     ],
     "subgroup": "transport",
-    "order": "a[train-system]-h[fluid-wagon]",
-    "place_result": "fluid-wagon",
-    "stack_size": 5
+    "order": "a[train-system]-a[straight-rail]",
+    "place_result": "straight-rail",
+    "stack_size": 100
   },
   {
-    "type": "rail-planner",
-    "name": "rail",
-    "icon": "__base__/graphics/icons/rail.png",
+    "type": "item",
+    "name": "curved-rail",
+    "icon": "__base__/graphics/icons/curved-rail.png",
     "flags": [
       "goes-to-quickbar"
     ],
     "subgroup": "transport",
-    "order": "a[train-system]-a[rail]",
-    "place_result": "straight-rail",
-    "stack_size": 100,
-    "straight_rail": "straight-rail",
-    "curved_rail": "curved-rail"
+    "order": "a[train-system]-b[curved-rail]",
+    "place_result": "curved-rail",
+    "stack_size": 50
   },
   {
     "type": "item",
@@ -2459,7 +2160,7 @@
     "stack_size": 50
   },
   {
-    "type": "item-with-entity-data",
+    "type": "item",
     "name": "car",
     "icon": "__base__/graphics/icons/car.png",
     "flags": [
@@ -2471,7 +2172,7 @@
     "stack_size": 1
   },
   {
-    "type": "item-with-entity-data",
+    "type": "item",
     "name": "tank",
     "icon": "__base__/graphics/icons/tank.png",
     "flags": [
@@ -2503,7 +2204,7 @@
       "goes-to-main-inventory"
     ],
     "subgroup": "science-pack",
-    "order": "b[science-pack-2]",
+    "order": "a[science-pack-2]",
     "stack_size": 200,
     "durability": 1,
     "durability_description_key": "description.science-pack-remaining-amount"
@@ -2516,60 +2217,21 @@
       "goes-to-main-inventory"
     ],
     "subgroup": "science-pack",
-    "order": "c[science-pack-3]",
+    "order": "a[science-pack-3]",
     "stack_size": 200,
     "durability": 1,
     "durability_description_key": "description.science-pack-remaining-amount"
   },
   {
     "type": "tool",
-    "name": "military-science-pack",
-    "icon": "__base__/graphics/icons/military-science-pack.png",
+    "name": "alien-science-pack",
+    "icon": "__base__/graphics/icons/alien-science-pack.png",
     "flags": [
       "goes-to-main-inventory"
     ],
     "subgroup": "science-pack",
-    "order": "d[military-science-pack]",
+    "order": "d[alien-science-pack]",
     "stack_size": 200,
-    "durability": 1,
-    "durability_description_key": "description.science-pack-remaining-amount"
-  },
-  {
-    "type": "tool",
-    "name": "production-science-pack",
-    "icon": "__base__/graphics/icons/production-science-pack.png",
-    "flags": [
-      "goes-to-main-inventory"
-    ],
-    "subgroup": "science-pack",
-    "order": "e[production-science-pack]",
-    "stack_size": 200,
-    "durability": 1,
-    "durability_description_key": "description.science-pack-remaining-amount"
-  },
-  {
-    "type": "tool",
-    "name": "high-tech-science-pack",
-    "icon": "__base__/graphics/icons/high-tech-science-pack.png",
-    "flags": [
-      "goes-to-main-inventory"
-    ],
-    "subgroup": "science-pack",
-    "order": "f[high-tech-science-pack]",
-    "stack_size": 200,
-    "durability": 1,
-    "durability_description_key": "description.science-pack-remaining-amount"
-  },
-  {
-    "type": "tool",
-    "name": "space-science-pack",
-    "icon": "__base__/graphics/icons/space-science-pack.png",
-    "flags": [
-      "goes-to-main-inventory"
-    ],
-    "subgroup": "science-pack",
-    "order": "g[space-science-pack]",
-    "stack_size": 2000,
     "durability": 1,
     "durability_description_key": "description.science-pack-remaining-amount"
   },
@@ -2634,50 +2296,50 @@
   },
   {
     "type": "item",
-    "name": "underground-belt",
-    "icon": "__base__/graphics/icons/underground-belt.png",
+    "name": "basic-transport-belt-to-ground",
+    "icon": "__base__/graphics/icons/basic-transport-belt-to-ground.png",
     "flags": [
       "goes-to-quickbar"
     ],
     "subgroup": "belt",
-    "order": "b[underground-belt]-a[underground-belt]",
-    "place_result": "underground-belt",
+    "order": "b[transport-belt-to-ground]-a[basic-transport-belt-to-ground]",
+    "place_result": "basic-transport-belt-to-ground",
     "stack_size": 50
   },
   {
     "type": "item",
-    "name": "fast-underground-belt",
-    "icon": "__base__/graphics/icons/fast-underground-belt.png",
+    "name": "fast-transport-belt-to-ground",
+    "icon": "__base__/graphics/icons/fast-transport-belt-to-ground.png",
     "flags": [
       "goes-to-quickbar"
     ],
     "subgroup": "belt",
-    "order": "b[underground-belt]-b[fast-underground-belt]",
-    "place_result": "fast-underground-belt",
+    "order": "b[transport-belt-to-ground]-b[fast-transport-belt-to-ground]",
+    "place_result": "fast-transport-belt-to-ground",
     "stack_size": 50
   },
   {
     "type": "item",
-    "name": "express-underground-belt",
-    "icon": "__base__/graphics/icons/express-underground-belt.png",
+    "name": "express-transport-belt-to-ground",
+    "icon": "__base__/graphics/icons/express-transport-belt-to-ground.png",
     "flags": [
       "goes-to-quickbar"
     ],
     "subgroup": "belt",
-    "order": "b[underground-belt]-c[express-underground-belt]",
-    "place_result": "express-underground-belt",
+    "order": "b[transport-belt-to-ground]-c[express-transport-belt-to-ground]",
+    "place_result": "express-transport-belt-to-ground",
     "stack_size": 50
   },
   {
     "type": "item",
-    "name": "splitter",
-    "icon": "__base__/graphics/icons/splitter.png",
+    "name": "basic-splitter",
+    "icon": "__base__/graphics/icons/basic-splitter.png",
     "flags": [
       "goes-to-quickbar"
     ],
     "subgroup": "belt",
-    "order": "c[splitter]-a[splitter]",
-    "place_result": "splitter",
+    "order": "c[splitter]-a[basic-splitter]",
+    "place_result": "basic-splitter",
     "stack_size": 50
   },
   {
@@ -2706,52 +2368,13 @@
   },
   {
     "type": "item",
-    "name": "loader",
-    "icon": "__base__/graphics/icons/loader.png",
-    "flags": [
-      "goes-to-quickbar",
-      "hidden"
-    ],
-    "subgroup": "belt",
-    "order": "d[loader]-a[basic-loader]",
-    "place_result": "loader",
-    "stack_size": 50
-  },
-  {
-    "type": "item",
-    "name": "fast-loader",
-    "icon": "__base__/graphics/icons/fast-loader.png",
-    "flags": [
-      "goes-to-quickbar",
-      "hidden"
-    ],
-    "subgroup": "belt",
-    "order": "d[loader]-b[fast-loader]",
-    "place_result": "fast-loader",
-    "stack_size": 50
-  },
-  {
-    "type": "item",
-    "name": "express-loader",
-    "icon": "__base__/graphics/icons/express-loader.png",
-    "flags": [
-      "goes-to-quickbar",
-      "hidden"
-    ],
-    "subgroup": "belt",
-    "order": "d[loader]-c[express-loader]",
-    "place_result": "express-loader",
-    "stack_size": 50
-  },
-  {
-    "type": "item",
     "name": "advanced-circuit",
     "icon": "__base__/graphics/icons/advanced-circuit.png",
     "flags": [
       "goes-to-main-inventory"
     ],
     "subgroup": "intermediate-product",
-    "order": "f[advanced-circuit]",
+    "order": "d[advanced-circuit]",
     "stack_size": 200
   },
   {
@@ -2762,7 +2385,7 @@
       "goes-to-main-inventory"
     ],
     "subgroup": "intermediate-product",
-    "order": "g[processing-unit]",
+    "order": "e[processing-unit]",
     "stack_size": 100
   },
   {
@@ -2782,7 +2405,7 @@
     "name": "construction-robot",
     "icon": "__base__/graphics/icons/construction-robot.png",
     "flags": [
-      "goes-to-main-inventory"
+      "goes-to-quickbar"
     ],
     "subgroup": "logistic-network",
     "order": "a[robot]-b[construction-robot]",
@@ -2911,14 +2534,14 @@
   },
   {
     "type": "item",
-    "name": "accumulator",
-    "icon": "__base__/graphics/icons/accumulator.png",
+    "name": "basic-accumulator",
+    "icon": "__base__/graphics/icons/basic-accumulator.png",
     "flags": [
       "goes-to-quickbar"
     ],
     "subgroup": "energy",
-    "order": "e[accumulator]-a[accumulator]",
-    "place_result": "accumulator",
+    "order": "e[accumulator]-a[basic-accumulator]",
+    "place_result": "basic-accumulator",
     "stack_size": 50
   },
   {
@@ -2947,14 +2570,14 @@
   },
   {
     "type": "item",
-    "name": "beacon",
-    "icon": "__base__/graphics/icons/beacon.png",
+    "name": "basic-beacon",
+    "icon": "__base__/graphics/icons/basic-beacon.png",
     "flags": [
       "goes-to-quickbar"
     ],
     "subgroup": "module",
     "order": "a[beacon]",
-    "place_result": "beacon",
+    "place_result": "basic-beacon",
     "stack_size": 10
   },
   {
@@ -2971,14 +2594,14 @@
   },
   {
     "type": "item",
-    "name": "pump",
-    "icon": "__base__/graphics/icons/pump.png",
+    "name": "small-pump",
+    "icon": "__base__/graphics/icons/small-pump.png",
     "flags": [
       "goes-to-quickbar"
     ],
     "subgroup": "energy-pipe-distribution",
-    "order": "b[pipe]-c[pump]",
-    "place_result": "pump",
+    "order": "b[pipe]-c[small-pump]",
+    "place_result": "small-pump",
     "stack_size": 50
   },
   {
@@ -2992,26 +2615,7 @@
     "order": "c[automated-construction]-a[blueprint]",
     "stack_size": 1,
     "stackable": false,
-    "draw_label_for_cursor_render": true,
-    "item_to_clear": "electronic-circuit",
-    "selection_color": {
-      "r": 0,
-      "g": 1,
-      "b": 0
-    },
-    "alt_selection_color": {
-      "r": 0,
-      "g": 1,
-      "b": 0
-    },
-    "selection_mode": [
-      "blueprint"
-    ],
-    "alt_selection_mode": [
-      "blueprint"
-    ],
-    "selection_cursor_box_type": "copy",
-    "alt_selection_cursor_box_type": "copy"
+    "item_to_clear": "electronic-circuit"
   },
   {
     "type": "deconstruction-item",
@@ -3022,39 +2626,7 @@
     ],
     "subgroup": "tool",
     "order": "c[automated-construction]-b[deconstruction-planner]",
-    "stack_size": 1,
-    "entity_filter_count": 30,
-    "tile_filter_count": 30,
-    "selection_color": {
-      "r": 1,
-      "g": 0,
-      "b": 0
-    },
-    "alt_selection_color": {
-      "r": 0,
-      "g": 0,
-      "b": 1
-    },
-    "selection_mode": [
-      "deconstruct"
-    ],
-    "alt_selection_mode": [
-      "cancel-deconstruct"
-    ],
-    "selection_cursor_box_type": "not-allowed",
-    "alt_selection_cursor_box_type": "not-allowed"
-  },
-  {
-    "type": "blueprint-book",
-    "name": "blueprint-book",
-    "icon": "__base__/graphics/icons/blueprint-book.png",
-    "flags": [
-      "goes-to-quickbar"
-    ],
-    "subgroup": "tool",
-    "order": "c[automated-construction]-c[blueprint-book]",
-    "stack_size": 1,
-    "inventory_size": 1000
+    "stack_size": 1
   },
   {
     "type": "item",
@@ -3106,12 +2678,23 @@
   {
     "type": "item",
     "name": "empty-barrel",
-    "icon": "__base__/graphics/icons/fluid/barreling/empty-barrel.png",
+    "icon": "__base__/graphics/icons/fluid/empty-barrel.png",
     "flags": [
       "goes-to-main-inventory"
     ],
-    "subgroup": "intermediate-product",
-    "order": "d[empty-barrel]",
+    "subgroup": "barrel",
+    "order": "a[empty-barrel]",
+    "stack_size": 10
+  },
+  {
+    "type": "item",
+    "name": "crude-oil-barrel",
+    "icon": "__base__/graphics/icons/fluid/crude-oil-barrel.png",
+    "flags": [
+      "goes-to-main-inventory"
+    ],
+    "subgroup": "barrel",
+    "order": "b[crude-oil-barrel]",
     "stack_size": 10
   },
   {
@@ -3121,10 +2704,7 @@
     "flags": [
       "goes-to-main-inventory"
     ],
-    "fuel_category": "chemical",
     "fuel_value": "25MJ",
-    "fuel_acceleration_multiplier": 1.2,
-    "fuel_top_speed_multiplier": 1.05,
     "subgroup": "raw-resource",
     "order": "c[solid-fuel]",
     "stack_size": 50
@@ -3148,7 +2728,7 @@
       "goes-to-main-inventory"
     ],
     "subgroup": "intermediate-product",
-    "order": "h[engine-unit]",
+    "order": "f[engine-unit]",
     "stack_size": 50
   },
   {
@@ -3159,7 +2739,7 @@
       "goes-to-main-inventory"
     ],
     "subgroup": "intermediate-product",
-    "order": "i[electric-engine-unit]",
+    "order": "g[electric-engine-unit]",
     "stack_size": 50
   },
   {
@@ -3170,7 +2750,7 @@
       "goes-to-main-inventory"
     ],
     "subgroup": "intermediate-product",
-    "order": "j[explosives]",
+    "order": "h[explosives]",
     "stack_size": 50
   },
   {
@@ -3181,7 +2761,7 @@
       "goes-to-main-inventory"
     ],
     "subgroup": "intermediate-product",
-    "order": "j[battery]",
+    "order": "i[battery]",
     "stack_size": 200
   },
   {
@@ -3192,7 +2772,7 @@
       "goes-to-main-inventory"
     ],
     "subgroup": "intermediate-product",
-    "order": "l[flying-robot-frame]",
+    "order": "j[flying-robot-frame]",
     "stack_size": 50
   },
   {
@@ -3204,7 +2784,7 @@
     ],
     "subgroup": "circuit-network",
     "place_result": "arithmetic-combinator",
-    "order": "c[combinators]-a[arithmetic-combinator]",
+    "order": "b[combinators]-a[arithmetic-combinator]",
     "stack_size": 50
   },
   {
@@ -3216,7 +2796,7 @@
     ],
     "subgroup": "circuit-network",
     "place_result": "decider-combinator",
-    "order": "c[combinators]-b[decider-combinator]",
+    "order": "b[combinators]-b[decider-combinator]",
     "stack_size": 50
   },
   {
@@ -3228,31 +2808,7 @@
     ],
     "subgroup": "circuit-network",
     "place_result": "constant-combinator",
-    "order": "c[combinators]-c[constant-combinator]",
-    "stack_size": 50
-  },
-  {
-    "type": "item",
-    "name": "power-switch",
-    "icon": "__base__/graphics/icons/power-switch.png",
-    "flags": [
-      "goes-to-quickbar"
-    ],
-    "subgroup": "circuit-network",
-    "place_result": "power-switch",
-    "order": "d[other]-a[power-switch]",
-    "stack_size": 50
-  },
-  {
-    "type": "item",
-    "name": "programmable-speaker",
-    "icon": "__base__/graphics/icons/programmable-speaker.png",
-    "flags": [
-      "goes-to-quickbar"
-    ],
-    "subgroup": "circuit-network",
-    "order": "d[other]-b[programmable-speaker]",
-    "place_result": "programmable-speaker",
+    "order": "b[combinators]-c[constant-combinator]",
     "stack_size": 50
   },
   {
@@ -3263,7 +2819,7 @@
       "goes-to-main-inventory"
     ],
     "subgroup": "intermediate-product",
-    "order": "m[rocket-structure]",
+    "order": "k[rocket-structure]",
     "stack_size": 10
   },
   {
@@ -3273,12 +2829,8 @@
     "flags": [
       "goes-to-main-inventory"
     ],
-    "fuel_category": "chemical",
-    "fuel_value": "225MJ",
-    "fuel_acceleration_multiplier": 1.8,
-    "fuel_top_speed_multiplier": 1.15,
     "subgroup": "intermediate-product",
-    "order": "n[rocket-fuel]",
+    "order": "l[rocket-fuel]",
     "stack_size": 10
   },
   {
@@ -3289,7 +2841,7 @@
       "goes-to-main-inventory"
     ],
     "subgroup": "intermediate-product",
-    "order": "o[rocket-control-unit]",
+    "order": "m[rocket-control-unit]",
     "stack_size": 10
   },
   {
@@ -3301,7 +2853,7 @@
       "hidden"
     ],
     "subgroup": "intermediate-product",
-    "order": "p[rocket-part]",
+    "order": "n[rocket-part]",
     "stack_size": 5
   },
   {
@@ -3312,7 +2864,7 @@
       "goes-to-main-inventory"
     ],
     "subgroup": "intermediate-product",
-    "order": "q[satellite]",
+    "order": "o[satellite]",
     "stack_size": 1
   },
   {
@@ -3323,7 +2875,7 @@
       "goes-to-main-inventory"
     ],
     "subgroup": "terrain",
-    "order": "b[concrete]-a[plain]",
+    "order": "b[concrete]",
     "stack_size": 100,
     "place_as_tile": {
       "result": "concrete",
@@ -3332,255 +2884,6 @@
         "water-tile"
       ]
     }
-  },
-  {
-    "type": "item",
-    "name": "hazard-concrete",
-    "icon": "__base__/graphics/icons/hazard-concrete.png",
-    "flags": [
-      "goes-to-main-inventory"
-    ],
-    "subgroup": "terrain",
-    "order": "b[concrete]-b[hazard]",
-    "stack_size": 100,
-    "place_as_tile": {
-      "result": "hazard-concrete-left",
-      "condition_size": 4,
-      "condition": [
-        "water-tile"
-      ]
-    }
-  },
-  {
-    "type": "item",
-    "name": "landfill",
-    "icon": "__base__/graphics/icons/landfill.png",
-    "flags": [
-      "goes-to-main-inventory"
-    ],
-    "subgroup": "terrain",
-    "order": "c[landfill]-a[dirt]",
-    "stack_size": 100,
-    "place_as_tile": {
-      "result": "grass",
-      "condition_size": 1,
-      "condition": [
-        "ground-tile"
-      ]
-    }
-  },
-  {
-    "type": "selection-tool",
-    "name": "dummy-selection-tool",
-    "localised_name": [
-      "item-name.blueprint"
-    ],
-    "icon": "__base__/graphics/icons/blueprint.png",
-    "flags": [
-      "goes-to-quickbar",
-      "hidden"
-    ],
-    "subgroup": "tool",
-    "order": "c[automated-construction]-a[blueprint]",
-    "stack_size": 1,
-    "stackable": false,
-    "selection_color": {
-      "r": 0,
-      "g": 1,
-      "b": 0
-    },
-    "alt_selection_color": {
-      "r": 0,
-      "g": 1,
-      "b": 0
-    },
-    "selection_mode": [
-      "blueprint"
-    ],
-    "alt_selection_mode": [
-      "blueprint"
-    ],
-    "selection_cursor_box_type": "copy",
-    "alt_selection_cursor_box_type": "copy"
-  },
-  {
-    "type": "item",
-    "name": "electric-energy-interface",
-    "icons": [
-      {
-        "icon": "__base__/graphics/icons/accumulator.png",
-        "tint": {
-          "r": 1,
-          "g": 0.8,
-          "b": 1,
-          "a": 1
-        }
-      }
-    ],
-    "flags": [
-      "goes-to-quickbar",
-      "hidden"
-    ],
-    "subgroup": "energy",
-    "order": "e[electric-energy-interface]-b[electric-energy-interface]",
-    "place_result": "electric-energy-interface",
-    "stack_size": 50
-  },
-  {
-    "type": "item",
-    "name": "uranium-ore",
-    "icon": "__base__/graphics/icons/uranium-ore.png",
-    "flags": [
-      "goes-to-main-inventory"
-    ],
-    "subgroup": "raw-resource",
-    "order": "g[uranium-ore]",
-    "stack_size": 50
-  },
-  {
-    "type": "item",
-    "name": "nuclear-reactor",
-    "icon": "__base__/graphics/icons/nuclear-reactor.png",
-    "flags": [
-      "goes-to-quickbar"
-    ],
-    "subgroup": "energy",
-    "order": "f[nuclear-energy]-a[reactor]",
-    "place_result": "nuclear-reactor",
-    "stack_size": 50
-  },
-  {
-    "type": "item",
-    "name": "uranium-235",
-    "icon": "__base__/graphics/icons/uranium-235.png",
-    "flags": [
-      "goes-to-main-inventory"
-    ],
-    "subgroup": "intermediate-product",
-    "order": "g[uranium-235]",
-    "stack_size": 100
-  },
-  {
-    "type": "item",
-    "name": "uranium-238",
-    "icon": "__base__/graphics/icons/uranium-238.png",
-    "flags": [
-      "goes-to-main-inventory"
-    ],
-    "subgroup": "intermediate-product",
-    "order": "g[uranium-238]",
-    "stack_size": 100
-  },
-  {
-    "type": "item",
-    "name": "centrifuge",
-    "icon": "__base__/graphics/icons/centrifuge.png",
-    "flags": [
-      "goes-to-quickbar"
-    ],
-    "subgroup": "production-machine",
-    "order": "g[centrifuge]",
-    "place_result": "centrifuge",
-    "stack_size": 50
-  },
-  {
-    "type": "item",
-    "name": "uranium-fuel-cell",
-    "icon": "__base__/graphics/icons/uranium-fuel-cell.png",
-    "flags": [
-      "goes-to-main-inventory"
-    ],
-    "subgroup": "intermediate-product",
-    "order": "r[uranium-processing]-a[uranium-fuel-cell]",
-    "fuel_category": "nuclear",
-    "burnt_result": "used-up-uranium-fuel-cell",
-    "fuel_value": "8GJ",
-    "stack_size": 50
-  },
-  {
-    "type": "item",
-    "name": "used-up-uranium-fuel-cell",
-    "icon": "__base__/graphics/icons/used-up-uranium-fuel-cell.png",
-    "flags": [
-      "goes-to-main-inventory"
-    ],
-    "subgroup": "intermediate-product",
-    "order": "i[used-up-uranium-fuel-cell]",
-    "stack_size": 50
-  },
-  {
-    "type": "item",
-    "name": "heat-exchanger",
-    "icon": "__base__/graphics/icons/heat-boiler.png",
-    "flags": [
-      "goes-to-quickbar"
-    ],
-    "subgroup": "energy",
-    "order": "f[nuclear-energy]-b[heat-exchanger]",
-    "place_result": "heat-exchanger",
-    "stack_size": 50
-  },
-  {
-    "type": "item",
-    "name": "steam-turbine",
-    "icon": "__base__/graphics/icons/steam-turbine.png",
-    "flags": [
-      "goes-to-quickbar"
-    ],
-    "subgroup": "energy",
-    "order": "b[steam-power]-c[steam-turbine]",
-    "place_result": "steam-turbine",
-    "stack_size": 10
-  },
-  {
-    "type": "item",
-    "name": "heat-pipe",
-    "icon": "__base__/graphics/icons/heat-pipe.png",
-    "flags": [
-      "goes-to-quickbar"
-    ],
-    "subgroup": "energy",
-    "order": "f[nuclear-energy]-c[heat-pipe]",
-    "place_result": "heat-pipe",
-    "stack_size": 50
-  },
-  {
-    "type": "item",
-    "name": "simple-entity-with-force",
-    "icon": "__base__/graphics/icons/steel-chest.png",
-    "flags": [
-      "goes-to-quickbar",
-      "hidden"
-    ],
-    "subgroup": "storage",
-    "order": "s[simple-entity-with-force]-f[simple-entity-with-force]",
-    "place_result": "simple-entity-with-force",
-    "stack_size": 50
-  },
-  {
-    "type": "item",
-    "name": "simple-entity-with-owner",
-    "icon": "__base__/graphics/icons/wooden-chest.png",
-    "flags": [
-      "goes-to-quickbar",
-      "hidden"
-    ],
-    "subgroup": "storage",
-    "order": "s[simple-entity-with-owner]-o[simple-entity-with-owner]",
-    "place_result": "simple-entity-with-owner",
-    "stack_size": 50
-  },
-  {
-    "type": "item-with-tags",
-    "name": "item-with-tags",
-    "icon": "__base__/graphics/icons/wooden-chest.png",
-    "flags": [
-      "goes-to-quickbar",
-      "hidden"
-    ],
-    "subgroup": "storage",
-    "order": "s[item-with-tags]-o[item-with-tags]",
-    "stack_size": 1
   },
   {
     "type": "mining-tool",
@@ -3616,8 +2919,6 @@
       "goes-to-main-inventory"
     ],
     "subgroup": "module",
-    "category": "speed",
-    "tier": 1,
     "order": "a[speed]-a[speed-module-1]",
     "stack_size": 50,
     "default_request_amount": 10,
@@ -3638,8 +2939,6 @@
       "goes-to-main-inventory"
     ],
     "subgroup": "module",
-    "category": "speed",
-    "tier": 2,
     "order": "a[speed]-b[speed-module-2]",
     "stack_size": 50,
     "default_request_amount": 10,
@@ -3660,8 +2959,6 @@
       "goes-to-main-inventory"
     ],
     "subgroup": "module",
-    "category": "speed",
-    "tier": 3,
     "order": "a[speed]-c[speed-module-3]",
     "stack_size": 50,
     "default_request_amount": 10,
@@ -3682,8 +2979,6 @@
       "goes-to-main-inventory"
     ],
     "subgroup": "module",
-    "category": "effectivity",
-    "tier": 1,
     "order": "c[effectivity]-a[effectivity-module-1]",
     "stack_size": 50,
     "default_request_amount": 10,
@@ -3699,8 +2994,6 @@
       "goes-to-main-inventory"
     ],
     "subgroup": "module",
-    "category": "effectivity",
-    "tier": 2,
     "order": "c[effectivity]-b[effectivity-module-2]",
     "stack_size": 50,
     "default_request_amount": 10,
@@ -3716,8 +3009,6 @@
       "goes-to-main-inventory"
     ],
     "subgroup": "module",
-    "category": "effectivity",
-    "tier": 3,
     "order": "c[effectivity]-c[effectivity-module-3]",
     "stack_size": 50,
     "default_request_amount": 10,
@@ -3733,8 +3024,6 @@
       "goes-to-main-inventory"
     ],
     "subgroup": "module",
-    "category": "productivity",
-    "tier": 1,
     "order": "c[productivity]-a[productivity-module-1]",
     "stack_size": 50,
     "default_request_amount": 10,
@@ -3746,7 +3035,7 @@
         "bonus": 0.4
       },
       "pollution": {
-        "bonus": 0.05
+        "bonus": 0.3
       },
       "speed": {}
     },
@@ -3760,8 +3049,6 @@
       "goes-to-main-inventory"
     ],
     "subgroup": "module",
-    "category": "productivity",
-    "tier": 2,
     "order": "c[productivity]-b[productivity-module-2]",
     "stack_size": 50,
     "default_request_amount": 10,
@@ -3773,7 +3060,7 @@
         "bonus": 0.6
       },
       "pollution": {
-        "bonus": 0.075
+        "bonus": 0.4
       },
       "speed": {}
     },
@@ -3787,8 +3074,6 @@
       "goes-to-main-inventory"
     ],
     "subgroup": "module",
-    "category": "productivity",
-    "tier": 3,
     "order": "c[productivity]-c[productivity-module-3]",
     "stack_size": 50,
     "default_request_amount": 10,
@@ -3800,7 +3085,7 @@
         "bonus": 0.8
       },
       "pollution": {
-        "bonus": 0.1
+        "bonus": 0.5
       },
       "speed": {}
     },
@@ -3817,17 +3102,5 @@
     "order": "b[turret]-b[laser-turret]",
     "place_result": "laser-turret",
     "stack_size": 50
-  },
-  {
-    "type": "item",
-    "name": "flamethrower-turret",
-    "icon": "__base__/graphics/icons/flamethrower-turret.png",
-    "flags": [
-      "goes-to-quickbar"
-    ],
-    "subgroup": "defensive-structure",
-    "order": "b[turret]-c[flamethrower-turret]",
-    "place_result": "flamethrower-turret",
-    "stack_size": 50
   }
-]
+];

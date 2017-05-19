@@ -1972,7 +1972,6 @@
         "count_max": 10
       }
     ],
-    "count_as_rock_for_filtered_deconstruction": true,
     "mined_sound": {
       "filename": "__base__/sound/deconstruct-bricks.ogg"
     },
@@ -2095,7 +2094,6 @@
         "count_max": 25
       }
     ],
-    "count_as_rock_for_filtered_deconstruction": true,
     "mined_sound": {
       "filename": "__base__/sound/deconstruct-bricks.ogg"
     },
@@ -2567,7 +2565,6 @@
         "count_max": 50
       }
     ],
-    "count_as_rock_for_filtered_deconstruction": true,
     "mined_sound": {
       "filename": "__base__/sound/deconstruct-bricks.ogg"
     },
@@ -2877,7 +2874,6 @@
         "count_max": 50
       }
     ],
-    "count_as_rock_for_filtered_deconstruction": true,
     "mined_sound": {
       "filename": "__base__/sound/deconstruct-bricks.ogg"
     },

@@ -1,4 +1,4 @@
-[
+module.exports = [
   null,
   null,
   {
@@ -29616,4 +29616,4 @@
     "dying_speed": 0.01,
     "final_render_layer": "corpse"
   }
-]
+];

@@ -1,4 +1,4 @@
-[
+module.exports = [
   {
     "type": "ammo",
     "name": "piercing-rounds-magazine",
@@ -3830,4 +3830,4 @@
     "place_result": "flamethrower-turret",
     "stack_size": 50
   }
-]
+];

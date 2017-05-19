@@ -1,4 +1,4 @@
-[
+module.exports = [
   null,
   null,
   {
@@ -915,14 +915,6 @@
       ],
       "production_type": "output"
     },
-    "fluid_input": {
-      "name": "water",
-      "amount": 0
-    },
-    "fluid_output": {
-      "name": "steam",
-      "amount": 0
-    },
     "energy_consumption": "1.8MW",
     "energy_source": {
       "type": "burner",
@@ -1319,7 +1311,7 @@
         ]
       }
     },
-    "circuit_wire_max_distance": 9
+    "circuit_wire_max_distance": 7.5
   },
   {
     "type": "electric-pole",
@@ -2186,7 +2178,7 @@
       "production_type": "input-output"
     },
     "fluid_input": {
-      "name": "steam",
+      "name": "water",
       "amount": 0,
       "minimum_temperature": 100
     },
@@ -2501,7 +2493,7 @@
       null,
       null
     ],
-    "circuit_wire_max_distance": 9
+    "circuit_wire_max_distance": 7.5
   },
   null,
   null,
@@ -3265,7 +3257,7 @@
         ]
       }
     },
-    "circuit_wire_max_distance": 9
+    "circuit_wire_max_distance": 7.5
   },
   {
     "type": "arrow",
@@ -4135,7 +4127,7 @@
         ]
       }
     },
-    "circuit_wire_max_distance": 9
+    "circuit_wire_max_distance": 7.5
   },
   {
     "type": "corpse",
@@ -4399,9 +4391,6 @@
       "north": {
         "priority": "extra-high",
         "filename": "__base__/graphics/entity/electric-mining-drill/electric-mining-drill-N-drill-shadow.png",
-        "flags": [
-          "shadow"
-        ],
         "line_length": 8,
         "width": 101,
         "height": 111,
@@ -4412,9 +4401,6 @@
         "hr_version": {
           "priority": "extra-high",
           "filename": "__base__/graphics/entity/electric-mining-drill/hr-electric-mining-drill-N-drill-shadow.png",
-          "flags": [
-            "shadow"
-          ],
           "line_length": 8,
           "width": 201,
           "height": 223,
@@ -4428,9 +4414,6 @@
       "east": {
         "priority": "extra-high",
         "filename": "__base__/graphics/entity/electric-mining-drill/electric-mining-drill-E-drill-shadow.png",
-        "flags": [
-          "shadow"
-        ],
         "line_length": 8,
         "width": 110,
         "height": 97,
@@ -4441,9 +4424,6 @@
         "hr_version": {
           "priority": "extra-high",
           "filename": "__base__/graphics/entity/electric-mining-drill/hr-electric-mining-drill-E-drill-shadow.png",
-          "flags": [
-            "shadow"
-          ],
           "line_length": 8,
           "width": 221,
           "height": 195,
@@ -4457,9 +4437,6 @@
       "south": {
         "priority": "extra-high",
         "filename": "__base__/graphics/entity/electric-mining-drill/electric-mining-drill-S-drill-shadow.png",
-        "flags": [
-          "shadow"
-        ],
         "line_length": 8,
         "width": 100,
         "height": 103,
@@ -4470,9 +4447,6 @@
         "hr_version": {
           "priority": "extra-high",
           "filename": "__base__/graphics/entity/electric-mining-drill/hr-electric-mining-drill-S-drill-shadow.png",
-          "flags": [
-            "shadow"
-          ],
           "line_length": 8,
           "width": 200,
           "height": 206,
@@ -4486,9 +4460,6 @@
       "west": {
         "priority": "extra-high",
         "filename": "__base__/graphics/entity/electric-mining-drill/electric-mining-drill-W-drill-shadow.png",
-        "flags": [
-          "shadow"
-        ],
         "line_length": 8,
         "width": 114,
         "height": 97,
@@ -4499,9 +4470,6 @@
         "hr_version": {
           "priority": "extra-high",
           "filename": "__base__/graphics/entity/electric-mining-drill/hr-electric-mining-drill-W-drill-shadow.png",
-          "flags": [
-            "shadow"
-          ],
           "line_length": 8,
           "width": 229,
           "height": 195,
@@ -4595,9 +4563,6 @@
       "north": {
         "priority": "extra-high",
         "filename": "__base__/graphics/entity/electric-mining-drill/electric-mining-drill-N-patch-shadow.png",
-        "flags": [
-          "shadow"
-        ],
         "line_length": 1,
         "width": 110,
         "height": 98,
@@ -4606,9 +4571,6 @@
         "hr_version": {
           "priority": "extra-high",
           "filename": "__base__/graphics/entity/electric-mining-drill/hr-electric-mining-drill-N-patch-shadow.png",
-          "flags": [
-            "shadow"
-          ],
           "line_length": 1,
           "width": 220,
           "height": 197,
@@ -4620,9 +4582,6 @@
       "east": {
         "priority": "extra-high",
         "filename": "__base__/graphics/entity/electric-mining-drill/electric-mining-drill-E-patch-shadow.png",
-        "flags": [
-          "shadow"
-        ],
         "line_length": 1,
         "width": 112,
         "height": 98,
@@ -4631,9 +4590,6 @@
         "hr_version": {
           "priority": "extra-high",
           "filename": "__base__/graphics/entity/electric-mining-drill/hr-electric-mining-drill-E-patch-shadow.png",
-          "flags": [
-            "shadow"
-          ],
           "line_length": 1,
           "width": 224,
           "height": 198,
@@ -4645,9 +4601,6 @@
       "south": {
         "priority": "extra-high",
         "filename": "__base__/graphics/entity/electric-mining-drill/electric-mining-drill-S-patch-shadow.png",
-        "flags": [
-          "shadow"
-        ],
         "line_length": 1,
         "width": 110,
         "height": 98,
@@ -4656,9 +4609,6 @@
         "hr_version": {
           "priority": "extra-high",
           "filename": "__base__/graphics/entity/electric-mining-drill/hr-electric-mining-drill-S-patch-shadow.png",
-          "flags": [
-            "shadow"
-          ],
           "line_length": 1,
           "width": 220,
           "height": 197,
@@ -4670,9 +4620,6 @@
       "west": {
         "priority": "extra-high",
         "filename": "__base__/graphics/entity/electric-mining-drill/electric-mining-drill-W-patch-shadow.png",
-        "flags": [
-          "shadow"
-        ],
         "line_length": 1,
         "width": 110,
         "height": 98,
@@ -4681,9 +4628,6 @@
         "hr_version": {
           "priority": "extra-high",
           "filename": "__base__/graphics/entity/electric-mining-drill/hr-electric-mining-drill-W-patch-shadow.png",
-          "flags": [
-            "shadow"
-          ],
           "line_length": 1,
           "width": 220,
           "height": 197,
@@ -5111,7 +5055,7 @@
       null,
       null
     ],
-    "circuit_wire_max_distance": 9
+    "circuit_wire_max_distance": 7.5
   },
   {
     "type": "mining-drill",
@@ -5177,195 +5121,44 @@
     "mining_power": 2.5,
     "animations": {
       "north": {
-        "layers": [
-          {
-            "priority": "extra-high",
-            "width": 87,
-            "height": 95,
-            "line_length": 4,
-            "filename": "__base__/graphics/entity/burner-mining-drill/burner-mining-drill-N.png",
-            "frame_count": 32,
-            "animation_speed": 0.5,
-            "run_mode": "forward-then-backward",
-            "hr_version": {
-              "priority": "extra-high",
-              "width": 173,
-              "height": 188,
-              "line_length": 4,
-              "filename": "__base__/graphics/entity/burner-mining-drill/hr-burner-mining-drill-N.png",
-              "frame_count": 32,
-              "animation_speed": 0.5,
-              "run_mode": "forward-then-backward",
-              "scale": 0.5
-            }
-          },
-          {
-            "priority": "extra-high",
-            "width": 109,
-            "height": 76,
-            "line_length": 4,
-            "filename": "__base__/graphics/entity/burner-mining-drill/burner-mining-drill-N-shadow.png",
-            "frame_count": 32,
-            "animation_speed": 0.5,
-            "run_mode": "forward-then-backward",
-            "draw_as_shadow": true,
-            "hr_version": {
-              "priority": "extra-high",
-              "width": 217,
-              "height": 150,
-              "line_length": 4,
-              "filename": "__base__/graphics/entity/burner-mining-drill/hr-burner-mining-drill-N-shadow.png",
-              "frame_count": 32,
-              "animation_speed": 0.5,
-              "run_mode": "forward-then-backward",
-              "draw_as_shadow": true,
-              "scale": 0.5
-            }
-          }
-        ]
+        "priority": "extra-high",
+        "width": 110,
+        "height": 76,
+        "line_length": 4,
+        "filename": "__base__/graphics/entity/burner-mining-drill/north.png",
+        "frame_count": 32,
+        "animation_speed": 0.5,
+        "run_mode": "forward-then-backward"
       },
       "east": {
-        "layers": [
-          {
-            "priority": "extra-high",
-            "width": 93,
-            "height": 84,
-            "line_length": 4,
-            "filename": "__base__/graphics/entity/burner-mining-drill/burner-mining-drill-E.png",
-            "frame_count": 32,
-            "animation_speed": 0.5,
-            "run_mode": "forward-then-backward",
-            "hr_version": {
-              "priority": "extra-high",
-              "width": 185,
-              "height": 168,
-              "line_length": 4,
-              "filename": "__base__/graphics/entity/burner-mining-drill/hr-burner-mining-drill-E.png",
-              "frame_count": 32,
-              "animation_speed": 0.5,
-              "run_mode": "forward-then-backward",
-              "scale": 0.5
-            }
-          },
-          {
-            "priority": "extra-high",
-            "width": 93,
-            "height": 65,
-            "line_length": 4,
-            "filename": "__base__/graphics/entity/burner-mining-drill/burner-mining-drill-E-shadow.png",
-            "frame_count": 32,
-            "animation_speed": 0.5,
-            "run_mode": "forward-then-backward",
-            "draw_as_shadow": true,
-            "hr_version": {
-              "width": 185,
-              "height": 128,
-              "line_length": 4,
-              "filename": "__base__/graphics/entity/burner-mining-drill/hr-burner-mining-drill-E-shadow.png",
-              "frame_count": 32,
-              "animation_speed": 0.5,
-              "run_mode": "forward-then-backward",
-              "draw_as_shadow": true,
-              "scale": 0.5
-            }
-          }
-        ]
+        "priority": "extra-high",
+        "width": 94,
+        "height": 74,
+        "line_length": 4,
+        "filename": "__base__/graphics/entity/burner-mining-drill/east.png",
+        "frame_count": 32,
+        "animation_speed": 0.5,
+        "run_mode": "forward-then-backward"
       },
       "south": {
-        "layers": [
-          {
-            "priority": "extra-high",
-            "width": 87,
-            "height": 87,
-            "line_length": 4,
-            "filename": "__base__/graphics/entity/burner-mining-drill/burner-mining-drill-S.png",
-            "frame_count": 32,
-            "animation_speed": 0.5,
-            "run_mode": "forward-then-backward",
-            "hr_version": {
-              "priority": "extra-high",
-              "width": 174,
-              "height": 174,
-              "line_length": 4,
-              "filename": "__base__/graphics/entity/burner-mining-drill/hr-burner-mining-drill-S.png",
-              "frame_count": 32,
-              "animation_speed": 0.5,
-              "run_mode": "forward-then-backward",
-              "scale": 0.5
-            }
-          },
-          {
-            "priority": "extra-high",
-            "width": 88,
-            "height": 69,
-            "line_length": 4,
-            "filename": "__base__/graphics/entity/burner-mining-drill/burner-mining-drill-S-shadow.png",
-            "frame_count": 32,
-            "animation_speed": 0.5,
-            "run_mode": "forward-then-backward",
-            "draw_as_shadow": true,
-            "hr_version": {
-              "priority": "extra-high",
-              "width": 174,
-              "height": 137,
-              "line_length": 4,
-              "filename": "__base__/graphics/entity/burner-mining-drill/hr-burner-mining-drill-S-shadow.png",
-              "frame_count": 32,
-              "animation_speed": 0.5,
-              "run_mode": "forward-then-backward",
-              "draw_as_shadow": true,
-              "scale": 0.5
-            }
-          }
-        ]
+        "priority": "extra-high",
+        "width": 89,
+        "height": 88,
+        "line_length": 4,
+        "filename": "__base__/graphics/entity/burner-mining-drill/south.png",
+        "frame_count": 32,
+        "animation_speed": 0.5,
+        "run_mode": "forward-then-backward"
       },
       "west": {
-        "layers": [
-          {
-            "priority": "extra-high",
-            "width": 91,
-            "height": 88,
-            "line_length": 4,
-            "filename": "__base__/graphics/entity/burner-mining-drill/burner-mining-drill-W.png",
-            "frame_count": 32,
-            "animation_speed": 0.5,
-            "run_mode": "forward-then-backward",
-            "hr_version": {
-              "priority": "extra-high",
-              "width": 180,
-              "height": 176,
-              "line_length": 4,
-              "filename": "__base__/graphics/entity/burner-mining-drill/hr-burner-mining-drill-W.png",
-              "frame_count": 32,
-              "animation_speed": 0.5,
-              "run_mode": "forward-then-backward",
-              "scale": 0.5
-            }
-          },
-          {
-            "priority": "extra-high",
-            "width": 89,
-            "height": 66,
-            "line_length": 4,
-            "filename": "__base__/graphics/entity/burner-mining-drill/burner-mining-drill-W-shadow.png",
-            "frame_count": 32,
-            "animation_speed": 0.5,
-            "run_mode": "forward-then-backward",
-            "draw_as_shadow": true,
-            "hr_version": {
-              "priority": "extra-high",
-              "width": 176,
-              "height": 130,
-              "line_length": 4,
-              "filename": "__base__/graphics/entity/burner-mining-drill/hr-burner-mining-drill-W-shadow.png",
-              "frame_count": 32,
-              "animation_speed": 0.5,
-              "run_mode": "forward-then-backward",
-              "draw_as_shadow": true,
-              "scale": 0.5
-            }
-          }
-        ]
+        "priority": "extra-high",
+        "width": 91,
+        "height": 78,
+        "line_length": 4,
+        "filename": "__base__/graphics/entity/burner-mining-drill/west.png",
+        "frame_count": 32,
+        "animation_speed": 0.5,
+        "run_mode": "forward-then-backward"
       }
     },
     "monitor_visualization_tint": {
@@ -5391,7 +5184,7 @@
       null,
       null
     ],
-    "circuit_wire_max_distance": 9
+    "circuit_wire_max_distance": 7.5
   },
   {
     "type": "particle",
@@ -7422,6 +7215,1049 @@
   null,
   null,
   null,
+  {
+    "type": "noise-layer",
+    "name": "trees"
+  },
+  {
+    "type": "tree",
+    "name": "dead-tree",
+    "icon": "__base__/graphics/icons/dead-tree.png",
+    "flags": [
+      "placeable-neutral",
+      "placeable-off-grid",
+      "breaths-air"
+    ],
+    "minable": {
+      "mining_particle": "wooden-particle",
+      "mining_time": 1,
+      "result": "raw-wood",
+      "count": 2
+    },
+    "max_health": 20,
+    "collision_box": [
+      [
+        null,
+        null
+      ],
+      [
+        0.6,
+        0.6
+      ]
+    ],
+    "selection_box": [
+      [
+        null,
+        null
+      ],
+      [
+        0.8,
+        0.8
+      ]
+    ],
+    "subgroup": "trees",
+    "order": "a[tree]-b[dead-tree]",
+    "vehicle_impact_sound": {
+      "filename": "__base__/sound/car-wood-impact.ogg",
+      "volume": 1
+    },
+    "pictures": [
+      {
+        "filename": "__base__/graphics/entity/tree/dead-tree/dead-tree-01.png",
+        "flags": [
+          "mipmap"
+        ],
+        "width": 108,
+        "height": 114
+      },
+      {
+        "filename": "__base__/graphics/entity/tree/dead-tree/dead-tree-02.png",
+        "flags": [
+          "mipmap"
+        ],
+        "width": 155,
+        "height": 97,
+        "shift": [
+          0.2,
+          0.2
+        ]
+      },
+      {
+        "filename": "__base__/graphics/entity/tree/dead-tree/dead-tree-03.png",
+        "flags": [
+          "mipmap"
+        ],
+        "width": 138,
+        "height": 124,
+        "shift": [
+          0.4,
+          null
+        ]
+      },
+      {
+        "filename": "__base__/graphics/entity/tree/dead-tree/dead-tree-04.png",
+        "flags": [
+          "mipmap"
+        ],
+        "width": 112,
+        "height": 123,
+        "shift": [
+          0,
+          null
+        ]
+      },
+      {
+        "filename": "__base__/graphics/entity/tree/dead-tree/dead-tree-05.png",
+        "flags": [
+          "mipmap"
+        ],
+        "width": 111,
+        "height": 113
+      },
+      {
+        "filename": "__base__/graphics/entity/tree/dead-tree/dead-tree-06.png",
+        "flags": [
+          "mipmap"
+        ],
+        "width": 78,
+        "height": 83
+      },
+      {
+        "filename": "__base__/graphics/entity/tree/dead-tree/dead-tree-07.png",
+        "flags": [
+          "mipmap"
+        ],
+        "width": 90,
+        "height": 105
+      }
+    ]
+  },
+  {
+    "type": "tree",
+    "name": "dry-tree",
+    "icon": "__base__/graphics/icons/dry-tree.png",
+    "flags": [
+      "placeable-neutral",
+      "placeable-off-grid",
+      "breaths-air"
+    ],
+    "minable": {
+      "count": 4,
+      "mining_particle": "wooden-particle",
+      "mining_time": 1,
+      "result": "raw-wood"
+    },
+    "max_health": 20,
+    "collision_box": [
+      [
+        null,
+        null
+      ],
+      [
+        0.4,
+        0.2
+      ]
+    ],
+    "selection_box": [
+      [
+        null,
+        null
+      ],
+      [
+        0.6,
+        0.3
+      ]
+    ],
+    "drawing_box": [
+      [
+        null,
+        null
+      ],
+      [
+        0.6,
+        0.3
+      ]
+    ],
+    "subgroup": "trees",
+    "order": "a[tree]-c[dry-tree]",
+    "vehicle_impact_sound": {
+      "filename": "__base__/sound/car-wood-impact.ogg",
+      "volume": 1
+    },
+    "pictures": [
+      {
+        "filename": "__base__/graphics/entity/tree/dry-tree/dry-tree-01-a.png",
+        "flags": [
+          "mipmap"
+        ],
+        "width": 194,
+        "height": 116,
+        "shift": [
+          2.25,
+          null
+        ]
+      },
+      {
+        "filename": "__base__/graphics/entity/tree/dry-tree/dry-tree-01-b.png",
+        "flags": [
+          "mipmap"
+        ],
+        "width": 155,
+        "height": 129,
+        "shift": [
+          1.42188,
+          null
+        ]
+      },
+      {
+        "filename": "__base__/graphics/entity/tree/dry-tree/dry-tree-01-c.png",
+        "flags": [
+          "mipmap"
+        ],
+        "width": 113,
+        "height": 81,
+        "shift": [
+          1.26562,
+          null
+        ]
+      },
+      {
+        "filename": "__base__/graphics/entity/tree/dry-tree/dry-tree-01-d.png",
+        "flags": [
+          "mipmap"
+        ],
+        "width": 156,
+        "height": 120,
+        "shift": [
+          0.96875,
+          null
+        ]
+      },
+      {
+        "filename": "__base__/graphics/entity/tree/dry-tree/dry-tree-01-e.png",
+        "flags": [
+          "mipmap"
+        ],
+        "width": 150,
+        "height": 124,
+        "shift": [
+          1.53125,
+          null
+        ]
+      },
+      {
+        "filename": "__base__/graphics/entity/tree/dry-tree/dry-tree-01-f.png",
+        "flags": [
+          "mipmap"
+        ],
+        "width": 178,
+        "height": 116,
+        "shift": [
+          1.96875,
+          null
+        ]
+      },
+      {
+        "filename": "__base__/graphics/entity/tree/dry-tree/dry-tree-02-a.png",
+        "flags": [
+          "mipmap"
+        ],
+        "width": 147,
+        "height": 123,
+        "shift": [
+          1.8125,
+          null
+        ]
+      },
+      {
+        "filename": "__base__/graphics/entity/tree/dry-tree/dry-tree-02-b.png",
+        "flags": [
+          "mipmap"
+        ],
+        "width": 168,
+        "height": 133,
+        "shift": [
+          1.17188,
+          null
+        ]
+      },
+      {
+        "filename": "__base__/graphics/entity/tree/dry-tree/dry-tree-02-c.png",
+        "flags": [
+          "mipmap"
+        ],
+        "width": 174,
+        "height": 134,
+        "shift": [
+          1.07812,
+          null
+        ]
+      },
+      {
+        "filename": "__base__/graphics/entity/tree//dry-tree/dry-tree-02-d.png",
+        "flags": [
+          "mipmap"
+        ],
+        "width": 215,
+        "height": 136,
+        "shift": [
+          2.875,
+          null
+        ]
+      },
+      {
+        "filename": "__base__/graphics/entity/tree//dry-tree/dry-tree-02-e.png",
+        "flags": [
+          "mipmap"
+        ],
+        "width": 158,
+        "height": 115,
+        "shift": [
+          2.14062,
+          null
+        ]
+      },
+      {
+        "filename": "__base__/graphics/entity/tree//dry-tree/dry-tree-02-f.png",
+        "flags": [
+          "mipmap"
+        ],
+        "width": 180,
+        "height": 105,
+        "shift": [
+          2.23438,
+          null
+        ]
+      },
+      {
+        "filename": "__base__/graphics/entity/tree//dry-tree/dry-tree-03-a.png",
+        "flags": [
+          "mipmap"
+        ],
+        "width": 168,
+        "height": 111,
+        "shift": [
+          0.78125,
+          null
+        ]
+      },
+      {
+        "filename": "__base__/graphics/entity/tree//dry-tree/dry-tree-03-b.png",
+        "flags": [
+          "mipmap"
+        ],
+        "width": 145,
+        "height": 118,
+        "shift": [
+          0.921875,
+          null
+        ]
+      },
+      {
+        "filename": "__base__/graphics/entity/tree//dry-tree/dry-tree-03-c.png",
+        "flags": [
+          "mipmap"
+        ],
+        "width": 161,
+        "height": 115,
+        "shift": [
+          1.57812,
+          null
+        ]
+      },
+      {
+        "filename": "__base__/graphics/entity/tree//dry-tree/dry-tree-03-d.png",
+        "flags": [
+          "mipmap"
+        ],
+        "width": 183,
+        "height": 122,
+        "shift": [
+          2.20312,
+          null
+        ]
+      },
+      {
+        "filename": "__base__/graphics/entity/tree//dry-tree/dry-tree-03-e.png",
+        "flags": [
+          "mipmap"
+        ],
+        "width": 166,
+        "height": 122,
+        "shift": [
+          2.0625,
+          null
+        ]
+      },
+      {
+        "filename": "__base__/graphics/entity/tree//dry-tree/dry-tree-03-f.png",
+        "flags": [
+          "mipmap"
+        ],
+        "width": 160,
+        "height": 104,
+        "shift": [
+          1.5625,
+          null
+        ]
+      },
+      {
+        "filename": "__base__/graphics/entity/tree//dry-tree/dry-tree-04-a.png",
+        "flags": [
+          "mipmap"
+        ],
+        "width": 195,
+        "height": 139,
+        "shift": [
+          1.67188,
+          null
+        ]
+      },
+      {
+        "filename": "__base__/graphics/entity/tree//dry-tree/dry-tree-04-b.png",
+        "flags": [
+          "mipmap"
+        ],
+        "width": 173,
+        "height": 138,
+        "shift": [
+          1.29688,
+          null
+        ]
+      },
+      {
+        "filename": "__base__/graphics/entity/tree//dry-tree/dry-tree-04-c.png",
+        "flags": [
+          "mipmap"
+        ],
+        "width": 210,
+        "height": 135,
+        "shift": [
+          1.5,
+          null
+        ]
+      },
+      {
+        "filename": "__base__/graphics/entity/tree//dry-tree/dry-tree-04-d.png",
+        "flags": [
+          "mipmap"
+        ],
+        "width": 149,
+        "height": 119,
+        "shift": [
+          1.57812,
+          null
+        ]
+      },
+      {
+        "filename": "__base__/graphics/entity/tree//dry-tree/dry-tree-04-e.png",
+        "flags": [
+          "mipmap"
+        ],
+        "width": 173,
+        "height": 143,
+        "shift": [
+          1.39062,
+          null
+        ]
+      }
+    ]
+  },
+  {
+    "type": "tree",
+    "name": "green-coral",
+    "flags": [
+      "placeable-neutral",
+      "placeable-off-grid",
+      "breaths-air"
+    ],
+    "icon": "__base__/graphics/icons/green-coral.png",
+    "minable": {
+      "count": 1,
+      "mining_particle": "wooden-particle",
+      "mining_time": 2,
+      "result": "raw-wood"
+    },
+    "max_health": 50,
+    "collision_box": [
+      [
+        null,
+        null
+      ],
+      [
+        0.3,
+        0.3
+      ]
+    ],
+    "selection_box": [
+      [
+        null,
+        null
+      ],
+      [
+        0.5,
+        0.5
+      ]
+    ],
+    "drawing_box": [
+      [
+        null,
+        null
+      ],
+      [
+        0.5,
+        0.5
+      ]
+    ],
+    "emissions_per_tick": 0,
+    "subgroup": "trees",
+    "order": "a[tree]-d[coral]",
+    "vehicle_impact_sound": {
+      "filename": "__base__/sound/car-wood-impact.ogg",
+      "volume": 1
+    },
+    "pictures": [
+      {
+        "filename": "__base__/graphics/entity/tree/green-coral/green-coral-01.png",
+        "flags": [
+          "mipmap"
+        ],
+        "width": 58,
+        "height": 69,
+        "shift": [
+          0.4,
+          null
+        ]
+      },
+      {
+        "filename": "__base__/graphics/entity/tree/green-coral/green-coral-02.png",
+        "flags": [
+          "mipmap"
+        ],
+        "width": 77,
+        "height": 97,
+        "shift": [
+          0.7,
+          null
+        ]
+      },
+      {
+        "filename": "__base__/graphics/entity/tree/green-coral/green-coral-03.png",
+        "flags": [
+          "mipmap"
+        ],
+        "width": 41,
+        "height": 54,
+        "shift": [
+          0.2,
+          0
+        ]
+      },
+      {
+        "filename": "__base__/graphics/entity/tree/green-coral/green-coral-04.png",
+        "flags": [
+          "mipmap"
+        ],
+        "width": 63,
+        "height": 61,
+        "shift": [
+          0.7,
+          0.3
+        ]
+      },
+      {
+        "filename": "__base__/graphics/entity/tree/green-coral/green-coral-05.png",
+        "flags": [
+          "mipmap"
+        ],
+        "width": 63,
+        "height": 85,
+        "shift": [
+          null,
+          0.5
+        ]
+      },
+      {
+        "filename": "__base__/graphics/entity/tree/green-coral/green-coral-06.png",
+        "flags": [
+          "mipmap"
+        ],
+        "width": 67,
+        "height": 71
+      },
+      {
+        "filename": "__base__/graphics/entity/tree/green-coral/green-coral-07.png",
+        "flags": [
+          "mipmap"
+        ],
+        "width": 89,
+        "height": 77,
+        "shift": [
+          null,
+          null
+        ]
+      }
+    ]
+  },
+  {
+    "type": "tree",
+    "name": "dead-grey-trunk",
+    "icon": "__base__/graphics/icons/dead-grey-trunk.png",
+    "flags": [
+      "placeable-neutral",
+      "placeable-off-grid",
+      "breaths-air"
+    ],
+    "minable": {
+      "mining_particle": "wooden-particle",
+      "mining_time": 1,
+      "result": "raw-wood",
+      "count": 2
+    },
+    "max_health": 20,
+    "collision_box": [
+      [
+        null,
+        null
+      ],
+      [
+        0.6,
+        0.6
+      ]
+    ],
+    "selection_box": [
+      [
+        null,
+        null
+      ],
+      [
+        0.8,
+        0.8
+      ]
+    ],
+    "subgroup": "trees",
+    "order": "a[tree]-b[dead-tree]",
+    "vehicle_impact_sound": {
+      "filename": "__base__/sound/car-wood-impact.ogg",
+      "volume": 1
+    },
+    "pictures": [
+      {
+        "filename": "__base__/graphics/entity/tree/dead-grey-trunk/dead-grey-trunk-01.png",
+        "flags": [
+          "mipmap"
+        ],
+        "width": 105,
+        "height": 96,
+        "shift": [
+          0.75,
+          null
+        ]
+      },
+      {
+        "filename": "__base__/graphics/entity/tree/dead-grey-trunk/dead-grey-trunk-02.png",
+        "flags": [
+          "mipmap"
+        ],
+        "width": 67,
+        "height": 87,
+        "shift": [
+          0.4,
+          0.43
+        ]
+      },
+      {
+        "filename": "__base__/graphics/entity/tree/dead-grey-trunk/dead-grey-trunk-03.png",
+        "flags": [
+          "mipmap"
+        ],
+        "width": 114,
+        "height": 67,
+        "shift": [
+          0.56,
+          null
+        ]
+      },
+      {
+        "filename": "__base__/graphics/entity/tree/dead-grey-trunk/dead-grey-trunk-04.png",
+        "flags": [
+          "mipmap"
+        ],
+        "width": 95,
+        "height": 85,
+        "shift": [
+          0.62,
+          0.21
+        ]
+      },
+      {
+        "filename": "__base__/graphics/entity/tree/dead-grey-trunk/dead-grey-trunk-05.png",
+        "flags": [
+          "mipmap"
+        ],
+        "width": 100,
+        "height": 112,
+        "shift": [
+          0.84,
+          null
+        ]
+      },
+      {
+        "filename": "__base__/graphics/entity/tree/dead-grey-trunk/dead-grey-trunk-06.png",
+        "flags": [
+          "mipmap"
+        ],
+        "width": 96,
+        "height": 82,
+        "shift": [
+          0,
+          null
+        ]
+      },
+      {
+        "filename": "__base__/graphics/entity/tree/dead-grey-trunk/dead-grey-trunk-07.png",
+        "flags": [
+          "mipmap"
+        ],
+        "width": 143,
+        "height": 55,
+        "shift": [
+          null,
+          0
+        ]
+      }
+    ]
+  },
+  {
+    "type": "tree",
+    "name": "dry-hairy-tree",
+    "icon": "__base__/graphics/icons/dry-hairy-tree.png",
+    "flags": [
+      "placeable-neutral",
+      "placeable-off-grid",
+      "breaths-air"
+    ],
+    "minable": {
+      "mining_particle": "wooden-particle",
+      "mining_time": 1,
+      "result": "raw-wood",
+      "count": 2
+    },
+    "max_health": 20,
+    "collision_box": [
+      [
+        null,
+        null
+      ],
+      [
+        0.6,
+        0.6
+      ]
+    ],
+    "selection_box": [
+      [
+        null,
+        null
+      ],
+      [
+        0.8,
+        0.8
+      ]
+    ],
+    "subgroup": "trees",
+    "order": "a[tree]-b[dead-tree]",
+    "vehicle_impact_sound": {
+      "filename": "__base__/sound/car-wood-impact.ogg",
+      "volume": 1
+    },
+    "pictures": [
+      {
+        "filename": "__base__/graphics/entity/tree/dry-hairy-tree/dry-hairy-tree-01.png",
+        "flags": [
+          "mipmap"
+        ],
+        "width": 201,
+        "height": 242,
+        "shift": [
+          1.9,
+          null
+        ]
+      },
+      {
+        "filename": "__base__/graphics/entity/tree/dry-hairy-tree/dry-hairy-tree-02.png",
+        "flags": [
+          "mipmap"
+        ],
+        "width": 307,
+        "height": 256,
+        "shift": [
+          2.62,
+          null
+        ]
+      },
+      {
+        "filename": "__base__/graphics/entity/tree/dry-hairy-tree/dry-hairy-tree-03.png",
+        "flags": [
+          "mipmap"
+        ],
+        "width": 286,
+        "height": 240,
+        "shift": [
+          0.56,
+          null
+        ]
+      },
+      {
+        "filename": "__base__/graphics/entity/tree/dry-hairy-tree/dry-hairy-tree-04.png",
+        "flags": [
+          "mipmap"
+        ],
+        "width": 291,
+        "height": 229,
+        "shift": [
+          3.5,
+          null
+        ]
+      },
+      {
+        "filename": "__base__/graphics/entity/tree/dry-hairy-tree/dry-hairy-tree-05.png",
+        "flags": [
+          "mipmap"
+        ],
+        "width": 265,
+        "height": 264,
+        "shift": [
+          3.2,
+          null
+        ]
+      },
+      {
+        "filename": "__base__/graphics/entity/tree/dry-hairy-tree/dry-hairy-tree-06.png",
+        "flags": [
+          "mipmap"
+        ],
+        "width": 312,
+        "height": 267,
+        "shift": [
+          2.59,
+          null
+        ]
+      },
+      {
+        "filename": "__base__/graphics/entity/tree/dry-hairy-tree/dry-hairy-tree-07.png",
+        "flags": [
+          "mipmap"
+        ],
+        "width": 294,
+        "height": 213,
+        "shift": [
+          3.37,
+          null
+        ]
+      },
+      {
+        "filename": "__base__/graphics/entity/tree/dry-hairy-tree/dry-hairy-tree-08.png",
+        "flags": [
+          "mipmap"
+        ],
+        "width": 284,
+        "height": 217,
+        "shift": [
+          2.28,
+          null
+        ]
+      }
+    ]
+  },
+  {
+    "type": "tree",
+    "name": "dead-dry-hairy-tree",
+    "icon": "__base__/graphics/icons/dead-dry-hairy-tree.png",
+    "flags": [
+      "placeable-neutral",
+      "placeable-off-grid",
+      "breaths-air"
+    ],
+    "minable": {
+      "mining_particle": "wooden-particle",
+      "mining_time": 1,
+      "result": "raw-wood",
+      "count": 2
+    },
+    "max_health": 20,
+    "collision_box": [
+      [
+        null,
+        null
+      ],
+      [
+        0.6,
+        0.6
+      ]
+    ],
+    "selection_box": [
+      [
+        null,
+        null
+      ],
+      [
+        0.8,
+        0.8
+      ]
+    ],
+    "subgroup": "trees",
+    "order": "a[tree]-b[dead-tree]",
+    "vehicle_impact_sound": {
+      "filename": "__base__/sound/car-wood-impact.ogg",
+      "volume": 1
+    },
+    "pictures": [
+      {
+        "filename": "__base__/graphics/entity/tree/dead-dry-hairy-tree/dead-tree-02-a.png",
+        "flags": [
+          "mipmap"
+        ],
+        "width": 194,
+        "height": 94,
+        "shift": [
+          0.28125,
+          null
+        ]
+      },
+      {
+        "filename": "__base__/graphics/entity/tree/dead-dry-hairy-tree/dead-tree-02-b.png",
+        "flags": [
+          "mipmap"
+        ],
+        "width": 186,
+        "height": 151,
+        "shift": [
+          0.15625,
+          null
+        ]
+      },
+      {
+        "filename": "__base__/graphics/entity/tree/dead-dry-hairy-tree/dead-tree-02-c.png",
+        "flags": [
+          "mipmap"
+        ],
+        "width": 163,
+        "height": 118,
+        "shift": [
+          0.171875,
+          null
+        ]
+      },
+      {
+        "filename": "__base__/graphics/entity/tree/dead-dry-hairy-tree/dead-tree-02-d.png",
+        "flags": [
+          "mipmap"
+        ],
+        "width": 178,
+        "height": 153,
+        "shift": [
+          1.09375,
+          null
+        ]
+      },
+      {
+        "filename": "__base__/graphics/entity/tree/dead-dry-hairy-tree/dead-tree-02-e.png",
+        "flags": [
+          "mipmap"
+        ],
+        "width": 195,
+        "height": 158,
+        "shift": [
+          0.859375,
+          null
+        ]
+      },
+      {
+        "filename": "__base__/graphics/entity/tree/dead-dry-hairy-tree/dead-tree-02-f.png",
+        "flags": [
+          "mipmap"
+        ],
+        "width": 206,
+        "height": 141,
+        "shift": [
+          0.4375,
+          null
+        ]
+      },
+      {
+        "filename": "__base__/graphics/entity/tree/dead-dry-hairy-tree/dead-tree-02-g.png",
+        "flags": [
+          "mipmap"
+        ],
+        "width": 209,
+        "height": 147,
+        "shift": [
+          0.421875,
+          null
+        ]
+      },
+      {
+        "filename": "__base__/graphics/entity/tree/dead-dry-hairy-tree/dead-tree-02-h.png",
+        "flags": [
+          "mipmap"
+        ],
+        "width": 175,
+        "height": 106,
+        "shift": [
+          0.109375,
+          null
+        ]
+      },
+      {
+        "filename": "__base__/graphics/entity/tree/dead-dry-hairy-tree/dead-tree-02-i.png",
+        "flags": [
+          "mipmap"
+        ],
+        "width": 155,
+        "height": 86,
+        "shift": [
+          null,
+          0.125
+        ]
+      },
+      {
+        "filename": "__base__/graphics/entity/tree/dead-dry-hairy-tree/dead-tree-02-j.png",
+        "flags": [
+          "mipmap"
+        ],
+        "width": 150,
+        "height": 135,
+        "shift": [
+          0.59375,
+          null
+        ]
+      },
+      {
+        "filename": "__base__/graphics/entity/tree/dead-dry-hairy-tree/dead-tree-02-k.png",
+        "flags": [
+          "mipmap"
+        ],
+        "width": 159,
+        "height": 122,
+        "shift": [
+          0.171875,
+          null
+        ]
+      },
+      {
+        "filename": "__base__/graphics/entity/tree/dead-dry-hairy-tree/dead-tree-02-l.png",
+        "flags": [
+          "mipmap"
+        ],
+        "width": 169,
+        "height": 121,
+        "shift": [
+          0.234375,
+          null
+        ]
+      }
+    ]
+  },
   {
     "type": "noise-layer",
     "name": "trees"
@@ -11040,7 +11876,6 @@
     "animation": {
       "layers": [
         {
-          "priority": "low",
           "width": 102,
           "height": 86,
           "frame_count": 2,
@@ -11069,7 +11904,6 @@
             }
           ],
           "hr_version": {
-            "priority": "low",
             "width": 202,
             "height": 172,
             "frame_count": 2,
@@ -11116,7 +11950,6 @@
           }
         },
         {
-          "priority": "low",
           "width": 100,
           "height": 75,
           "frame_count": 2,
@@ -11129,7 +11962,6 @@
             null
           ],
           "hr_version": {
-            "priority": "low",
             "width": 199,
             "height": 147,
             "frame_count": 2,
@@ -11146,7 +11978,6 @@
           }
         },
         {
-          "priority": "low",
           "width": 114,
           "height": 76,
           "frame_count": 2,
@@ -11164,7 +11995,6 @@
       "layers": [
         {
           "filename": "__base__/graphics/entity/car/car-turret.png",
-          "priority": "low",
           "line_length": 8,
           "width": 36,
           "height": 29,
@@ -11176,7 +12006,6 @@
           ],
           "animation_speed": 8,
           "hr_version": {
-            "priority": "low",
             "width": 71,
             "height": 57,
             "frame_count": 1,
@@ -11204,7 +12033,6 @@
         },
         {
           "filename": "__base__/graphics/entity/car/car-turret-shadow.png",
-          "priority": "low",
           "line_length": 8,
           "width": 46,
           "height": 31,
@@ -11417,7 +12245,6 @@
     "animation": {
       "layers": [
         {
-          "priority": "low",
           "width": 139,
           "height": 110,
           "frame_count": 2,
@@ -11452,7 +12279,6 @@
           ]
         },
         {
-          "priority": "low",
           "width": 109,
           "height": 88,
           "frame_count": 2,
@@ -11466,7 +12292,6 @@
           "line_length": 2
         },
         {
-          "priority": "low",
           "width": 154,
           "height": 99,
           "frame_count": 2,
@@ -11484,7 +12309,6 @@
       "layers": [
         {
           "filename": "__base__/graphics/entity/tank/turret.png",
-          "priority": "low",
           "line_length": 8,
           "width": 92,
           "height": 69,
@@ -11498,7 +12322,6 @@
         },
         {
           "filename": "__base__/graphics/entity/tank/turret-mask.png",
-          "priority": "low",
           "line_length": 8,
           "width": 38,
           "height": 29,
@@ -11512,7 +12335,6 @@
         },
         {
           "filename": "__base__/graphics/entity/tank/turret-shadow.png",
-          "priority": "low",
           "line_length": 8,
           "width": 95,
           "height": 67,
@@ -11673,7 +12495,7 @@
         ]
       }
     },
-    "circuit_wire_max_distance": 9
+    "circuit_wire_max_distance": 7.5
   },
   {
     "type": "container",
@@ -11765,7 +12587,7 @@
         ]
       }
     },
-    "circuit_wire_max_distance": 9
+    "circuit_wire_max_distance": 7.5
   },
   {
     "type": "inserter",
@@ -12798,7 +13620,7 @@
         {
           "priority": "very-low",
           "flags": [
-            "shadow"
+            "compressed"
           ],
           "width": 253,
           "height": 212,
@@ -13024,7 +13846,6 @@
           "flags": [
             "mask"
           ],
-          "priority": "very-low",
           "width": 196,
           "height": 174,
           "direction_count": 128,
@@ -13045,7 +13866,6 @@
             "flags": [
               "mask"
             ],
-            "priority": "very-low",
             "width": 406,
             "height": 371,
             "direction_count": 128,
@@ -13063,9 +13883,8 @@
         },
         {
           "flags": [
-            "shadow"
+            "compressed"
           ],
-          "priority": "very-low",
           "width": 246,
           "height": 201,
           "back_equals_front": true,
@@ -13085,9 +13904,8 @@
           ],
           "hr_version": {
             "flags": [
-              "shadow"
+              "compressed"
             ],
-            "priority": "very-low",
             "width": 490,
             "height": 401,
             "back_equals_front": true,
@@ -13515,9 +14333,8 @@
         },
         {
           "flags": [
-            "shadow"
+            "compressed"
           ],
-          "priority": "very-low",
           "width": 251,
           "height": 188,
           "back_equals_front": true,
@@ -13537,9 +14354,8 @@
           ],
           "hr_version": {
             "flags": [
-              "shadow"
+              "compressed"
             ],
-            "priority": "very-low",
             "width": 501,
             "height": 375,
             "back_equals_front": true,
@@ -14675,11 +15491,7 @@
       null,
       null
     ],
-    "circuit_wire_max_distance": 9,
-    "default_train_stopped_signal": {
-      "type": "virtual",
-      "name": "signal-T"
-    }
+    "circuit_wire_max_distance": 7.5
   },
   {
     "type": "rail-signal",
@@ -14963,7 +15775,7 @@
       null,
       null
     ],
-    "circuit_wire_max_distance": 9,
+    "circuit_wire_max_distance": 7.5,
     "default_red_output_signal": {
       "type": "virtual",
       "name": "signal-red"
@@ -15747,7 +16559,7 @@
         ]
       }
     },
-    "circuit_wire_max_distance": 9
+    "circuit_wire_max_distance": 7.5
   },
   {
     "type": "logistic-container",
@@ -15841,7 +16653,7 @@
         ]
       }
     },
-    "circuit_wire_max_distance": 9
+    "circuit_wire_max_distance": 7.5
   },
   {
     "type": "logistic-container",
@@ -15935,7 +16747,7 @@
         ]
       }
     },
-    "circuit_wire_max_distance": 9
+    "circuit_wire_max_distance": 7.5
   },
   {
     "type": "logistic-container",
@@ -16029,7 +16841,7 @@
         ]
       }
     },
-    "circuit_wire_max_distance": 9
+    "circuit_wire_max_distance": 7.5
   },
   {
     "type": "rocket-silo",
@@ -17009,7 +17821,7 @@
         ]
       }
     },
-    "circuit_wire_max_distance": 9,
+    "circuit_wire_max_distance": 7.5,
     "default_available_logistic_output_signal": {
       "type": "virtual",
       "name": "signal-X"
@@ -17090,7 +17902,6 @@
         }
       ]
     },
-    "two_direction_only": true,
     "window_bounding_box": [
       [
         null,
@@ -17265,7 +18076,7 @@
       null,
       null
     ],
-    "circuit_wire_max_distance": 9
+    "circuit_wire_max_distance": 7.5
   },
   {
     "type": "pump",
@@ -17619,7 +18430,7 @@
       null,
       null
     ],
-    "circuit_wire_max_distance": 9
+    "circuit_wire_max_distance": 7.5
   },
   {
     "type": "explosion",
@@ -18456,7 +19267,7 @@
         ]
       }
     },
-    "circuit_wire_max_distance": 9,
+    "circuit_wire_max_distance": 7.5,
     "default_output_signal": {
       "type": "virtual",
       "name": "signal-A"
@@ -21470,7 +22281,7 @@
         }
       }
     ],
-    "circuit_wire_max_distance": 9
+    "circuit_wire_max_distance": 7.5
   },
   {
     "type": "decider-combinator",
@@ -22477,7 +23288,7 @@
         }
       }
     ],
-    "circuit_wire_max_distance": 9
+    "circuit_wire_max_distance": 7.5
   },
   {
     "type": "constant-combinator",
@@ -22723,7 +23534,7 @@
         }
       }
     ],
-    "circuit_wire_max_distance": 9
+    "circuit_wire_max_distance": 7.5
   },
   {
     "type": "power-switch",
@@ -25249,7 +26060,7 @@
         ]
       }
     },
-    "circuit_wire_max_distance": 9
+    "circuit_wire_max_distance": 7.5
   },
   {
     "type": "electric-energy-interface",
@@ -26103,14 +26914,6 @@
       ],
       "production_type": "output"
     },
-    "fluid_input": {
-      "name": "water",
-      "amount": 0
-    },
-    "fluid_output": {
-      "name": "steam",
-      "amount": 0
-    },
     "energy_consumption": "10MW",
     "energy_source": {
       "type": "heat",
@@ -26334,7 +27137,7 @@
       "production_type": "input-output"
     },
     "fluid_input": {
-      "name": "steam",
+      "name": "water",
       "amount": 0,
       "minimum_temperature": 100
     },
@@ -27814,7 +28617,7 @@
       null,
       null
     ],
-    "circuit_wire_max_distance": 9
+    "circuit_wire_max_distance": 7.5
   },
   {
     "type": "projectile",
@@ -29616,4 +30419,4 @@
     "dying_speed": 0.01,
     "final_render_layer": "corpse"
   }
-]
+];

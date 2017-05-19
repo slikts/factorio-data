@@ -1,4 +1,4 @@
-[
+module.exports = [
   {
     "type": "ammo",
     "name": "piercing-rounds-magazine",
@@ -3442,7 +3442,7 @@
     "name": "nuclear-reactor",
     "icon": "__base__/graphics/icons/nuclear-reactor.png",
     "flags": [
-      "goes-to-quickbar"
+      "goes-to-main-inventory"
     ],
     "subgroup": "energy",
     "order": "f[nuclear-energy]-a[reactor]",
@@ -3476,7 +3476,7 @@
     "name": "centrifuge",
     "icon": "__base__/graphics/icons/centrifuge.png",
     "flags": [
-      "goes-to-quickbar"
+      "goes-to-main-inventory"
     ],
     "subgroup": "production-machine",
     "order": "g[centrifuge]",
@@ -3830,4 +3830,4 @@
     "place_result": "flamethrower-turret",
     "stack_size": 50
   }
-]
+];

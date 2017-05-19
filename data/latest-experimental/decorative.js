@@ -1,4 +1,4 @@
-[
+module.exports = [
   {
     "type": "noise-layer",
     "name": "pita"
@@ -4432,4 +4432,4 @@
       }
     ]
   }
-]
+];
