@@ -39,3 +39,10 @@ test('extract data', t => {
   const { stringify, parse } = JSON
   t.equal(stringify(data), stringify([parse(readFile(fixture('recipe.json')))]))
 })
+
+test('expressions', t => {
+  t.plan(1)
+  const data = extractData(fixture('expressions.lua'))
+  const { stringify, parse } = JSON
+  t.equal(stringify(data), stringify([parse(readFile(fixture('expressions.json')))]))
+})
