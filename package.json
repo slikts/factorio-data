@@ -16,18 +16,18 @@
   "license": "ISC",
   "dependencies": {
     "cheerio": "^0.22.0",
-    "debug": "^2.6.6",
-    "globby": "^6.1.0",
+    "debug": "^3.1.0",
+    "globby": "^8.0.1",
     "luaparse": "^0.2.1",
     "minimist": "^1.2.0",
     "request-promise-native": "^1.0.4",
-    "shelljs": "^0.7.7"
+    "shelljs": "^0.8.2"
   },
   "bin": {
     "factorio-data": "bin/extract.js"
   },
   "devDependencies": {
-    "eslint": "^3.19.0",
+    "eslint": "^5.1.0",
     "eslint-config-prettier": "^2.0.0",
     "eslint-config-slikts": "^1.0.10",
     "eslint-plugin-import": "^2.2.0",

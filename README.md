@@ -2,7 +2,7 @@
 [![GitHub version](https://badge.fury.io/gh/slikts%2Ffactorio-data.svg)](https://badge.fury.io/gh/slikts%2Ffactorio-data)
 [![Dependency Status](https://david-dm.org/slikts/factorio-data.svg)](https://david-dm.org/slikts/factorio-data)
 [![Open Source Love](https://badges.frapsoft.com/os/mit/mit.svg?v=102)](https://github.com/ellerbrock/open-source-badge/)
-[![Build Status](https://travis-ci.org/slikts/factorio-data.svg?branch=master)](https://travis-ci.org/slikts/factorio-data)
+[![Build Status](https://travis-ci.org/slikts/factorio-data.svg?branch=master)](https://travis-ci.org/slikts/factorio-data) [![Greenkeeper badge](https://badges.greenkeeper.io/slikts/factorio-data.svg)](https://greenkeeper.io/)
 
 # factorio-data
 
